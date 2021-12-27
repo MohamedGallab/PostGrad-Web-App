@@ -5,6 +5,13 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostGrad-Web-App", "PostGrad-Web-App\PostGrad-Web-App.csproj", "{4B697C1F-CFAB-4AEC-A784-B011A80E08B4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AF92675E-6D42-4B55-90FA-ACEE655E41F3}"
+	ProjectSection(SolutionItems) = preProject
+		CreateTables.sql = CreateTables.sql
+		Insertions.sql = Insertions.sql
+		Milestone 2 solution.sql = Milestone 2 solution.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
