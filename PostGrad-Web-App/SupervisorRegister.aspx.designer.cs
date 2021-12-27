@@ -11,7 +11,7 @@ namespace PostGrad_Web_App
 {
 
 
-	public partial class StudentRegister
+	public partial class SupervisorRegister
 	{
 
 		/// <summary>
@@ -60,15 +60,6 @@ namespace PostGrad_Web_App
 		protected global::System.Web.UI.WebControls.TextBox faculty;
 
 		/// <summary>
-		/// Gucian control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox Gucian;
-
-		/// <summary>
 		/// email control.
 		/// </summary>
 		/// <remarks>
@@ -76,15 +67,6 @@ namespace PostGrad_Web_App
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.TextBox email;
-
-		/// <summary>
-		/// address control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox address;
 
 		/// <summary>
 		/// RegisterBtn control.

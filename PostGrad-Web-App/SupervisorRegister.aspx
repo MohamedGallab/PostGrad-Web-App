@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentRegister.aspx.cs" Inherits="PostGrad_Web_App.StudentRegister" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SupervisorRegister.aspx.cs" Inherits="PostGrad_Web_App.SupervisorRegister" %>
 
 <!DOCTYPE html>
 
@@ -15,6 +15,7 @@
 </head>
 <body>
     <form id="RegisterationForm" runat="server">
+
         <asp:Label runat="server" Text="first_name"></asp:Label>
         <br/>
         <asp:TextBox ID="first_name" runat="server"></asp:TextBox>
@@ -35,22 +36,12 @@
         <asp:TextBox ID="faculty" runat="server"></asp:TextBox>
         <br/>
 
-        <asp:Label runat="server" Text="Gucian"></asp:Label>
-        <br/>
-        <asp:TextBox ID="Gucian" runat="server"></asp:TextBox>
-        <br/>
-
         <asp:Label runat="server" Text="email"></asp:Label>
         <br/>
         <asp:TextBox ID="email" runat="server"></asp:TextBox>
         <br/>
 
-        <asp:Label runat="server" Text="address"></asp:Label>
-        <br/>
-        <asp:TextBox ID="address" runat="server"></asp:TextBox>
-        <br/>
-
-    	<asp:Button ID="RegisterBtn" runat="server" Text="Register" OnClick="RegisterBtnClicked" />
+    	<asp:Button ID="RegisterBtn" runat="server" Text="Register" OnClick="RegisterBtn_Click" />
     </form>
 </body>
 </html>

@@ -11,7 +11,7 @@ namespace PostGrad_Web_App
 {
 
 
-	public partial class StudentRegister
+	public partial class ExaminerRegister
 	{
 
 		/// <summary>
@@ -24,22 +24,13 @@ namespace PostGrad_Web_App
 		protected global::System.Web.UI.HtmlControls.HtmlForm RegisterationForm;
 
 		/// <summary>
-		/// first_name control.
+		/// name control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox first_name;
-
-		/// <summary>
-		/// last_name control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox last_name;
+		protected global::System.Web.UI.WebControls.TextBox name;
 
 		/// <summary>
 		/// password control.
@@ -51,22 +42,13 @@ namespace PostGrad_Web_App
 		protected global::System.Web.UI.WebControls.TextBox password;
 
 		/// <summary>
-		/// faculty control.
+		/// isNational control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox faculty;
-
-		/// <summary>
-		/// Gucian control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox Gucian;
+		protected global::System.Web.UI.WebControls.TextBox isNational;
 
 		/// <summary>
 		/// email control.
@@ -78,13 +60,13 @@ namespace PostGrad_Web_App
 		protected global::System.Web.UI.WebControls.TextBox email;
 
 		/// <summary>
-		/// address control.
+		/// fieldOfWork control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox address;
+		protected global::System.Web.UI.WebControls.TextBox fieldOfWork;
 
 		/// <summary>
 		/// RegisterBtn control.
