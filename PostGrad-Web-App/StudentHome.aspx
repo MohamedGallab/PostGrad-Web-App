@@ -12,6 +12,11 @@
         <div>
             add a phone number
         </div>
+        <p>
+            <asp:TextBox ID="mobileNumber" runat="server"></asp:TextBox>
+        <p>
+         <asp:Button ID="addNumber" runat="server" Text="Add Number" OnClick="AddMobileClicked" />
+        </p>
     </form>
 </body>
 </html>
