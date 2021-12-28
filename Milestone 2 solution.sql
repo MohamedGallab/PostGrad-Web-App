@@ -903,10 +903,10 @@ create proc userLoginSimple
 @email varchar(50),
 	@password varchar(20),
 	@success bit output,
-	@type int output
+	@type int output,
+	@id int output
 as
 begin
-	declare @id int;
 	exec getIDFromMail @email, @id output;
 	exec userLogin @id, @password, @success output, @type output;
 end

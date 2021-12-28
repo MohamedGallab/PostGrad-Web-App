@@ -39,15 +39,20 @@ namespace PostGrad_Web_App
 			SqlParameter type = userLoginSimpleProc.Parameters.Add("@type", SqlDbType.Int);
 			type.Direction = System.Data.ParameterDirection.Output;
 
+			SqlParameter oldUserID = userLoginSimpleProc.Parameters.Add("@id", SqlDbType.Int);
+			oldUserID.Direction = System.Data.ParameterDirection.Output;
+
+
+			
+
 			Connection.Open();
 			userLoginSimpleProc.ExecuteNonQuery();
 			Connection.Close();
-			System.Diagnostics.Debug.WriteLine(success.Value + " " + type.Value);
-			Session["user"] = email;
-			System.Diagnostics.Debug.WriteLine(Session["user"]);
-			//--check user type 0-- > Student,1-- > Admin,2-- > Supervisor ,3-- > Examiner
+			
+
 			if (Convert.ToBoolean(success.Value))
 			{
+				Session["userID"] = Convert.ToInt32(oldUserID.Value);
 				switch (type.Value)
 				{
 					case 0:

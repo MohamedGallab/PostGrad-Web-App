@@ -41,13 +41,16 @@ namespace PostGrad_Web_App
 			registerStudentProc.Parameters.Add(new SqlParameter("@Gucian", SqlDbType.Bit)).Value = isGucian;
 			registerStudentProc.Parameters.Add(new SqlParameter("@address", SqlDbType.VarChar)).Value = adrs;
 			registerStudentProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar)).Value = mail;
-			
 
+			int newUserID;
+			SqlCommand getRegisteredID = new SqlCommand("SELECT IDENT_CURRENT('PostGradUser')", Connection);
+			
 			Connection.Open();
 			registerStudentProc.ExecuteNonQuery();
+			newUserID = Convert.ToInt32(getRegisteredID.ExecuteScalar());
 			Connection.Close();
 
-			Session["user"] = mail;
+			Session["userID"] = newUserID;
 			Response.Redirect("StudentHome.aspx");
 		}
 	}
