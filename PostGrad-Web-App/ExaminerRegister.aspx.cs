@@ -38,12 +38,16 @@ namespace PostGrad_Web_App
 			examinerRegisterProc.Parameters.Add(new SqlParameter("@fieldOfWork", SqlDbType.VarChar)).Value = fldOfWork;
 			examinerRegisterProc.Parameters.Add(new SqlParameter("@National", SqlDbType.Bit)).Value = nationality;
 
+			int newUserID;
+			SqlCommand getRegisteredID = new SqlCommand("SELECT IDENT_CURRENT('PostGradUser')", Connection);
 
 			Connection.Open();
 			examinerRegisterProc.ExecuteNonQuery();
+			newUserID = Convert.ToInt32(getRegisteredID.ExecuteScalar());
+			//System.Diagnostics.Debug.WriteLine(newUserID);
 			Connection.Close();
 
-			Session["user"] = mail;
+			Session["userID"] = newUserID;
 			Response.Redirect("ExaminerHome.aspx");
 		}
 	}
