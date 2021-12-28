@@ -71,7 +71,7 @@ namespace PostGrad_Web_App
             SqlCommand examinerChangeNationalProc = new SqlCommand("ExaminerEditNational", Connection);
             examinerChangeNationalProc.CommandType = CommandType.StoredProcedure;
             examinerChangeNationalProc.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar)).Value = Session["userID"];
-            examinerChangeNationalProc.Parameters.Add(new SqlParameter("@newEmail", SqlDbType.VarChar)).Value = isNational;
+            examinerChangeNationalProc.Parameters.Add(new SqlParameter("@newIsNational", SqlDbType.VarChar)).Value = isNational;
 
             Connection.Open();
             examinerChangeNationalProc.ExecuteNonQuery();
@@ -80,12 +80,22 @@ namespace PostGrad_Web_App
 
         protected void ConfirmFieldOfWork_Click(object sender, EventArgs e)
         {
+            String ConnectionString = WebConfigurationManager.ConnectionStrings["PostGradConnectionString"].ToString();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            String newFieldOfWork = EditFieldOfWorkB.Text;
+            SqlCommand examinerChangeFieldOfWorkProc = new SqlCommand("ExaminerEditFieldOfWork", Connection);
+            examinerChangeFieldOfWorkProc.CommandType = CommandType.StoredProcedure;
+            examinerChangeFieldOfWorkProc.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar)).Value = Session["userID"];
+            examinerChangeFieldOfWorkProc.Parameters.Add(new SqlParameter("@newFieldOfWork", SqlDbType.VarChar)).Value = newFieldOfWork;
 
+            Connection.Open();
+            examinerChangeFieldOfWorkProc.ExecuteNonQuery();
+            Connection.Close();
         }
 
         protected void BackFromEditInfoB_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ExaminerHome.aspx");
         }
     }
 }
