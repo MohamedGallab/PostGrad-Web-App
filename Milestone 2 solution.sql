@@ -912,6 +912,30 @@ begin
 end
 
 go
+create proc ExaminerEditPassword
+@id int,
+@newPassword varchar(20)
+as 
+begin
+	update PostGradUser
+	SET password = @newPassword
+	where id=@id;
+end
+go
+
+go
+create proc ExaminerEditEmail
+@id int,
+@newEmail varchar(50)
+as 
+begin
+	update PostGradUser
+	SET email = @newEmail
+	where id=@id;
+end
+go
+
+go
 create proc ExaminerEditName 
 @id int,
 @newName varchar(20)

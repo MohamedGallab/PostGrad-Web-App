@@ -9,8 +9,22 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            add a phone number
+            Welcome<br />
         </div>
+        <p>
+            &nbsp;</p>
+        <p>
+        <asp:Button ID="EditInfo" runat="server" Text="Edit Your Personal Info" Width="313px" OnClick="EditInfo_Click" />
+        </p>
+        <p>
+            <asp:Button ID="ViewInfo" runat="server" Text="View Related Information" Width="315px" OnClick="ViewInfo_Click" />
+        </p>
+        <p>
+            <asp:Button ID="evaluate" runat="server" Text="Add Evaluation" Width="315px" OnClick="evaluate_Click" />
+        </p>
+        <p>
+            <asp:Button ID="lookUpThesis" runat="server" Text="Search for a Specific Thesis" OnClick="lookUpThesis_Click" />
+        </p>
     </form>
 </body>
 </html>

@@ -68,8 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminHome.aspx" />
+    <Content Include="ExaminerEditInfo.aspx" />
+    <Content Include="ExaminerEvaluate.aspx" />
     <Content Include="ExaminerHome.aspx" />
+    <Content Include="ExaminerLookUp.aspx" />
     <Content Include="ExaminerRegister.aspx" />
+    <Content Include="ExaminerViewInfo.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="StudentHome.aspx" />
@@ -86,6 +90,20 @@
     <Compile Include="AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ExaminerEditInfo.aspx.cs">
+      <DependentUpon>ExaminerEditInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExaminerEditInfo.aspx.designer.cs">
+      <DependentUpon>ExaminerEditInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExaminerEvaluate.aspx.cs">
+      <DependentUpon>ExaminerEvaluate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExaminerEvaluate.aspx.designer.cs">
+      <DependentUpon>ExaminerEvaluate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ExaminerHome.aspx.cs">
       <DependentUpon>ExaminerHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -93,12 +111,26 @@
     <Compile Include="ExaminerHome.aspx.designer.cs">
       <DependentUpon>ExaminerHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ExaminerLookUp.aspx.cs">
+      <DependentUpon>ExaminerLookUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExaminerLookUp.aspx.designer.cs">
+      <DependentUpon>ExaminerLookUp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ExaminerRegister.aspx.cs">
       <DependentUpon>ExaminerRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ExaminerRegister.aspx.designer.cs">
       <DependentUpon>ExaminerRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExaminerViewInfo.aspx.cs">
+      <DependentUpon>ExaminerViewInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExaminerViewInfo.aspx.designer.cs">
+      <DependentUpon>ExaminerViewInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
