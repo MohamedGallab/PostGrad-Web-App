@@ -27,7 +27,7 @@
 
         <asp:Label runat="server" Text="isNational"></asp:Label>
         <br/>
-        <asp:TextBox ID="isNational" runat="server"></asp:TextBox>
+        <asp:CheckBox ID="isNational" runat="server" />
         <br/>
 
         <asp:Label runat="server" Text="email"></asp:Label>

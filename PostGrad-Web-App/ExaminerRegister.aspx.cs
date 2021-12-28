@@ -26,7 +26,7 @@ namespace PostGrad_Web_App
 			String firstName = name.Text;
 			String pass = password.Text;
 			String mail = email.Text;
-			String nationality = isNational.Text;
+			Boolean nationality = isNational.Checked;
 			String fldOfWork = fieldOfWork.Text;
 
 			SqlCommand examinerRegisterProc = new SqlCommand("examinerRegister", Connection);
@@ -36,7 +36,7 @@ namespace PostGrad_Web_App
 			examinerRegisterProc.Parameters.Add(new SqlParameter("@password", SqlDbType.VarChar)).Value = pass;
 			examinerRegisterProc.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar)).Value = mail;
 			examinerRegisterProc.Parameters.Add(new SqlParameter("@fieldOfWork", SqlDbType.VarChar)).Value = fldOfWork;
-			examinerRegisterProc.Parameters.Add(new SqlParameter("@National", SqlDbType.VarChar)).Value = nationality;
+			examinerRegisterProc.Parameters.Add(new SqlParameter("@National", SqlDbType.Bit)).Value = nationality;
 
 
 			Connection.Open();

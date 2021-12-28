@@ -48,7 +48,7 @@ namespace PostGrad_Web_App
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox isNational;
+		protected global::System.Web.UI.WebControls.CheckBox isNational;
 
 		/// <summary>
 		/// email control.
