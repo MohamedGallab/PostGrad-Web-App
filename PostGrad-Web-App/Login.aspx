@@ -9,8 +9,17 @@
 <body>
 	<form id="form1" runat="server">
 		<div>
-		<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-		<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+			<asp:Label runat="server" Text="Email"></asp:Label>
+			<br />
+			<asp:TextBox ID="Email" runat="server"></asp:TextBox>
+			<br />
+			<asp:Label runat="server" Text="Password"></asp:Label>
+			<br />
+			<asp:TextBox ID="Password" runat="server"></asp:TextBox>
+			<br />
+			<asp:Button ID="LoginBtn" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
+			<br />
+			<asp:HyperLink ID="RegisterLink" runat="server" NavigateUrl="~/Register.aspx">Register A New Account</asp:HyperLink>
 		</div>
 	</form>
 </body>

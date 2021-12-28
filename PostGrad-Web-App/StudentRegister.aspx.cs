@@ -27,7 +27,7 @@ namespace PostGrad_Web_App
 			String lastName = last_name.Text;
 			String pass = password.Text;
 			String fclty = faculty.Text;
-			String isGucian = Gucian.Text;
+			Boolean isGucian = Gucian.Checked;
 			String mail = email.Text;
 			String adrs = address.Text;
 

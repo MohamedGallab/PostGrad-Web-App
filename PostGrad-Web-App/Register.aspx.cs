@@ -14,17 +14,17 @@ namespace PostGrad_Web_App
 
 		}
 
-		protected void Button1_Click(object sender, EventArgs e)
+		protected void StudentRegister_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("StudentRegister.aspx");
 		}
 
-		protected void Button2_Click(object sender, EventArgs e)
+		protected void SupervisorRegister_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("SupervisorRegister.aspx");
 		}
 
-		protected void Button3_Click(object sender, EventArgs e)
+		protected void ExaminerRegister_Click(object sender, EventArgs e)
 		{
 			Response.Redirect("ExaminerRegister.aspx");
 		}

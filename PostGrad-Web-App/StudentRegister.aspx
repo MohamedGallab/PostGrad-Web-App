@@ -35,9 +35,9 @@
         <asp:TextBox ID="faculty" runat="server"></asp:TextBox>
         <br/>
 
-        <asp:Label runat="server" Text="Gucian"></asp:Label>
+        <asp:Label runat="server" Text="Are you a Gucian ?"></asp:Label>
         <br/>
-        <asp:TextBox ID="Gucian" runat="server"></asp:TextBox>
+        <asp:CheckBox ID="Gucian" runat="server" />
         <br/>
 
         <asp:Label runat="server" Text="email"></asp:Label>

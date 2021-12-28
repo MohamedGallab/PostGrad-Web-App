@@ -9,9 +9,9 @@
 <body>
 	<form id="form1" runat="server">
 		<div>
-			<asp:Button ID="Button1" runat="server" Text="Student" OnClick="Button1_Click" />
-			<asp:Button ID="Button2" runat="server" Text="Supervisor" OnClick="Button2_Click"/>
-			<asp:Button ID="Button3" runat="server" Text="Examiner" OnClick="Button3_Click"/>
+			<asp:Button ID="StudentRegister" runat="server" Text="Student" OnClick="StudentRegister_Click" />
+			<asp:Button ID="SupervisorRegister" runat="server" Text="Supervisor" OnClick="SupervisorRegister_Click"/>
+			<asp:Button ID="ExaminerRegister" runat="server" Text="Examiner" OnClick="ExaminerRegister_Click"/>
 		</div>
 	</form>
 </body>
