@@ -15,22 +15,22 @@ namespace PostGrad_Web_App
 		}
 
 
-        protected System.Void EditInfo_Click(System.Object sender, System.EventArgs e)
+        protected void EditInfo_Click(System.Object sender, System.EventArgs e)
         {
             Response.Redirect("ExaminerEditInfo.aspx");
         }
 
-        protected System.Void ViewInfo_Click(System.Object sender, System.EventArgs e)
+        protected void ViewInfo_Click(System.Object sender, System.EventArgs e)
         {
             Response.Redirect("ExaminerViewInfo.aspx");
         }
 
-        protected System.Void evaluate_Click(System.Object sender, System.EventArgs e)
+        protected void evaluate_Click(System.Object sender, System.EventArgs e)
         {
             Response.Redirect("ExaminerEvaluate.aspx");
         }
 
-        protected System.Void lookUpThesis_Click(System.Object sender, System.EventArgs e)
+        protected void lookUpThesis_Click(System.Object sender, System.EventArgs e)
         {
             Response.Redirect("ExaminerLookUp.aspx");
         }
