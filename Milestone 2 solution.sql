@@ -1,4 +1,4 @@
-CREATE DATABASE PostGradOffice2;
+CREATE DATABASE PostGradOffice;
 go
 use PostGradOffice;
 CREATE TABLE PostGradUser(
@@ -317,18 +317,6 @@ update Thesis
 set noOfExtensions=@noOfExtensions+1
 where serialNumber=@ThesisSerialNo
 end
-GO 
-	CREATE PROC ExaminerAddCommentsGrade
-	@ThesisSerialNo INT,
-	@DefenseDate DATETIME,
-	@examinerId INT,
-	@comments VARCHAR(300)
-	AS
-	UPDATE ExaminerEvaluateDefense
-	SET comment = @comments
-	WHERE ExaminerEvaluateDefense.serialNo = @ThesisSerialNo AND ExaminerEvaluateDefense.date = @DefenseDate AND ExaminerEvaluateDefense.examinerId = @examinerId
-RETURN
-go
 go
 CREATE Proc AdminIssueThesisPayment
 @ThesisSerialNo int,
