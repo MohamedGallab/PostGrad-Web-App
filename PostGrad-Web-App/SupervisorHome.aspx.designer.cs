@@ -276,58 +276,58 @@ namespace PostGrad_Web_App
         protected global::System.Web.UI.WebControls.Label Label14;
 
         /// <summary>
-        /// Label15 control.
+        /// ThesisSerialNoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label15;
+        protected global::System.Web.UI.WebControls.Label ThesisSerialNoLabel;
 
         /// <summary>
-        /// TextBox11 control.
+        /// ThesisSerialNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
+        protected global::System.Web.UI.WebControls.TextBox ThesisSerialNo;
 
         /// <summary>
-        /// Label16 control.
+        /// ProgressReportNoLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
+        protected global::System.Web.UI.WebControls.Label ProgressReportNoLabel;
 
         /// <summary>
-        /// TextBox12 control.
+        /// ProgressReportNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.TextBox ProgressReportNo;
 
         /// <summary>
-        /// Label17 control.
+        /// EvalLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
+        protected global::System.Web.UI.WebControls.Label EvalLabel;
 
         /// <summary>
-        /// TextBox13 control.
+        /// Eval control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.WebControls.TextBox Eval;
 
         /// <summary>
         /// Button6 control.

@@ -71,24 +71,26 @@
             <asp:Button ID="Button4" runat="server" Text="Add Examiner" />
         </div>
         <br />
+
         <div>
             <asp:Label ID="Label14" runat="server" Text="Evaluate a progress report of a student"></asp:Label>
             <br />
 
-            <asp:Label ID="Label15" runat="server" Text="Thesis Serial Number"></asp:Label>
-            <asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>
+            <asp:Label ID="ThesisSerialNoLabel" runat="server" Text="Thesis Serial Number"></asp:Label>
+            <asp:TextBox ID="ThesisSerialNo" runat="server"></asp:TextBox>
             <br />
 
-            <asp:Label ID="Label16" runat="server" Text="Progress Report Number"></asp:Label>
-            <asp:TextBox ID="TextBox12" runat="server"></asp:TextBox>
+            <asp:Label ID="ProgressReportNoLabel" runat="server" Text="Progress Report Number"></asp:Label>
+            <asp:TextBox ID="ProgressReportNo" runat="server"></asp:TextBox>
             <br />
 
-            <asp:Label ID="Label17" runat="server" Text="Evaluation"></asp:Label>
-            <asp:TextBox ID="TextBox13" runat="server"></asp:TextBox>
+            <asp:Label ID="EvalLabel" runat="server" Text="Evaluation"></asp:Label>
+            <asp:TextBox ID="Eval" runat="server"></asp:TextBox>
             <br />
 
-            <asp:Button ID="Button6" runat="server" Text="Evaluate Progress Report" />
+            <asp:Button ID="Button6" runat="server" Text="Evaluate Progress Report" OnClick ="OnEvaluate" />
         </div>
+
         <br />
         <div>
             <asp:Label ID="Label18" runat="server" Text="Thesis Serial Number"></asp:Label>
