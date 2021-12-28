@@ -873,17 +873,7 @@ delete from PostGradUser where id in (select id from deleted)
 
 ----------------------------------------------------------------------------	Extra Procedures	---------------------------------------------------------------------------- 
 
-GO 
-	CREATE PROC ExaminerAddCommentsGrade
-	@ThesisSerialNo INT,
-	@DefenseDate DATETIME,
-	@examinerId INT,
-	@comments VARCHAR(300)
-	AS
-	UPDATE ExaminerEvaluateDefense
-	SET comment = @comments
-	WHERE ExaminerEvaluateDefense.serialNo = @ThesisSerialNo AND ExaminerEvaluateDefense.date = @DefenseDate AND ExaminerEvaluateDefense.examinerId = @examinerId
-RETURN
+
 
 GO
 
@@ -921,3 +911,86 @@ begin
 	exec userLogin @id, @password, @success output, @type output;
 end
 
+go
+create proc ExaminerEditName 
+@id int,
+@newName varchar(20)
+as 
+begin
+	update Examiner
+	SET name = @newName
+	where id=@id;
+end
+go
+
+go 
+create proc ExaminerEditFieldOfWork
+@id int,
+@newFieldOfWork varchar(100)
+as 
+begin
+	update Examiner
+	Set fieldOfWork=@newFieldOfWork
+	where id=@id;
+end
+go
+
+go
+create proc ExaminerEditNational
+@id int,
+@newIsNational bit
+as 
+begin 
+	update Examiner
+	Set isNational = @newIsNational
+	where id=@id;
+end
+go
+
+go
+create proc ExaminerViewGucian
+@id int
+as
+begin
+	select T.title,S.name,GS.firstName,GS.lastName
+	from ExaminerEvaluateDefense E inner join Thesis T on E.serialNo = T.serialNumber and E.examinerId = @id
+		inner join GUCianStudentRegisterThesis G on G.serial_no = T.serialNumber
+		inner join GucianStudent GS on GS.id = G.sid
+		inner join Supervisor S on S.id = G.supid;
+end
+go
+
+go
+create proc ExaminerViewNonGucian
+@id int
+as
+begin
+	select T.title,S.name,GS.firstName,GS.lastName
+	from ExaminerEvaluateDefense E inner join Thesis T on E.serialNo = T.serialNumber and E.examinerId = @id
+		inner join NonGUCianStudentRegisterThesis G on G.serial_no = T.serialNumber
+		inner join NonGucianStudent GS on GS.id = G.sid
+		inner join Supervisor S on S.id = G.supid;
+end
+go
+GO 
+	CREATE PROC ExaminerAddCommentsGrade
+	@ThesisSerialNo INT,
+	@DefenseDate DATETIME,
+	@examinerId INT,
+	@comments VARCHAR(300)
+	AS
+	UPDATE ExaminerEvaluateDefense
+	SET comment = @comments
+	WHERE ExaminerEvaluateDefense.serialNo = @ThesisSerialNo AND ExaminerEvaluateDefense.date = @DefenseDate AND ExaminerEvaluateDefense.examinerId = @examinerId
+RETURN
+
+GO 
+	CREATE PROC ExaminerSearch
+	@word varchar(100)
+	as 
+	begin 
+	select T.title
+	from Thesis T
+	where T.title like '%' + @word + '%';
+	end
+go
