@@ -873,6 +873,18 @@ delete from PostGradUser where id in (select id from deleted)
 
 ----------------------------------------------------------------------------	Extra Procedures	---------------------------------------------------------------------------- 
 
+GO 
+	CREATE PROC ExaminerAddCommentsGrade
+	@ThesisSerialNo INT,
+	@DefenseDate DATETIME,
+	@examinerId INT,
+	@comments VARCHAR(300)
+	AS
+	UPDATE ExaminerEvaluateDefense
+	SET comment = @comments
+	WHERE ExaminerEvaluateDefense.serialNo = @ThesisSerialNo AND ExaminerEvaluateDefense.date = @DefenseDate AND ExaminerEvaluateDefense.examinerId = @examinerId
+RETURN
+
 GO
 
 create proc examinerRegister
@@ -907,4 +919,5 @@ begin
 	declare @id int;
 	exec getIDFromMail @email, @id output;
 	exec userLogin @id, @password, @success output, @type output;
-end	
+end
+
