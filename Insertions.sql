@@ -1,4 +1,4 @@
-USE PostGradOffice2;
+USE PostGradOffice;
 
 -- Insert 2 Admins
 	INSERT INTO PostGradUser (email, password) VALUES ('AlbusDumbledoreEmail', 'DumbledorePass');
