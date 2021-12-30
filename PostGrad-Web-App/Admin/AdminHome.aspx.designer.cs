@@ -24,12 +24,48 @@ namespace PostGrad_Web_App
 		protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
 		/// <summary>
-		/// Button1 control.
+		/// ListSupBtn control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button Button1;
+		protected global::System.Web.UI.WebControls.Button ListSupBtn;
+
+		/// <summary>
+		/// ListSupGridView control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.GridView ListSupGridView;
+
+		/// <summary>
+		/// ListTheses control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button ListTheses;
+
+		/// <summary>
+		/// ThesesCountLabel control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label ThesesCountLabel;
+
+		/// <summary>
+		/// ListThesesGridView control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.GridView ListThesesGridView;
 	}
 }

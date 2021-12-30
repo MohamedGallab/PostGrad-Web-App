@@ -1202,3 +1202,7 @@ begin
 	where T.title like '%' + @word + '%';
 end
 go
+
+declare @x int;
+exec AdminViewOnGoingTheses @x output;
+print @x;

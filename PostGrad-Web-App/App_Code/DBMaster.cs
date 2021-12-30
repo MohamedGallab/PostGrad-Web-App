@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.UI.WebControls;
 
 namespace PostGrad_Web_App.App_Code
 {
@@ -40,5 +42,22 @@ namespace PostGrad_Web_App.App_Code
 				Connection.Close();
 			}
 		}
+
+		public void DisplayTable(SqlCommand sqlCommand, GridView gridView)
+		{
+			using (Connection = GetSqlConnection())
+			{
+				sqlCommand.Connection = Connection;
+				sqlCommand.CommandType = CommandType.StoredProcedure;
+
+
+				using (SqlDataReader reader = sqlCommand.ExecuteReader())
+				{
+					gridView.DataSource = reader;
+					gridView.DataBind();
+				}
+			}
+		}
+
 	}
 }
