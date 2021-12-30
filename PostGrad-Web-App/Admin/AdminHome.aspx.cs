@@ -13,5 +13,10 @@ namespace PostGrad_Web_App
 		{
 
 		}
+
+		protected void Button1_Click(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

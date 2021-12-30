@@ -67,69 +67,70 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminHome.aspx" />
-    <Content Include="ExaminerEditInfo.aspx" />
-    <Content Include="ExaminerEvaluate.aspx" />
-    <Content Include="ExaminerHome.aspx" />
-    <Content Include="ExaminerLookUp.aspx" />
-    <Content Include="ExaminerRegister.aspx" />
-    <Content Include="ExaminerViewInfo.aspx" />
+    <Content Include="Admin\AdminHome.aspx" />
+    <Content Include="Examiner\ExaminerEditInfo.aspx" />
+    <Content Include="Examiner\ExaminerEvaluate.aspx" />
+    <Content Include="Examiner\ExaminerHome.aspx" />
+    <Content Include="Examiner\ExaminerLookUp.aspx" />
+    <Content Include="Examiner\ExaminerRegister.aspx" />
+    <Content Include="Examiner\ExaminerViewInfo.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="StudentHome.aspx" />
-    <Content Include="StudentRegister.aspx" />
-    <Content Include="SupervisorHome.aspx" />
-    <Content Include="SupervisorRegister.aspx" />
+    <Content Include="Student\StudentHome.aspx" />
+    <Content Include="Student\StudentRegister.aspx" />
+    <Content Include="Supervisor\SupervisorHome.aspx" />
+    <Content Include="Supervisor\SupervisorRegister.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminHome.aspx.cs">
+    <Compile Include="Admin\AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminHome.aspx.designer.cs">
+    <Compile Include="Admin\AdminHome.aspx.designer.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExaminerEditInfo.aspx.cs">
+    <Compile Include="App_Code\DBMaster.cs" />
+    <Compile Include="Examiner\ExaminerEditInfo.aspx.cs">
       <DependentUpon>ExaminerEditInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExaminerEditInfo.aspx.designer.cs">
+    <Compile Include="Examiner\ExaminerEditInfo.aspx.designer.cs">
       <DependentUpon>ExaminerEditInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExaminerEvaluate.aspx.cs">
+    <Compile Include="Examiner\ExaminerEvaluate.aspx.cs">
       <DependentUpon>ExaminerEvaluate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExaminerEvaluate.aspx.designer.cs">
+    <Compile Include="Examiner\ExaminerEvaluate.aspx.designer.cs">
       <DependentUpon>ExaminerEvaluate.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExaminerHome.aspx.cs">
+    <Compile Include="Examiner\ExaminerHome.aspx.cs">
       <DependentUpon>ExaminerHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExaminerHome.aspx.designer.cs">
+    <Compile Include="Examiner\ExaminerHome.aspx.designer.cs">
       <DependentUpon>ExaminerHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExaminerLookUp.aspx.cs">
+    <Compile Include="Examiner\ExaminerLookUp.aspx.cs">
       <DependentUpon>ExaminerLookUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExaminerLookUp.aspx.designer.cs">
+    <Compile Include="Examiner\ExaminerLookUp.aspx.designer.cs">
       <DependentUpon>ExaminerLookUp.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExaminerRegister.aspx.cs">
+    <Compile Include="Examiner\ExaminerRegister.aspx.cs">
       <DependentUpon>ExaminerRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExaminerRegister.aspx.designer.cs">
+    <Compile Include="Examiner\ExaminerRegister.aspx.designer.cs">
       <DependentUpon>ExaminerRegister.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExaminerViewInfo.aspx.cs">
+    <Compile Include="Examiner\ExaminerViewInfo.aspx.cs">
       <DependentUpon>ExaminerViewInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExaminerViewInfo.aspx.designer.cs">
+    <Compile Include="Examiner\ExaminerViewInfo.aspx.designer.cs">
       <DependentUpon>ExaminerViewInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
@@ -147,32 +148,32 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StudentHome.aspx.cs">
+    <Compile Include="Student\StudentHome.aspx.cs">
       <DependentUpon>StudentHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StudentHome.aspx.designer.cs">
+    <Compile Include="Student\StudentHome.aspx.designer.cs">
       <DependentUpon>StudentHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="StudentRegister.aspx.cs">
+    <Compile Include="Student\StudentRegister.aspx.cs">
       <DependentUpon>StudentRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="StudentRegister.aspx.designer.cs">
+    <Compile Include="Student\StudentRegister.aspx.designer.cs">
       <DependentUpon>StudentRegister.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SupervisorHome.aspx.cs">
+    <Compile Include="Supervisor\SupervisorHome.aspx.cs">
       <DependentUpon>SupervisorHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SupervisorHome.aspx.designer.cs">
+    <Compile Include="Supervisor\SupervisorHome.aspx.designer.cs">
       <DependentUpon>SupervisorHome.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SupervisorRegister.aspx.cs">
+    <Compile Include="Supervisor\SupervisorRegister.aspx.cs">
       <DependentUpon>SupervisorRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SupervisorRegister.aspx.designer.cs">
+    <Compile Include="Supervisor\SupervisorRegister.aspx.designer.cs">
       <DependentUpon>SupervisorRegister.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

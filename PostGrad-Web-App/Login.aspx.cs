@@ -56,16 +56,16 @@ namespace PostGrad_Web_App
 				switch (type.Value)
 				{
 					case 0:
-						Response.Redirect("StudentHome.aspx");
+						Response.Redirect("Student/StudentHome.aspx");
 						break;
 					case 1:
-						Response.Redirect("AdminHome.aspx");
+						Response.Redirect("Admin/AdminHome.aspx");
 						break;
 					case 2:
-						Response.Redirect("SupervisorHome.aspx");
+						Response.Redirect("Supervisor/SupervisorHome.aspx");
 						break;
 					case 3:
-						Response.Redirect("ExaminerHome.aspx");
+						Response.Redirect("Examiner/ExaminerHome.aspx");
 						break;
 				} }
 			else
