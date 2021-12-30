@@ -16,9 +16,9 @@
         <br />
         <div>
             <asp:Label ID="Label2" runat="server" Text="View all publications of a student"></asp:Label>
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:TextBox ID="PublicationsID" runat="server"></asp:TextBox>
             <br />
-            <asp:Button ID="Button2" runat="server" Text="View list" />
+            <asp:Button ID="Button2" runat="server" Text="View list" OnClick ="OnViewPublications"/>
         </div>
         <br />
         <div>

@@ -121,5 +121,11 @@ namespace PostGrad_Web_App
         {
 			Response.Redirect("ListMyStudents.aspx");
         }
+
+		protected void OnViewPublications(object sender, EventArgs e)
+		{
+			Session["StudentIDPublications"] = PublicationsID.Text;
+			Response.Redirect("ViewStudentPublications.aspx");
+		}
 	}
 }

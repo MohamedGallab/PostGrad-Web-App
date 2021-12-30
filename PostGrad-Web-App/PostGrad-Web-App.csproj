@@ -85,6 +85,7 @@
     <Content Include="Student\StudentTheses.aspx" />
     <Content Include="Supervisor\SupervisorHome.aspx" />
     <Content Include="Supervisor\SupervisorRegister.aspx" />
+    <Content Include="Supervisor\ViewStudentPublications.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="Supervisor\SupervisorRegister.aspx.designer.cs">
       <DependentUpon>SupervisorRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Supervisor\ViewStudentPublications.aspx.cs">
+      <DependentUpon>ViewStudentPublications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Supervisor\ViewStudentPublications.aspx.designer.cs">
+      <DependentUpon>ViewStudentPublications.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

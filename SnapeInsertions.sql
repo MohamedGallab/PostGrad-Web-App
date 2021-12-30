@@ -97,3 +97,134 @@ GO
 
 
 
+	GO
+	-- all declares
+	DECLARE @ThesisID INT;
+	DECLARE @ThesisPaymentID INT;
+	DECLARE @SupervisorID INT;
+	DECLARE @StudentID INT;
+	DECLARE @SuccessThesisPayment BIT;
+	DECLARE @ProgressReportNum INT;
+	DECLARE @examiner_id1 INT;
+	DECLARE @examiner_id2 INT;
+	DECLARE @Pub_ID INT;
+	DECLARE @CourseID INT;
+	DECLARE @Fees DECIMAL;
+	DECLARE @CoursePaymentId INT;
+
+	-- 1 supervisor, 2 students, 3 phone numbers, 3 thesis, 4 progress reports, 4 defenses, 2 examiners, 2 courses, 3 publictaions
+
+	-- supervisor
+	EXEC SupervisorRegister @first_name = 'Natalie', @last_name = 'Wynn', @password = 'Darkm321@@', @faculty = 'Philosiphy', @email = 'contrapoints@gmail.com';
+	SET @SupervisorID = IDENT_CURRENT ('PostGradUser');
+
+	-- gucian Studnet with 2 phones and 2 thesis and 3 progress reports and 3 defenses
+	EXEC StudentRegister @first_name = 'Abd Elghafour' , @last_name = 'El Boray', @password = 'Biro102030',
+		@faculty = 'Philosiphy', @Gucian = 1, @email = 'barbora@gmail.com', @address = 'Wekalet El balah, St 1, Apt 3';
+	SET @StudentID = IDENT_CURRENT ('PostGradUser');
+
+	
+	INSERT INTO Thesis (field, type, title, startDate, endDate, noOfExtensions) VALUES ('Philosiphy', 'Phd', 'Effects of catgrils on the psyche of the fragile', '2021-11-10', '2023-11-10', 0);
+	SET @ThesisID = IDENT_CURRENT ('Thesis');
+
+	INSERT INTO GUCianStudentRegisterThesis(sid, supid, serial_no) VALUES(@StudentID, @SupervisorID ,@ThesisID);
+	
+	EXEC AddGrade @ThesisSerialNo = @ThesisID;
+
+	-- 2 progress reports
+	EXEC AddProgressReport @thesisSerialNo = @ThesisID, @progressReportDate = '2022-01-07',@studentID = @StudentID,@progressReportNo=1;
+	SET @ProgressReportNum = (SELECT TOP 1 GUCianProgressReport.no
+			FROM GUCianProgressReport
+			WHERE @studentID = GUCianProgressReport.sid ORDER BY GUCianProgressReport.no DESC);
+
+	EXEC AddProgressReport @thesisSerialNo = @ThesisID, @progressReportDate = '2022-02-08',@studentID = @StudentID,@progressReportNo=2;
+	SET @ProgressReportNum = (SELECT TOP 1 GUCianProgressReport.no
+			FROM GUCianProgressReport
+			WHERE @studentID = GUCianProgressReport.sid ORDER BY GUCianProgressReport.no DESC);
+
+
+	-- defenses and publications
+	-- 2 defenses
+	--EXEC AddDefenseGucian @ThesisSerialNo = @ThesisID, @DefenseDate = '2023-01-01', @DefenseLocation = 'Court Room';
+	--EXEC AddExaminer @ThesisSerialNo = @ThesisID, @DefenseDate = '2023-01-01', @ExaminerName = 'Abigaul Thorne',@Password = 'Abi123!@#', @National = 0, @fieldOfWork = 'Philosiphy';
+	--set @examiner_id1 = IDENT_CURRENT ('PostGradUser');
+	--EXEC AddDefenseGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2023-01-01', @grade = 0.00;
+	--EXEC ExaminerAddCommentsGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2023-01-01', @examinerId = @examiner_id1, @comments = 'Its abhorent to say that catgirls are disgusting';
+
+	--EXEC AddDefenseGucian @ThesisSerialNo = @ThesisID, @DefenseDate = '2024-01-01', @DefenseLocation = 'Court Room';
+	--EXEC AddExaminer @ThesisSerialNo = @ThesisID, @DefenseDate = '2024-01-01', @ExaminerName = 'Berni',@Password = 'SocialistToTheCore', @National = 1, @fieldOfWork = 'Chocolate';
+	--set @examiner_id2 = IDENT_CURRENT ('PostGradUser');
+	--EXEC AddDefenseGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2024-01-01', @grade = 70.00;
+	--EXEC ExaminerAddCommentsGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2024-01-01', @examinerId = @examiner_id2, @comments = 'Meh';
+
+	EXEC addPublication @title = 'Catgirls and Otakus', @pubDate = '2024-02-02', @host = 'Times', @place = 'The web', @accepted = 0;
+	SET @Pub_ID = IDENT_CURRENT ('Publication');
+	EXEC linkPubThesis @PubID = @Pub_ID, @thesisSerialNo = @ThesisID;
+
+
+
+	-- thesis 2 with 1 progress report
+	INSERT INTO Thesis (field, type, title, startDate, endDate, noOfExtensions) VALUES ('Sharks', 'MSC', 'Sharks Swim?', '2030-09-11', '2033-08-08', 0);
+	SET @ThesisID = IDENT_CURRENT ('Thesis');
+
+
+
+	INSERT INTO GUCianStudentRegisterThesis VALUES(@StudentID, @SupervisorID ,@ThesisID);
+
+
+	-- 1 progress report
+	EXEC AddProgressReport @thesisSerialNo = @ThesisID, @progressReportDate = '2031-01-01',@studentID = @StudentID,@progressReportNo=3;
+	SET @ProgressReportNum = (SELECT TOP 1 GUCianProgressReport.no
+			FROM GUCianProgressReport
+			WHERE @studentID = GUCianProgressReport.sid ORDER BY GUCianProgressReport.no DESC);
+
+
+	-- 1 defenses with old examiners and publication
+	--EXEC AddDefenseGucian @ThesisSerialNo = @ThesisID, @DefenseDate = '2034-01-01', @DefenseLocation = 'Tank';
+
+	--INSERT INTO ExaminerEvaluateDefense (date, serialNo, examinerId) VALUES ('2034-01-01', @ThesisID, @examiner_id1);
+	--EXEC AddDefenseGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2034-01-01', @grade = 90.00;
+	--EXEC ExaminerAddCommentsGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2034-01-01', @examinerId = @examiner_id1, @comments = 'Sharks indeed look like they are swimming';
+
+	--INSERT INTO ExaminerEvaluateDefense (date, serialNo, examinerId) VALUES ('2034-01-01', @ThesisID, @examiner_id2);
+	--EXEC AddDefenseGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2034-01-01', @grade = 95.00;
+	--EXEC ExaminerAddCommentsGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2034-01-01', @examinerId = @examiner_id2, @comments = 'Sharks Swim! WOW!';
+
+	EXEC addPublication @title = 'Sharks swim', @pubDate = '2034-01-02', @host = 'AquaNews', @place = 'Ocean', @accepted = 1;
+	SET @Pub_ID = IDENT_CURRENT ('Publication');
+	EXEC linkPubThesis @PubID = @Pub_ID, @thesisSerialNo = @ThesisID;
+
+	-------------------------
+
+	-- none gucian Studnet with 1 phones and 1 thesis and 1 progress reports and 1 defenses
+	EXEC StudentRegister @first_name = 'Fatma' , @last_name = 'Koshary',@password = 'aTGAs$!@gA',
+	@faculty = 'MET', @Gucian = 0, @email = 'fatma.koshary@guc.edu.eg', @address = 'Wekalet ElBalah,St1,Apt2';
+	SET @StudentID = IDENT_CURRENT ('PostGradUser');
+
+	-- thesis 1, 2 reports, 2 defenses, 1 pub
+	-- thesis 1 & grade
+	INSERT INTO Thesis (field, type, title, startDate, endDate, noOfExtensions) VALUES ('CS', 'MS', 'Interuppt commands in CPU', '2024-03-04', '2026-01-01', 0);
+	SET @ThesisID = IDENT_CURRENT ('Thesis');
+
+	INSERT INTO NonGUCianStudentRegisterThesis VALUES(@StudentID, @SupervisorID ,@ThesisID);
+
+	-- 1 progress reports
+	EXEC AddProgressReport @thesisSerialNo = @ThesisID, @progressReportDate = '2025-01-01',@studentID = @StudentID,@progressReportNo=1;
+	SET @ProgressReportNum = (SELECT TOP 1 NonGUCianProgressReport.no
+			FROM NonGUCianProgressReport
+			WHERE @studentID = NonGUCianProgressReport.sid ORDER BY NonGUCianProgressReport.no DESC);
+
+
+	-- defenses and publications
+	-- 1 defenses
+	--EXEC AddDefenseGucian @ThesisSerialNo = @ThesisID, @DefenseDate = '2026-01-01', @DefenseLocation = 'C1';
+
+	--INSERT INTO ExaminerEvaluateDefense (date, serialNo, examinerId) VALUES ('2026-01-01', @ThesisID, @examiner_id1);
+	--EXEC AddDefenseGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2026-01-01', @grade = 71.00;
+	--EXEC ExaminerAddCommentsGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2026-01-01', @examinerId = @examiner_id1, @comments = 'Wonderful';
+
+
+	EXEC addPublication @title = 'CPU Interuppts', @pubDate = '2026-05-01', @host = 'CNN', @place = 'Internet', @accepted = 1;
+	SET @Pub_ID = IDENT_CURRENT ('Publication');
+	EXEC linkPubThesis @PubID = @Pub_ID, @thesisSerialNo = @ThesisID;
+GO
