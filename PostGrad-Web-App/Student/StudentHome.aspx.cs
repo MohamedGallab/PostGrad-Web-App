@@ -48,5 +48,34 @@ namespace PostGrad_Web_App
 			addMobileProc.ExecuteNonQuery();
 			Connection.Close();
 		}
+
+		protected void publication_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("Student/StudentPublication");
+		}
+
+		protected void progressReport_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("Student/StudentProgressReport");
+
+		}
+
+		protected void courses_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("Student/StudentCourses");
+
+		}
+
+		protected void theses_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("Student/StudentTheses");
+
+		}
+
+		protected void profile_Click(object sender, EventArgs e)
+		{
+			Response.Redirect("Student/StudentProfile");
+
+		}
 	}
 }
