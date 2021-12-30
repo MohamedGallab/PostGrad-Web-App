@@ -67,5 +67,122 @@ namespace PostGrad_Web_App
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.GridView ListThesesGridView;
+
+		/// <summary>
+		/// ExtendThesisBtn control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button ExtendThesisBtn;
+
+		/// <summary>
+		/// ExtendThesisTxt control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox ExtendThesisTxt;
+
+		/// <summary>
+		/// ExtendThesislabel control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label ExtendThesislabel;
+
+		/// <summary>
+		/// IssueThesisPaymentBtn control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button IssueThesisPaymentBtn;
+
+		/// <summary>
+		/// IssueThesisPaymentThesisSerialNo control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox IssueThesisPaymentThesisSerialNo;
+
+		/// <summary>
+		/// IssueThesisPaymentamount control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox IssueThesisPaymentamount;
+
+		/// <summary>
+		/// IssueThesisPaymentnoOfInstallments control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox IssueThesisPaymentnoOfInstallments;
+
+		/// <summary>
+		/// IssueThesisPaymentfundPercentage control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox IssueThesisPaymentfundPercentage;
+
+		/// <summary>
+		/// IssueThesisPaymentLabel control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label IssueThesisPaymentLabel;
+
+		/// <summary>
+		/// IssueInstallPayment control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button IssueInstallPayment;
+
+		/// <summary>
+		/// IssueInstallPaymentpaymentID control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox IssueInstallPaymentpaymentID;
+
+		/// <summary>
+		/// IssueInstallPaymentInstallDateLabel control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label IssueInstallPaymentInstallDateLabel;
+
+		/// <summary>
+		/// IssueInstallPaymentInstallStartDate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Calendar IssueInstallPaymentInstallStartDate;
 	}
 }
