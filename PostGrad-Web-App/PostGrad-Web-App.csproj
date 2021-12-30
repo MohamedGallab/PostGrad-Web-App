@@ -76,8 +76,12 @@
     <Content Include="Examiner\ExaminerViewInfo.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="Student\StudentCourses.aspx" />
     <Content Include="Student\StudentHome.aspx" />
+    <Content Include="Student\StudentProgressReport.aspx" />
+    <Content Include="Student\StudentPublication.aspx" />
     <Content Include="Student\StudentRegister.aspx" />
+    <Content Include="Student\StudentTheses.aspx" />
     <Content Include="Supervisor\SupervisorHome.aspx" />
     <Content Include="Supervisor\SupervisorRegister.aspx" />
     <Content Include="Web.config" />
@@ -148,6 +152,13 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Student\StudentCourses.aspx.cs">
+      <DependentUpon>StudentCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\StudentCourses.aspx.designer.cs">
+      <DependentUpon>StudentCourses.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student\StudentHome.aspx.cs">
       <DependentUpon>StudentHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,12 +166,33 @@
     <Compile Include="Student\StudentHome.aspx.designer.cs">
       <DependentUpon>StudentHome.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Student\StudentProgressReport.aspx.cs">
+      <DependentUpon>StudentProgressReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\StudentProgressReport.aspx.designer.cs">
+      <DependentUpon>StudentProgressReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\StudentPublication.aspx.cs">
+      <DependentUpon>StudentPublication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\StudentPublication.aspx.designer.cs">
+      <DependentUpon>StudentPublication.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Student\StudentRegister.aspx.cs">
       <DependentUpon>StudentRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Student\StudentRegister.aspx.designer.cs">
       <DependentUpon>StudentRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\StudentTheses.aspx.cs">
+      <DependentUpon>StudentTheses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\StudentTheses.aspx.designer.cs">
+      <DependentUpon>StudentTheses.aspx</DependentUpon>
     </Compile>
     <Compile Include="Supervisor\SupervisorHome.aspx.cs">
       <DependentUpon>SupervisorHome.aspx</DependentUpon>

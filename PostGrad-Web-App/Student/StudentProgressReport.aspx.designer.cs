@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostGrad_Web_App
+namespace PostGrad_Web_App.Student
 {
 
 
-	public partial class StudentHome
+	public partial class StudentProgressReport
 	{
 
 		/// <summary>
@@ -24,66 +24,75 @@ namespace PostGrad_Web_App
 		protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
 		/// <summary>
-		/// mobileNumber control.
+		/// Label14 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox mobileNumber;
+		protected global::System.Web.UI.WebControls.Label Label14;
 
 		/// <summary>
-		/// addNumber control.
+		/// ThesisSerialNoLabel control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button addNumber;
+		protected global::System.Web.UI.WebControls.Label ThesisSerialNoLabel;
 
 		/// <summary>
-		/// profile control.
+		/// ThesisSerialNo control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button profile;
+		protected global::System.Web.UI.WebControls.TextBox ThesisSerialNo;
 
 		/// <summary>
-		/// theses control.
+		/// ProgressReportNoLabel control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button theses;
+		protected global::System.Web.UI.WebControls.Label ProgressReportNoLabel;
 
 		/// <summary>
-		/// courses control.
+		/// ProgressReportNo control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button courses;
+		protected global::System.Web.UI.WebControls.TextBox ProgressReportNo;
 
 		/// <summary>
-		/// progressReport control.
+		/// EvalLabel control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button progressReport;
+		protected global::System.Web.UI.WebControls.Label EvalLabel;
 
 		/// <summary>
-		/// publication control.
+		/// Eval control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button publication;
+		protected global::System.Web.UI.WebControls.TextBox Eval;
+
+		/// <summary>
+		/// Button6 control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button Button6;
 	}
 }
