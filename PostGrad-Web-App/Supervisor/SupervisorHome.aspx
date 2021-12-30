@@ -11,7 +11,7 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="List my students"></asp:Label>
             <br />
-            <asp:Button ID="Button1" runat="server" Text="See list" />
+            <asp:Button ID="Button1" runat="server" Text="See list" OnClick = "OnListStudents"/>
         </div>
         <br />
         <div>
@@ -86,8 +86,9 @@
 
             <asp:Label ID="EvalLabel" runat="server" Text="Evaluation"></asp:Label>
             <asp:TextBox ID="Eval" runat="server"></asp:TextBox>
-            <br />
-
+            <br />        
+            <asp:Panel ID="evaluateSuccess" runat="server"></asp:Panel>
+          
             <asp:Button ID="Button6" runat="server" Text="Evaluate Progress Report" OnClick ="OnEvaluate" />
         </div>
 
@@ -97,7 +98,8 @@
             <asp:TextBox ID="TextBox14" runat="server"></asp:TextBox>
             <br />
 
-            <asp:Button ID="Button7" runat="server" Text="Cancel Thesis" />
+            <asp:Panel ID="CancelSuccess" runat="server"></asp:Panel>
+            <asp:Button ID="Button7" runat="server" Text="Cancel Thesis" OnClick ="OnCancelThesis" />
         </div>
     </form>
 </body>

@@ -91,5 +91,9 @@ GO
 	SET @Pub_ID = IDENT_CURRENT ('Publication');
 	EXEC linkPubThesis @PubID = @Pub_ID, @thesisSerialNo = @ThesisID;
 
+	INSERT INTO Thesis (field, type, title, startDate, endDate, noOfExtensions) VALUES ('ninjutsu', 'MS', 'shadow clone jutsu!', '2020-6-03', '2022-07-08', 0);
+	SET @ThesisID = IDENT_CURRENT ('Thesis');
+	INSERT INTO GUCianStudentRegisterThesis(sid, supid, serial_no) VALUES(@StudentID, @SupervisorID ,@ThesisID);
+
 
 

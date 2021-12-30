@@ -330,6 +330,15 @@ namespace PostGrad_Web_App
         protected global::System.Web.UI.WebControls.TextBox Eval;
 
         /// <summary>
+        /// evaluateSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel evaluateSuccess;
+
+        /// <summary>
         /// Button6 control.
         /// </summary>
         /// <remarks>
@@ -355,6 +364,15 @@ namespace PostGrad_Web_App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox14;
+
+        /// <summary>
+        /// CancelSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel CancelSuccess;
 
         /// <summary>
         /// Button7 control.

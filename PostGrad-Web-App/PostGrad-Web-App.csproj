@@ -78,6 +78,7 @@
     <Content Include="Register.aspx" />
     <Content Include="Student\StudentHome.aspx" />
     <Content Include="Student\StudentRegister.aspx" />
+    <Content Include="Supervisor\ListMyStudents.aspx" />
     <Content Include="Supervisor\SupervisorHome.aspx" />
     <Content Include="Supervisor\SupervisorRegister.aspx" />
     <Content Include="Web.config" />
@@ -161,6 +162,13 @@
     </Compile>
     <Compile Include="Student\StudentRegister.aspx.designer.cs">
       <DependentUpon>StudentRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Supervisor\ListMyStudents.aspx.cs">
+      <DependentUpon>ListMyStudents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Supervisor\ListMyStudents.aspx.designer.cs">
+      <DependentUpon>ListMyStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="Supervisor\SupervisorHome.aspx.cs">
       <DependentUpon>SupervisorHome.aspx</DependentUpon>
