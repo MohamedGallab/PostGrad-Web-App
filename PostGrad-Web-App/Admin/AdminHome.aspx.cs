@@ -94,16 +94,16 @@ namespace PostGrad_Web_App
 		{
 			using (SqlConnection connection = dbm.GetSqlConnection())
 			{
-				SqlCommand AdminIssueThesisPaymentProc = new SqlCommand("AdminIssueInstallPayment")
+				SqlCommand AdminIssueInstallPaymentProc = new SqlCommand("AdminIssueInstallPayment")
 				{
 					Connection = connection,
 					CommandType = CommandType.StoredProcedure
 				};
 
-				AdminIssueThesisPaymentProc.Parameters.Add("@paymentID", SqlDbType.Int).Value = Convert.ToInt32(IssueThesisPaymentThesisSerialNo.Text);
-				AdminIssueThesisPaymentProc.Parameters.Add("@InstallStartDate", SqlDbType.Date).Value = Convert.ToDecimal(IssueThesisPaymentamount.Text);
+				AdminIssueInstallPaymentProc.Parameters.Add("@paymentID", SqlDbType.Int).Value = Convert.ToInt32(IssueInstallPaymentpaymentID.Text);
+				AdminIssueInstallPaymentProc.Parameters.Add("@InstallStartDate", SqlDbType.Date).Value = IssueInstallPaymentInstallStartDate.SelectedDate.ToShortDateString();
 
-				AdminIssueThesisPaymentProc.ExecuteNonQuery();
+				AdminIssueInstallPaymentProc.ExecuteNonQuery();
 			}
 		}
 	}
