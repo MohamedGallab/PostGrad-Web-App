@@ -461,35 +461,47 @@ from Payment
 where id=@paymentID))
 begin
 	declare @numOfInst int
+
 	select @numOfInst=noOfInstallments
 	from Payment
 	where id=@paymentID
+
 	declare @payAmount int
+
 	select @payAmount=amount
 	from Payment
 	where id=@paymentID
+
 	DECLARE @Counter INT
+
 	SET @Counter=1
+
+	declare @instdate date
+
+	set @instdate=@InstallStartDate
+
+	declare @instAmount int
+
+	set @instAmount=@payAmount/@numOfInst
+
 	WHILE (@counter<=@numOfInst)
-BEGIN
-		declare @instdate date
-		set @instdate=@InstallStartDate
-		declare @instAmount int
-		set @instAmount=@payAmount/@numOfInst
+	BEGIN
+		
+
 		if(@counter=1)
-insert into
-Installment
-			(date,paymentId,amount,done)
-		values(@InstallStartDate, @paymentID
-, @instAmount, 0)
-else
-begin
-			set @instdate=DATEADD(MM, 6, @instdate);
 			insert into
-Installment
+			Installment
 				(date,paymentId,amount,done)
-			values(@instdate, @paymentID, @instAmount, 0)
-		end
+			values(@InstallStartDate, @paymentID
+			, @instAmount, 0)
+		else
+			begin
+				set @instdate=DATEADD(MM, 6, @instdate);
+				insert into
+				Installment
+				(date,paymentId,amount,done)
+				values(@instdate, @paymentID, @instAmount, 0)
+			end
 		SET @counter=@counter+1
 	END
 end
