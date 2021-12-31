@@ -58,15 +58,22 @@ namespace PostGrad_Web_App
 					CommandType = CommandType.StoredProcedure
 				};
 
-				AdminUpdateExtensionProc.Parameters.Add("@ThesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(ExtendThesisTxt.Text);
 				try
 				{
-					AdminUpdateExtensionProc.ExecuteNonQuery();
+					AdminUpdateExtensionProc.Parameters.Add("@ThesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(ExtendThesisTxt.Text);
+					if(AdminUpdateExtensionProc.ExecuteNonQuery() == -1)
+					{
+						throw new Exception("This Thesis Serial Number does not exist");
+					}
 					ExtendThesislabel.Text = "Successfully extended thesis";
 				}
-				catch (Exception)
+				catch (FormatException)
 				{
-					throw;
+					ExtendThesislabel.Text = "Please Enter A Number";
+				}
+				catch (Exception ex)
+				{
+					ExtendThesislabel.Text = ex.Message;
 				}
 			}
 		}
@@ -80,13 +87,27 @@ namespace PostGrad_Web_App
 					Connection = connection,
 					CommandType = CommandType.StoredProcedure
 				};
-
-				AdminIssueThesisPaymentProc.Parameters.Add("@ThesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(IssueThesisPaymentThesisSerialNo.Text);
-				AdminIssueThesisPaymentProc.Parameters.Add("@amount", SqlDbType.Decimal).Value = Convert.ToDecimal(IssueThesisPaymentamount.Text);
-				AdminIssueThesisPaymentProc.Parameters.Add("@noOfInstallments", SqlDbType.Int).Value = Convert.ToInt32(IssueThesisPaymentnoOfInstallments.Text);
-				AdminIssueThesisPaymentProc.Parameters.Add("@fundPercentage", SqlDbType.Decimal).Value = Convert.ToDecimal(IssueThesisPaymentfundPercentage.Text);
-
-				AdminIssueThesisPaymentProc.ExecuteNonQuery();
+				try
+				{
+					AdminIssueThesisPaymentProc.Parameters.Add("@ThesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(IssueThesisPaymentThesisSerialNo.Text);
+					AdminIssueThesisPaymentProc.Parameters.Add("@amount", SqlDbType.Decimal).Value = Convert.ToDecimal(IssueThesisPaymentamount.Text);
+					AdminIssueThesisPaymentProc.Parameters.Add("@noOfInstallments", SqlDbType.Int).Value = Convert.ToInt32(IssueThesisPaymentnoOfInstallments.Text);
+					AdminIssueThesisPaymentProc.Parameters.Add("@fundPercentage", SqlDbType.Decimal).Value = Convert.ToDecimal(IssueThesisPaymentfundPercentage.Text);
+					
+					if(AdminIssueThesisPaymentProc.ExecuteNonQuery() == -1)
+					{
+						throw new Exception("This Thesis Serial Number does not exist");
+					}
+					IssueThesisPaymentLabel.Text = "payment successfully issued";
+				}
+				catch (FormatException)
+				{
+					IssueThesisPaymentLabel.Text = "Please Fill all fields with valid numbers";
+				}
+				catch (Exception ex)
+				{
+					IssueThesisPaymentLabel.Text = ex.Message;
+				}
 			}
 		}
 
@@ -94,16 +115,38 @@ namespace PostGrad_Web_App
 		{
 			using (SqlConnection connection = dbm.GetSqlConnection())
 			{
-				SqlCommand AdminIssueInstallPaymentProc = new SqlCommand("AdminIssueInstallPayment")
+				SqlCommand AdminIssueInstallPaymentProc = new SqlCommand("AdminIssueInstallPaymentMine")
 				{
 					Connection = connection,
 					CommandType = CommandType.StoredProcedure
 				};
+				try
+				{
+					AdminIssueInstallPaymentProc.Parameters.Add("@paymentID", SqlDbType.Int).Value = Convert.ToInt32(IssueInstallPaymentpaymentID.Text);
+					AdminIssueInstallPaymentProc.Parameters.Add("@InstallStartDate", SqlDbType.Date).Value = IssueInstallPaymentInstallStartDate.SelectedDate.ToShortDateString();
 
-				AdminIssueInstallPaymentProc.Parameters.Add("@paymentID", SqlDbType.Int).Value = Convert.ToInt32(IssueInstallPaymentpaymentID.Text);
-				AdminIssueInstallPaymentProc.Parameters.Add("@InstallStartDate", SqlDbType.Date).Value = IssueInstallPaymentInstallStartDate.SelectedDate.ToShortDateString();
+					if(IssueInstallPaymentInstallStartDate.SelectedDate.ToShortDateString().ToString().Equals("01/01/0001"))
+					{
+						throw new FormatException();
+					}
 
-				AdminIssueInstallPaymentProc.ExecuteNonQuery();
+
+					AdminIssueInstallPaymentProc.ExecuteNonQuery();
+
+					IssueInstallPaymentMessage.Text = "Successfully issued Installments";
+				}
+				catch (FormatException)
+				{
+					IssueInstallPaymentMessage.Text = "You have to enter a payment id and choose a start date";
+				}
+				catch(SqlException ex)
+				{
+					IssueInstallPaymentMessage.Text = ex.Message;
+				}
+				catch (Exception ex)
+				{
+					IssueInstallPaymentMessage.Text = ex.Message;
+				}
 			}
 		}
 	}

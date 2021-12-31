@@ -1202,3 +1202,42 @@ begin
 	where T.title like '%' + @word + '%';
 end
 go
+
+GO
+CREATE PROC AdminIssueInstallPaymentMine
+@paymentID INT, @InstallStartDate DATE
+AS
+if(exists(select * from Installment where paymentId = @paymentID))
+begin
+RAISERROR('Installments for this payment were already issued',11,1);
+end
+else if(not exists(select *
+from Payment
+where id=@paymentID))
+begin
+RAISERROR('This Payment does not exist',11,1);
+end
+else
+begin
+	DECLARE @i INT = 0;
+
+	DECLARE @InstallmentDate DATE = @InstallStartDate;
+
+	DECLARE @no_installments INT = 
+		(SELECT Payment.noOfInstallments
+		FROM Payment
+		WHERE Payment.id = @paymentID);
+
+	DECLARE @Installment_Amount DECIMAL(8,2) = (SELECT Payment.amount
+		FROM Payment
+		WHERE Payment.id = @paymentID) / @no_installments;
+
+	WHILE @i < @no_installments
+	BEGIN
+		INSERT INTO Installment(date, paymentId, amount, done)
+		VALUES (@InstallmentDate, @paymentID, @Installment_Amount, 0);
+		SET @InstallmentDate = DATEADD(month, 6, @InstallmentDate);
+		SET @i = @i + 1;
+	END
+	end
+RETURN
