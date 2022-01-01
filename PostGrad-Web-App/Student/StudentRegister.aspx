@@ -1,9 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentRegister.aspx.cs" Inherits="PostGrad_Web_App.StudentRegister" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentRegister.aspx.cs" Inherits="PostGrad_Web_App.StudentRegister" MasterPageFile="~/RegisterMaster.Master"%>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
     <title></title>
     <style>
         body {
@@ -12,9 +9,8 @@
             margin : 5px;
         }
     </style>
-</head>
-<body>
-    <form id="RegisterationForm" runat="server">
+</asp:Content>
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 
         <asp:Label ID="RegisterMessage" runat="server" Text=""></asp:Label>
 
@@ -56,6 +52,4 @@
         <br/>
 
     	<asp:Button ID="RegisterBtn" runat="server" Text="Register" OnClick="RegisterBtnClicked" />
-    </form>
-</body>
-</html>
+</asp:Content>

@@ -1,18 +1,18 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminHome.aspx.cs" Inherits="PostGrad_Web_App.AdminHome" MasterPageFile="~/MainMaster.Master"%>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
 	<title>Admin Homepage</title>
 	<style>
 		span {
 			color : crimson;
 		}
 
-		#IssueInstallPaymentInstallDateLabel {
-			color : darkgrey;
+		#BodyPlaceHolder_IssueInstallPaymentInstallDateLabel {
+			color : dimgray;
 		}
 	</style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 		<asp:Panel ID="ListSupPanel" runat="server">
 			<asp:Button ID="ListSupBtn" runat="server" Text="List All Supervisors" OnClick="ListSupBtn_Click" />
 			<asp:GridView ID="ListSupGridView" runat="server"></asp:GridView>
