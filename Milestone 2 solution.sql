@@ -1177,7 +1177,7 @@ create proc ExaminerViewGucian
 	@id int
 as
 begin
-	select T.title, S.name, GS.firstName, GS.lastName
+	select T.title as 'Thesis Title', S.name as 'Supervisor Name', GS.firstName as 'Student F.Name', GS.lastName as 'Student L.Name'
 	from ExaminerEvaluateDefense E inner join Thesis T on E.serialNo = T.serialNumber and E.examinerId = @id
 		inner join GUCianStudentRegisterThesis G on G.serial_no = T.serialNumber
 		inner join GucianStudent GS on GS.id = G.sid
@@ -1190,7 +1190,7 @@ create proc ExaminerViewNonGucian
 	@id int
 as
 begin
-	select T.title, S.name, GS.firstName, GS.lastName
+	select T.title as 'Thesis Title', S.name as 'Supervisor Name', GS.firstName as 'Student F.Name', GS.lastName as 'Student L.Name'
 	from ExaminerEvaluateDefense E inner join Thesis T on E.serialNo = T.serialNumber and E.examinerId = @id
 		inner join NonGUCianStudentRegisterThesis G on G.serial_no = T.serialNumber
 		inner join NonGucianStudent GS on GS.id = G.sid
