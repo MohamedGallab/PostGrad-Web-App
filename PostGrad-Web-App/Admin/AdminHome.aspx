@@ -14,6 +14,8 @@
 <body>
 	<form id="form1" runat="server">
 
+		<asp:Button ID="SignOut" runat="server" Text="Sign Out" OnClick="SignOut_Click" />
+
 		<asp:Panel ID="ListSupPanel" runat="server">
 			<asp:Button ID="ListSupBtn" runat="server" Text="List All Supervisors" OnClick="ListSupBtn_Click" />
 			<asp:GridView ID="ListSupGridView" runat="server"></asp:GridView>

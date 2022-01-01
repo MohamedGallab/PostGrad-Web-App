@@ -16,6 +16,10 @@
 <body>
     <form id="RegisterationForm" runat="server">
 
+        <asp:Label ID="RegisterMessage" runat="server" Text=""></asp:Label>
+
+        <br/>
+
         <asp:Label runat="server" Text="first_name"></asp:Label>
         <br/>
         <asp:TextBox ID="first_name" runat="server"></asp:TextBox>
