@@ -20,10 +20,42 @@ namespace PostGrad_Web_App
 
         protected void lookUpConfirm_Click(object sender, EventArgs e)
         {
-            SqlCommand thesisLookupProc = new SqlCommand("ExaminerSearch");
-            string word = lookUpB.Text;
-            thesisLookupProc.Parameters.Add(new SqlParameter("@word", SqlDbType.VarChar)).Value = word;
-            dbm.DisplayTable(thesisLookupProc, ThesisView);
+			using (SqlConnection connection = dbm.GetSqlConnection())
+			{
+				SqlCommand thesisLookupProc = new SqlCommand("ExaminerSearch")
+				{
+					Connection = connection,
+					CommandType = CommandType.StoredProcedure
+				};
+				try
+				{
+					string word = lookUpB.Text;
+					thesisLookupProc.Parameters.Add(new SqlParameter("@word", SqlDbType.VarChar)).Value = word;
+
+					if (IssueInstallPaymentInstallStartDate.SelectedDate.ToShortDateString().ToString().Equals("01/01/0001"))
+					{
+						throw new FormatException();
+					}
+
+
+					dbm.DisplayTable(thesisLookupProc, ThesisView);
+
+					responseL.Text = "Successfully issued Installments";
+				}
+				catch (FormatException)
+				{
+					responseL.Text = "You have to enter a payment id and choose a start date";
+				}
+				catch (SqlException ex)
+				{
+					responseL.Text = ex.Message;
+				}
+				catch (Exception ex)
+				{
+					responseL.Text = ex.Message;
+				}
+			}
+			
         }
 
         protected void backBB_Click(object sender, EventArgs e)

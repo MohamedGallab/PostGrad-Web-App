@@ -11,13 +11,19 @@
         <div>
         </div>
         <asp:Label ID="headerL" runat="server" Text="Look up a specific thesis:"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <p>
+            <asp:Label ID="responseL" runat="server"></asp:Label>
+        </p>
         <p>
             <asp:TextBox ID="lookUpB" runat="server" Width="289px"></asp:TextBox>
+        <asp:Button ID="lookUpConfirm" runat="server" Text="Confirm" OnClick="lookUpConfirm_Click" style="margin-left: 48px" />
         </p>
-        <asp:Button ID="lookUpConfirm" runat="server" Text="Confirm" OnClick="lookUpConfirm_Click" />
         <asp:GridView ID="ThesisView" runat="server">
         </asp:GridView>
+        <p>
         <asp:Button ID="backBB" runat="server" Text="Back" OnClick="backBB_Click" />
+        </p>
     </form>
 </body>
 </html>

@@ -1269,15 +1269,6 @@ where Examiner.id = @id
 end
 go
 
-create proc ExaminerViewDefense
-	@id int
-as 
-begin
-select D.date, D.serialNumber, D.location
-from ExaminerEvaluateDefense E inner join Defense D on E.serialNo = D.serialNo and E.date = D.date
-where E.examinerId = @id
-end
-
 go 
 create proc ExaminerSearchDefense
 	@serialNo int,

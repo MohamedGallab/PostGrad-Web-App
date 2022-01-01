@@ -49,12 +49,28 @@ namespace PostGrad_Web_App
                 examinerAddGrade.Parameters.Add(new SqlParameter("@grade", SqlDbType.Decimal)).Value = grade;
 
                 Connection.Open();
-                examinerAddGrade.ExecuteNonQuery();
+                try
+                {
+
+                    if (examinerAddGrade.ExecuteNonQuery() == -1)
+                    {
+                        throw new Exception("You entered an invalid grade.");
+                    }
+                    responseL.Text = "Grade added succesfully.";
+                }
+                catch (FormatException)
+                {
+                    responseL.Text = "Please enter valid inputs.";
+                }
+                catch (Exception ex)
+                {
+                    responseL.Text = ex.Message;
+                }
                 Connection.Close();
             }
             else
             {
-                Response.Write("You Picked a Wrong Timing or Number");
+                Response.Write("You entered a wrong date or thesis number.");
             }
         }
 
@@ -81,23 +97,37 @@ namespace PostGrad_Web_App
 
             if (Convert.ToBoolean(success.Value))
             {
-                String comment = CommentDefenseB.Text;
-                SqlCommand examinerAddComment = new SqlCommand("ExaminerAddCommentsGrade", Connection);
+                Decimal grade = Convert.ToDecimal(GradeDefenseB.Text);
+                SqlCommand examinerAddGrade = new SqlCommand("AddDefenseGrade", Connection);
 
-                examinerAddComment.CommandType = CommandType.StoredProcedure;
-                examinerAddComment.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = defenseNumber;
-                examinerAddComment.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
-                examinerAddComment.Parameters.Add(new SqlParameter("@examinerId", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
-                examinerAddComment.Parameters.Add(new SqlParameter("@comments", SqlDbType.VarChar)).Value = comment;
-
+                examinerAddGrade.CommandType = CommandType.StoredProcedure;
+                examinerAddGrade.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = defenseNumber;
+                examinerAddGrade.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
+                examinerAddGrade.Parameters.Add(new SqlParameter("@grade", SqlDbType.Decimal)).Value = grade;
 
                 Connection.Open();
-                examinerAddComment.ExecuteNonQuery();
+                try
+                {
+
+                    if (examinerAddGrade.ExecuteNonQuery() == -1)
+                    {
+                        throw new Exception("You entered an invalid comment.");
+                    }
+                    responseL.Text = "Comment added succesfully.";
+                }
+                catch (FormatException)
+                {
+                    responseL.Text = "Please enter valid inputs.";
+                }
+                catch (Exception ex)
+                {
+                    responseL.Text = ex.Message;
+                }
                 Connection.Close();
             }
             else
             {
-                Response.Write("You Picked a Wrong Timing or Number");
+                Response.Write("You entered a wrong date or thesis number.");
             }
         }
 

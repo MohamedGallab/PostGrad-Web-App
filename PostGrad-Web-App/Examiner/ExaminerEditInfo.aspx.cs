@@ -29,8 +29,25 @@ namespace PostGrad_Web_App
             examinerChangeNameProc.Parameters.Add(new SqlParameter("@newName", SqlDbType.VarChar)).Value = newName;
 
             Connection.Open();
-            examinerChangeNameProc.ExecuteNonQuery();
+            try
+            {
+
+                if (examinerChangeNameProc.ExecuteNonQuery() == -1)
+                {
+                    throw new Exception("Your ID is wrong, Please re-login.");
+                }
+                responseL.Text = "Name Change Successeeded.";
+            }
+            catch (FormatException)
+            {
+                responseL.Text = "Please write a valid name.";
+            }
+            catch (Exception ex)
+            {
+                responseL.Text = ex.Message;
+            }
             Connection.Close();
+
         }
 
         protected void ConfirmPassword_Click(object sender, EventArgs e)
@@ -44,7 +61,23 @@ namespace PostGrad_Web_App
             examinerChangePasswordProc.Parameters.Add(new SqlParameter("@newPassword", SqlDbType.VarChar)).Value = newPassword;
 
             Connection.Open();
-            examinerChangePasswordProc.ExecuteNonQuery();
+            try
+            {
+
+                if (examinerChangePasswordProc.ExecuteNonQuery() == -1)
+                {
+                    throw new Exception("Your ID is wrong, Please re-login.");
+                }
+                responseL.Text = "Password Change Successeeded.";
+            }
+            catch (FormatException)
+            {
+                responseL.Text = "Please write a valid password.";
+            }
+            catch (Exception ex)
+            {
+                responseL.Text = ex.Message;
+            }
             Connection.Close();
         }
 
@@ -59,7 +92,23 @@ namespace PostGrad_Web_App
             examinerChangeEmailProc.Parameters.Add(new SqlParameter("@newEmail", SqlDbType.VarChar)).Value = newEmail;
 
             Connection.Open();
-            examinerChangeEmailProc.ExecuteNonQuery();
+            try
+            {
+
+                if (examinerChangeEmailProc.ExecuteNonQuery() == -1)
+                {
+                    throw new Exception("Your ID is wrong, Please re-login.");
+                }
+                responseL.Text = "Email Change Successeeded.";
+            }
+            catch (FormatException)
+            {
+                responseL.Text = "Please write a valid email.";
+            }
+            catch (Exception ex)
+            {
+                responseL.Text = ex.Message;
+            }
             Connection.Close();
         }
 
@@ -74,7 +123,23 @@ namespace PostGrad_Web_App
             examinerChangeNationalProc.Parameters.Add(new SqlParameter("@newIsNational", SqlDbType.Bit)).Value = isNational;
 
             Connection.Open();
-            examinerChangeNationalProc.ExecuteNonQuery();
+            try
+            {
+
+                if (examinerChangeNationalProc.ExecuteNonQuery() == -1)
+                {
+                    throw new Exception("Your ID is wrong, Please re-login.");
+                }
+                responseL.Text = "National status Change Successeeded.";
+            }
+            catch (FormatException)
+            {
+                responseL.Text = "Please enter a valid option.";
+            }
+            catch (Exception ex)
+            {
+                responseL.Text = ex.Message;
+            }
             Connection.Close();
         }
 
@@ -89,7 +154,23 @@ namespace PostGrad_Web_App
             examinerChangeFieldOfWorkProc.Parameters.Add(new SqlParameter("@newFieldOfWork", SqlDbType.VarChar)).Value = newFieldOfWork;
 
             Connection.Open();
-            examinerChangeFieldOfWorkProc.ExecuteNonQuery();
+            try
+            {
+
+                if (examinerChangeFieldOfWorkProc.ExecuteNonQuery() == -1)
+                {
+                    throw new Exception("Your ID is wrong, Please re-login.");
+                }
+                responseL.Text = "Field of work change Successeeded.";
+            }
+            catch (FormatException)
+            {
+                responseL.Text = "Please enter a valid field of work.";
+            }
+            catch (Exception ex)
+            {
+                responseL.Text = ex.Message;
+            }
             Connection.Close();
         }
 

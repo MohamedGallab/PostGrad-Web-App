@@ -12,7 +12,8 @@
         <asp:Label ID="PickDefenseL" runat="server" Text="Pick a Defense to Evaluate:"></asp:Label>
         </div>
         <p>
-            &nbsp;</p>
+            <asp:Label ID="responseL" runat="server"></asp:Label>
+        </p>
         <p>
             <asp:Label ID="DefenseDateL" runat="server" Text="Defense Date: "></asp:Label>
         </p>
@@ -23,13 +24,13 @@
         <asp:Label ID="DefenseNoL" runat="server" Text="Serial Number of the Thesis Defended:"></asp:Label>
         </p>
         <p>
-            <asp:TextBox ID="DefenseNoB" runat="server" Width="227px"></asp:TextBox>
+            <asp:TextBox ID="DefenseNoB" runat="server" type="number" Width="227px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="GradeDefenseL" runat="server" Text="Grade:"></asp:Label>
         </p>
         <p>
-        <asp:TextBox ID="GradeDefenseB" runat="server" Width="125px"></asp:TextBox>
+        <asp:TextBox ID="GradeDefenseB" runat="server" type="number" Width="125px"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="GradeDefense" runat="server" Text="Confirm Grade" OnClick="GradeDefense_Click" />
@@ -38,7 +39,7 @@
             <asp:Label ID="CommentDefenseL" runat="server" Text="Comments:"></asp:Label>
         </p>
         <p>
-        <asp:TextBox ID="CommentDefenseB" runat="server" Height="95px" Width="743px"></asp:TextBox>
+        <asp:TextBox ID="CommentDefenseB" runat="server" Height="95px" MaxLength="300" Width="743px"></asp:TextBox>
         </p>
         <asp:Button ID="CommentDefense" runat="server" Text="Confirm Comments" Width="175px" OnClick="CommentDefense_Click" />
         <p>
