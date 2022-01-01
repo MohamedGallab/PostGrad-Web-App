@@ -36,6 +36,8 @@
 
             <asp:TextBox ID="DefenseLocation" runat="server" placeholder = "Defense Location"></asp:TextBox>
             
+            <asp:Panel ID="AddDefenseSuccess" runat="server"> </asp:Panel>
+            
             <br />
             <asp:Button ID="Button3" runat="server" Text="Add Defense" OnClick = "OnAddDefense" />
         </div>
@@ -57,8 +59,16 @@
             <asp:TextBox ID="FieldOfWork" runat="server" placeholder = "Field Of Work"></asp:TextBox>
             <br />
 
-            <asp:Button ID="Button4" runat="server" Text="Add Examiner" OnClick ="OnAddExaminer" />
+            <asp:Button ID="Button4" runat="server" Text="Add New Examiner" OnClick ="OnAddExaminer" />
         </div>
+
+        <asp:Panel ID="Panel1" runat="server">
+                <asp:TextBox ID="ExaminerID" runat="server" placeholder = "Examiner ID"></asp:TextBox>
+                <br />
+                <asp:Panel ID="ExistingExaminerSuccess" runat="server"></asp:Panel>
+                <asp:Button ID="Button8" runat="server" Text="Add Existing Examiner" OnClick = "OnAddExistingExaminer" />
+        </asp:Panel>
+
         <br />
 
         <div>
