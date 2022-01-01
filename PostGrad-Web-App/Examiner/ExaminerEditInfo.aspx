@@ -16,7 +16,7 @@
             </div>
         <p>
         <asp:TextBox ID="EditNameB" runat="server" Height="33px" style="margin-top: 0px; margin-bottom: 0px" Width="348px"></asp:TextBox>
-            <asp:Button ID="ConfirmName" runat="server" OnClick="ConfirmName_Click" style="margin-left: 48px; margin-top: 0px; margin-bottom: 1px;" Text="Confirm New Name" Width="194px" Height="36px" />
+            <asp:Button ID="ConfirmName" runat="server" OnClick="ConfirmName_Click" style="margin-left: 48px; margin-top: 4px; margin-bottom: 0px;" Text="Confirm New Name" Width="194px" Height="36px" />
         </p>
         <asp:Label ID="EditPasswordL" runat="server" Text="Edit Your Password:"></asp:Label>
         <p>

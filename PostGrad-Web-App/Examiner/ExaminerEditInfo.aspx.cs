@@ -25,7 +25,7 @@ namespace PostGrad_Web_App
             String newName = EditNameB.Text;
             SqlCommand examinerChangeNameProc = new SqlCommand("ExaminerEditName", Connection);
             examinerChangeNameProc.CommandType = CommandType.StoredProcedure;
-            examinerChangeNameProc.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar)).Value = Convert.ToInt32(Session["userID"]);
+            examinerChangeNameProc.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
             examinerChangeNameProc.Parameters.Add(new SqlParameter("@newName", SqlDbType.VarChar)).Value = newName;
 
             Connection.Open();
@@ -40,7 +40,7 @@ namespace PostGrad_Web_App
             String newPassword = EditPasswordB.Text;
             SqlCommand examinerChangePasswordProc = new SqlCommand("ExaminerEditPassword", Connection);
             examinerChangePasswordProc.CommandType = CommandType.StoredProcedure;
-            examinerChangePasswordProc.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar)).Value = Convert.ToInt32(Session["userID"]);
+            examinerChangePasswordProc.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
             examinerChangePasswordProc.Parameters.Add(new SqlParameter("@newPassword", SqlDbType.VarChar)).Value = newPassword;
 
             Connection.Open();
@@ -55,7 +55,7 @@ namespace PostGrad_Web_App
             String newEmail = EditEmailB.Text;
             SqlCommand examinerChangeEmailProc = new SqlCommand("ExaminerEditEmail", Connection);
             examinerChangeEmailProc.CommandType = CommandType.StoredProcedure;
-            examinerChangeEmailProc.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar)).Value = Convert.ToInt32(Session["userID"]);
+            examinerChangeEmailProc.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
             examinerChangeEmailProc.Parameters.Add(new SqlParameter("@newEmail", SqlDbType.VarChar)).Value = newEmail;
 
             Connection.Open();
@@ -70,8 +70,8 @@ namespace PostGrad_Web_App
             Boolean isNational = NationalC.Checked; 
             SqlCommand examinerChangeNationalProc = new SqlCommand("ExaminerEditNational", Connection);
             examinerChangeNationalProc.CommandType = CommandType.StoredProcedure;
-            examinerChangeNationalProc.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar)).Value = Convert.ToInt32(Session["userID"]);
-            examinerChangeNationalProc.Parameters.Add(new SqlParameter("@newIsNational", SqlDbType.VarChar)).Value = isNational;
+            examinerChangeNationalProc.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
+            examinerChangeNationalProc.Parameters.Add(new SqlParameter("@newIsNational", SqlDbType.Bit)).Value = isNational;
 
             Connection.Open();
             examinerChangeNationalProc.ExecuteNonQuery();
@@ -85,7 +85,7 @@ namespace PostGrad_Web_App
             String newFieldOfWork = EditFieldOfWorkB.Text;
             SqlCommand examinerChangeFieldOfWorkProc = new SqlCommand("ExaminerEditFieldOfWork", Connection);
             examinerChangeFieldOfWorkProc.CommandType = CommandType.StoredProcedure;
-            examinerChangeFieldOfWorkProc.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar)).Value = Convert.ToInt32(Session["userID"]);
+            examinerChangeFieldOfWorkProc.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
             examinerChangeFieldOfWorkProc.Parameters.Add(new SqlParameter("@newFieldOfWork", SqlDbType.VarChar)).Value = newFieldOfWork;
 
             Connection.Open();

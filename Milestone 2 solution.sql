@@ -1205,7 +1205,7 @@ CREATE PROC ExaminerSearch
 	@word varchar(100)
 as
 begin
-	select T.title
+	select *
 	from Thesis T
 	where T.title like '%' + @word + '%';
 end
@@ -1265,7 +1265,7 @@ create proc ExaminerViewDefense
 as 
 begin
 select D.date, D.serialNumber, D.location
-from ExaminerEvaluateDefense E inner join Defense D on E.serialNo == D.serialNo and E.date == D.date
+from ExaminerEvaluateDefense E inner join Defense D on E.serialNo = D.serialNo and E.date = D.date
 where E.examinerId = @id
 end
 

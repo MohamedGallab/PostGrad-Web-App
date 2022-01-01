@@ -40,7 +40,10 @@
         <p>
         <asp:TextBox ID="CommentDefenseB" runat="server" Height="95px" Width="743px"></asp:TextBox>
         </p>
-        <asp:Button ID="CommentDefense" runat="server" Text="Confirm Comments" Width="175px" />
+        <asp:Button ID="CommentDefense" runat="server" Text="Confirm Comments" Width="175px" OnClick="CommentDefense_Click" />
+        <p>
+            <asp:Button ID="Back" runat="server" Text="Back" OnClick="Back_Click" />
+        </p>
     </form>
 </body>
 </html>

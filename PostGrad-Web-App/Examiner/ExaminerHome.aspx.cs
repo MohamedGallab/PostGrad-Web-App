@@ -65,6 +65,7 @@ namespace PostGrad_Web_App
 
         protected void ExaminerLogOut_Click(object sender, EventArgs e)
         {
+            Session.Abandon();
             Response.Redirect("Login.aspx");
         }
     }
