@@ -275,15 +275,22 @@ CREATE PROC AddExistingExaminer
 	@thesisSerialNumber INT,
 	@examinerId INT
 AS
-IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber) and not exists(SELECT * FROM ExaminerEvaluateDefense WHERE ExaminerEvaluateDefense.date = @defenseDate AND ExaminerEvaluateDefense.serialNo = @thesisSerialNumber AND ExaminerEvaluateDefense.examinerId =@examinerId))
+IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber))
 BEGIN
-	IF (EXISTS(SELECT * FROM Examiner WHERE Examiner.id =@examinerId))
+	IF(not exists(SELECT * FROM ExaminerEvaluateDefense WHERE ExaminerEvaluateDefense.date = @defenseDate AND ExaminerEvaluateDefense.serialNo = @thesisSerialNumber AND ExaminerEvaluateDefense.examinerId =@examinerId))
 	BEGIN
-		INSERT INTO ExaminerEvaluateDefense VALUES(@defenseDate, @thesisSerialNumber, @examinerId, null)
+		IF (EXISTS(SELECT * FROM Examiner WHERE Examiner.id =@examinerId))
+		BEGIN
+			INSERT INTO ExaminerEvaluateDefense VALUES(@defenseDate, @thesisSerialNumber, @examinerId, null)
+		END
+		ELSE
+		BEGIN
+			RAISERROR('There is NO Examiner with this ID',11,1);
+		END
 	END
 	ELSE
 	BEGIN
-		RAISERROR('There is NO Examiner with this ID',11,1);
+		RAISERROR('This Examiner is ALREADY added to this Defense',11,1);
 	END
 END
 ELSE

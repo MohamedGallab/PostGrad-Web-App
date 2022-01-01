@@ -692,14 +692,23 @@ varchar(20),
 	@National bit,
 	@fieldOfWork varchar(20)
 as
-insert into PostGradUser
-values(@ExaminerName, @Password)
-declare @id int
-set @id = SCOPE_IDENTITY()
-insert into Examiner
-values(@id, @ExaminerName, @fieldOfWork, @National)
-insert into ExaminerEvaluateDefense
-values(@DefenseDate, @ThesisSerialNo, @id, null)
+IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @DefenseDate AND Defense.serialNumber = @ThesisSerialNo))
+BEGIN
+	insert into PostGradUser
+	values(@ExaminerName, @Password)
+	declare @id int
+	set @id = SCOPE_IDENTITY()
+	insert into Examiner
+	values(@id, @ExaminerName, @fieldOfWork, @National)
+	insert into ExaminerEvaluateDefense
+	values(@DefenseDate, @ThesisSerialNo, @id, null)
+END
+ELSE
+BEGIN
+	RAISERROR('There is No Defense with this Thesis Serial Number and Defense Date. Please add the Defense Before adding the Examiner',11,1);
+END
+
+
 go
 create proc CancelThesis
 	@ThesisSerialNo int

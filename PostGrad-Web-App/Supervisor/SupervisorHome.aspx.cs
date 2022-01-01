@@ -197,18 +197,47 @@ namespace PostGrad_Web_App
 				DateTime defenseDate = DefenseDateCalendar.SelectedDate;
 				String examinerName = ExaminerName.Text;
 				String password = Password.Text;
-				String national = National.Text;
+				Boolean national = National.Checked;
 				String fieldOfWork = FieldOfWork.Text;
-
+				System.Diagnostics.Debug.WriteLine(national);
 				//creating the command to execute the procedure
 				SqlCommand addExaminer = new SqlCommand("AddExaminer", connection)
 				{
 					CommandType = CommandType.StoredProcedure
 				};
-
+				Label successful = new Label();
 				try
 				{
 					//passing paramters from inputs to the procedure
+					if (DTSN == "")
+					{
+						successful.Text = "Please Enter Thesis Serial Number";
+						throw new Exception("Please Enter Thesis Serial Number");
+					}
+					else if (defenseDate.Equals(DateTime.Parse("1/1/0001 12:00:00 AM")))
+					{
+						successful.Text = "Please Enter Defense Date";
+						throw new Exception("Please Enter Defense Date");
+					}
+					else if (examinerName == "")
+					{
+						successful.Text = "Please Enter Examiner Name";
+						throw new Exception("Please Enter Examiner Name");
+					}else if (password == "")
+					{
+						successful.Text = "Please Enter Password";
+						throw new Exception("Please Enter Password");
+					}
+					else if (national.Equals(""))
+					{
+						successful.Text = "Please Enter National";
+						throw new Exception("Please Enter National");
+					}
+					else if (fieldOfWork == "")
+					{
+						successful.Text = "Please Enter Field of Work";
+						throw new Exception("Please Enter Field of Work");
+					}
 
 					addExaminer.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = DTSN;
 					addExaminer.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
@@ -218,12 +247,19 @@ namespace PostGrad_Web_App
 					addExaminer.Parameters.Add(new SqlParameter("@FieldOfWork", SqlDbType.VarChar)).Value = fieldOfWork;
 
 					addExaminer.ExecuteNonQuery();
+					successful.Text = "Examiner is added Successfully";
+				}
+				catch (SqlException ex)
+				{
+					successful.Text = ex.Message;
 				}
 				catch (Exception es)
 				{
 					System.Diagnostics.Debug.WriteLine("ERROR");
 					System.Diagnostics.Debug.WriteLine(es.Message);
+					successful.Text = es.Message;
 				}
+				AddNewExaminerSuccess.Controls.Add(successful);
 			}
 		}
 
