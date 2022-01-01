@@ -23,31 +23,16 @@
                 <asp:Label runat="server" Text="View all publications of a student"></asp:Label>
                 
                 <asp:TextBox ID="PublicationsID" runat="server" placeholder = "Student ID"></asp:TextBox>
-                
+                <asp:Panel ID="PublicationsSuccess" runat="server"></asp:Panel>
                 <asp:Button class = "btn btn-dark" ID="Button2" runat="server" Text="View list" OnClick ="OnViewPublications"/>
              </div>
-             <div class = "components">
-                <asp:Label runat="server" Text="Evaluate a progress report of a student"></asp:Label>
-               
-
-                <asp:TextBox ID="ThesisSerialNo" runat="server" placeholder = "Thesis Serial Number"></asp:TextBox>
-              
-
-                <asp:TextBox ID="ProgressReportNo" runat="server" placeholder = "Progress Report Number"></asp:TextBox>
             
-
-                <asp:TextBox ID="Eval" runat="server" placeholder = "Evaluation"></asp:TextBox>
-                   
-                <asp:Panel ID="evaluateSuccess" runat="server"></asp:Panel>
-          
-                <asp:Button class = "btn btn-dark" ID="Button6" runat="server" Text="Evaluate Progress Report" OnClick ="OnEvaluate" />
-            </div>
 
             
 
             <div class = "components">
                 <asp:Label runat="server" Text="Cancel Thesis"></asp:Label>
-                <asp:TextBox ID="CancelThesisSerialNo" runat="server" placeholder = "Thesis Serial Number"></asp:TextBox>
+                <asp:TextBox ID="CancelThesisSerialNo" TextMode="Number" runat="server" placeholder = "Thesis Serial Number"></asp:TextBox>
                
 
                 <asp:Panel ID="CancelSuccess" runat="server"></asp:Panel>
@@ -65,10 +50,8 @@
                 <asp:TextBox ID="DefenseThesisSerialNumber" runat="server" placeholder = "Thesis Serial Number"></asp:TextBox>
                 
 
-                <asp:Label runat="server" Text="Defense Date"></asp:Label>
-                <asp:Calendar ID="DefenseDateCalendar" runat="server" OnSelectionChanged="DateChange"></asp:Calendar>
-                <asp:TextBox ID="DefenseDate" runat="server" placeholder = "Defense Date"></asp:TextBox>
-                
+ 
+                <asp:Calendar ID="DefenseDateCalendar" runat="server"></asp:Calendar>
 
                 <asp:TextBox ID="DefenseLocation" runat="server" placeholder = "Defense Location"></asp:TextBox>
             
@@ -106,6 +89,23 @@
                     <asp:Panel ID="ExistingExaminerSuccess" runat="server"></asp:Panel>
                     <asp:Button class = "btn btn-dark" ID="Button8" runat="server" Text="Add Existing Examiner" OnClick = "OnAddExistingExaminer" />
                 </asp:Panel>
+            </div>
+        
+             <div class = "components">
+                <asp:Label runat="server" Text="Evaluate a progress report of a student"></asp:Label>
+               
+
+                <asp:TextBox ID="ThesisSerialNo" runat="server" TextMode="Number" placeholder = "Thesis Serial Number"></asp:TextBox>
+              
+
+                <asp:TextBox ID="ProgressReportNo" runat="server" TextMode="Number" placeholder = "Progress Report Number"></asp:TextBox>
+            
+
+                <asp:TextBox ID="Eval" runat="server" TextMode="Number" placeholder = "Evaluation"></asp:TextBox>
+                   
+                <asp:Panel ID="evaluateSuccess" runat="server"></asp:Panel>
+          
+                <asp:Button class = "btn btn-dark" ID="Button6" runat="server" Text="Evaluate Progress Report" OnClick ="OnEvaluate" />
             </div>
         </div>
 

@@ -2,20 +2,19 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-    background-color: #6c757d!important;
+    background-color: #ededed !important;
 }
 
 .components {
-    margin: 1rem 2rem;
+    margin: 0.5rem 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: self-start;
 }
 
 input
 {
-    margin: 0.5rem 0 !important;
+    margin: 0.4rem 0 !important;
 }
 
 span
@@ -49,4 +48,13 @@ span
 {
     margin-left: 0.5rem!important;
     margin-bottom: 0!important;
+}
+
+.success
+{
+    color: grey;
+}
+.errors
+{
+    color: red;
 }
