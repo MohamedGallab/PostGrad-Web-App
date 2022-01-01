@@ -1,6 +1,9 @@
 USE PostGradOffice;
 
-
+INSERT INTO PostGradUser (email, password) VALUES ('AlbusDumbledoreEmail', 'DumbledorePass');
+INSERT INTO Admin VALUES (IDENT_CURRENT ('PostGradUser'));
+INSERT INTO PostGradUser (email, password) VALUES ('MinervaMcGonagallEmail', 'MinervaPass');
+INSERT INTO Admin VALUES (IDENT_CURRENT ('PostGradUser'));
 
 ----------------------- YOUSEF -------------------------------------
 
