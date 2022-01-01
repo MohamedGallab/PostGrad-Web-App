@@ -1202,3 +1202,36 @@ begin
 	where T.title like '%' + @word + '%';
 end
 go
+
+CREATE PROC ExaminerViewProfile
+	@id int
+as 
+begin 
+select * from Examiner
+where Examiner.id = @id
+end
+go
+
+create proc ExaminerViewDefense
+	@id int
+as 
+begin
+select D.date, D.serialNumber, D.location
+from ExaminerEvaluateDefense E inner join Defense D on E.serialNo == D.serialNo and E.date == D.date
+where E.examinerId = @id
+end
+
+go 
+create proc ExaminerSearchDefense
+	@serialNo int,
+	@date date,
+	@success bit output
+as
+begin
+if(Exists(Select * from Defense where serialNumber = @serialNo AND date = @date))
+
+set @success = 1;
+else 
+set @success =0;
+end
+go
