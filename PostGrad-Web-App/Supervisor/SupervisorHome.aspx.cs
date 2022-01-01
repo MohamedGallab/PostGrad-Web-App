@@ -35,7 +35,7 @@ namespace PostGrad_Web_App
 				SqlCommand evaluateProgressReport = new SqlCommand("EvaluateProgressReport", connection);
 				evaluateProgressReport.CommandType = CommandType.StoredProcedure;
 
-				Label successeful = new Label();
+				Label successful = new Label();
 				try
 				{
 					//passing paramters from inputs to the procedure
@@ -51,31 +51,31 @@ namespace PostGrad_Web_App
 						noOfRecords = evaluateProgressReport.ExecuteNonQuery(); // this is where I run my stored procedure
 						if (noOfRecords == -1)
 						{
-							successeful.Text = "Failed to evaluate, Inputs don't exsist!";
+							successful.Text = "Failed to evaluate, Inputs don't exsist!";
 						}
 						else
 						{
-							successeful.Text = "Evaluated successfully";
+							successful.Text = "Evaluated successfully";
 						}
 						System.Diagnostics.Debug.WriteLine(noOfRecords);
 					}
 					else
 					{
-						successeful.Text = "Evaluation must be between 0 and 3";
+						successful.Text = "Evaluation must be between 0 and 3";
 					}
 
 				}
 				catch (FormatException FE)
 				{
-					successeful.Text = "Failed to evaluate, Invalid input";
+					successful.Text = "Failed to evaluate, Invalid input";
 					System.Diagnostics.Debug.WriteLine(FE);
 				}
 				catch (Exception es)
 				{
-					successeful.Text = "Failed to evaluate!";
+					successful.Text = "Failed to evaluate!";
 				}
 
-				evaluateSuccess.Controls.Add(successeful);
+				evaluateSuccess.Controls.Add(successful);
 			}
 		}
 
@@ -90,7 +90,7 @@ namespace PostGrad_Web_App
 				SqlCommand cancelThesis = new SqlCommand("CancelThesis", connection);
 				cancelThesis.CommandType = CommandType.StoredProcedure;
 
-				Label successeful = new Label();
+				Label successful = new Label();
 				try
 				{
 					//passing paramters from inputs to the procedure
@@ -100,20 +100,20 @@ namespace PostGrad_Web_App
 
 					if (noOfRecords == -1)
 					{
-						successeful.Text = "Last report evaluation is not 0. Thesis not canceled";
+						successful.Text = "Last report evaluation is not 0. Thesis not canceled";
 					}
 					else
 					{
-						successeful.Text = "Canceled successfully";
+						successful.Text = "Canceled successfully";
 					}
 					System.Diagnostics.Debug.WriteLine(noOfRecords);
 				}
 				catch (FormatException FE)
 				{
-					successeful.Text = "Failed to evaluate, Invalid input";
+					successful.Text = "Failed to evaluate, Invalid input";
 					System.Diagnostics.Debug.WriteLine(FE);
 				}
-				CancelSuccess.Controls.Add(successeful);
+				CancelSuccess.Controls.Add(successful);
 
 			}
 		}
@@ -147,22 +147,44 @@ namespace PostGrad_Web_App
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-
+				Label successful = new Label();
                 try
 				{
 					//passing paramters from inputs to the procedure
+					if (DTSN == "")
+                    {
+						successful.Text = "Please Enter Thesis Serial Number";
+						throw new Exception("Please Enter Thesis Serial Number");
+					}
+					else if (defenseDate.Equals(DateTime.Parse("1/1/0001 12:00:00 AM")))
+					{
+						successful.Text = "Please Enter Defense Date";
+						throw new Exception("Please Enter Defense Date");
+					}
+					else if (defenseLocation == "")
+					{
+						successful.Text = "Please Enter Defense Location";
+						throw new Exception("Please Enter Defense Location");
+					}
 
-					addDefense.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = DTSN;
+					addDefense.Parameters.Add(new SqlParameter("@thesisSerialNumber", SqlDbType.Int)).Value = DTSN;
 					addDefense.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
 					addDefense.Parameters.Add(new SqlParameter("@DefenseLocation", SqlDbType.VarChar)).Value = defenseLocation;
 					
 					addDefense.ExecuteNonQuery();
+					successful.Text = "Defense Added Successfully";
+				}
+				catch (SqlException ex)
+				{
+					successful.Text = ex.Message;
 				}
 				catch (Exception es)
 				{
 					System.Diagnostics.Debug.WriteLine("ERROR");
 					System.Diagnostics.Debug.WriteLine(es.Message);
+					successful.Text = es.Message;
 				}
+				AddDefenseSuccess.Controls.Add(successful);
 			}
 		}
 
@@ -205,5 +227,54 @@ namespace PostGrad_Web_App
 			}
 		}
 
-	}
+		protected void OnAddExistingExaminer(object sender, EventArgs e)
+		{
+			using (SqlConnection connection = dbm.GetSqlConnection())
+			{
+				//inputs
+				String DTSN = DefenseThesisSerialNumber.Text;
+				DateTime defenseDate = DefenseDateCalendar.SelectedDate;
+				String examinerId = ExaminerID.Text;
+
+				SqlCommand addExistingExaminer = new SqlCommand("AddExistingExaminer", connection)
+				{
+					CommandType = CommandType.StoredProcedure
+				};
+
+				Label successful = new Label();
+
+				try
+                {
+					if (DTSN == "")
+					{
+						successful.Text = "Please Enter Thesis Serial Number";
+						throw new Exception("Please Enter Thesis Serial Number");
+					} else if (defenseDate.Equals(DateTime.Parse("1/1/0001 12:00:00 AM")))
+                    {
+						successful.Text = "Please Enter Defense Date";
+						throw new Exception("Please Enter Defense Date");
+					} else if (examinerId == "")
+					{
+						successful.Text = "Please Enter Examiner Id";
+						throw new Exception("Please Enter Examiner Id");
+					}
+					addExistingExaminer.Parameters.Add(new SqlParameter("@defenseDate", SqlDbType.DateTime)).Value = defenseDate;
+					addExistingExaminer.Parameters.Add(new SqlParameter("@thesisSerialNumber", SqlDbType.Int)).Value = DTSN;
+					addExistingExaminer.Parameters.Add(new SqlParameter("@examinerId", SqlDbType.Int)).Value = examinerId;
+					addExistingExaminer.ExecuteNonQuery();
+					successful.Text = "Examiner Added Successfully";
+				}
+				catch (SqlException ex)
+				{
+					successful.Text = ex.Message;
+				}
+				catch (Exception es)
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR");
+                    System.Diagnostics.Debug.WriteLine(es.Message);
+				}
+				ExistingExaminerSuccess.Controls.Add(successful);
+			}
+		}
+    }
 }

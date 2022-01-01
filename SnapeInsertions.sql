@@ -231,14 +231,14 @@ GO
 
 GO
 CREATE PROC CheckGucianForThesis
-	@thesisSerialNo INT,
+	@thesisSerialNumber INT,
 	@defenseDate DateTime,
 	@defenseLocation VarChar(15)
 AS
 DECLARE @gucian INT
 IF (EXISTS(SELECT serial_no
 		   FROM GUCianStudentRegisterThesis
-		   WHERE serial_no = @thesisSerialNo))
+		   WHERE serial_no = @thesisSerialNumber))
 BEGIN
 	SET @gucian = '1'
 END
@@ -248,9 +248,45 @@ BEGIN
 END
 IF (@gucian = '1')
 BEGIN
-	EXEC AddDefenseGucian @thesisSerialNo, @defenseDate, @defenseLocation;
+	IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber))
+	BEGIN
+		RAISERROR('Defense for this Thesis with this Defense Date is Already Added!',11,1);
+	END
+	Else
+	BEGIN
+		EXEC AddDefenseGucian @thesisSerialNumber, @defenseDate, @defenseLocation;
+	END
 END
 ELSE
 BEGIN
-	EXEC AddDefenseNonGucian @thesisSerialNo, @defenseDate, @defenseLocation;
+	IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber))
+	BEGIN
+		RAISERROR('Defense for this Thesis with this Defense Date is Already Added!',11,1);
+	END
+	ELSE
+	BEGIN
+		EXEC AddDefenseNonGucian @thesisSerialNumber, @defenseDate, @defenseLocation;
+	END
+END
+
+GO
+CREATE PROC AddExistingExaminer
+	@defenseDate DATETIME,
+	@thesisSerialNumber INT,
+	@examinerId INT
+AS
+IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber) and not exists(SELECT * FROM ExaminerEvaluateDefense WHERE ExaminerEvaluateDefense.date = @defenseDate AND ExaminerEvaluateDefense.serialNo = @thesisSerialNumber AND ExaminerEvaluateDefense.examinerId =@examinerId))
+BEGIN
+	IF (EXISTS(SELECT * FROM Examiner WHERE Examiner.id =@examinerId))
+	BEGIN
+		INSERT INTO ExaminerEvaluateDefense VALUES(@defenseDate, @thesisSerialNumber, @examinerId, null)
+	END
+	ELSE
+	BEGIN
+		RAISERROR('There is NO Examiner with this ID',11,1);
+	END
+END
+ELSE
+BEGIN
+	RAISERROR('There is No Defense with this Thesis Serial Number and Defense Date. Please add the Defense Before adding the Examiner',11,1);
 END
