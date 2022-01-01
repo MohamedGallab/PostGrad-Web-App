@@ -9,8 +9,21 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            Welcome<br />
+            Welcome,<br />
+            <br />
+            <br />
         </div>
+        <p>
+            <asp:Label ID="ExaminerProfile" runat="server"></asp:Label>
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
         <p>
             &nbsp;</p>
         <p>
@@ -24,6 +37,9 @@
         </p>
         <p>
             <asp:Button ID="lookUpThesis" runat="server" Text="Search for a Specific Thesis" OnClick="lookUpThesis_Click" />
+        </p>
+        <p>
+            <asp:Button ID="ExaminerLogOut" runat="server" Text="Log Out" OnClick="ExaminerLogOut_Click" Width="314px" />
         </p>
     </form>
 </body>
