@@ -36,17 +36,17 @@ on update cascade,
 	GPA decimal(3,2),
 )
 CREATE TABLE GUCStudentPhoneNumber
-(
-	phone int,
-	id int,
+(	id int,
+	phone varchar(20),
+	
 	primary key(id, phone),
 	foreign key(id) references GucianStudent on delete cascade
 on update cascade
 )
 CREATE TABLE NonGUCStudentPhoneNumber
-(
-	phone int,
-	id int,
+(	id int,
+	phone varchar(20),
+	
 	primary key(id, phone),
 	foreign key(id) references NonGucianStudent on delete
 cascade on update cascade
@@ -322,7 +322,7 @@ set @success=0
 end
 go
 create proc addMobile
-	@ID varchar(20),
+	@ID int,
 	@mobile_number varchar(20)
 as
 begin
