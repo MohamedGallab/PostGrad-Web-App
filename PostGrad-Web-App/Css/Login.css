@@ -1,0 +1,13 @@
+
+body
+{
+    background-color: #ededed !important;
+}
+
+span, input
+{
+    margin: 0.4rem 0!important;
+}
+body, html {
+    height: 100%;
+}
