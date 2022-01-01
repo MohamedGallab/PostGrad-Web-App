@@ -15,6 +15,8 @@
 				<br />
 				<asp:TextBox ID="mobileNumber" runat="server"></asp:TextBox>
 				<br />
+				<asp:Panel ID="MobileSuccess" runat="server"></asp:Panel>
+
 				<asp:Button ID="addNumber" runat="server" Text="Add Number" OnClick="AddMobileClicked" />
 			</div>
 			<br />

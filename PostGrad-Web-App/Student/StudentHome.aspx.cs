@@ -7,46 +7,56 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using PostGrad_Web_App.App_Code;
 
 namespace PostGrad_Web_App
 {
 	public partial class StudentHome : System.Web.UI.Page
 	{
+		DBMaster dbm = new DBMaster();
+
 		protected void Page_Load(object sender, EventArgs e)
 		{
 
 		}
 
 		protected void AddMobileClicked(object sender, EventArgs e)
-		{
-			String ConnectionString = WebConfigurationManager.ConnectionStrings["PostGradConnectionString"].ToString();
-			SqlConnection Connection = new SqlConnection(ConnectionString);
+		{	
 
-			SqlCommand getStudent = new SqlCommand();
-			getStudent.Connection = Connection;
-			getStudent.CommandText = "SELECT * FROM PostGradUser WHERE email = '" + Session["user"] + "' ";
-			Connection.Open();
-
-			SqlDataReader reader;
-			reader = getStudent.ExecuteReader();
-			int i = 0;
-			int id = -1;
-			while (reader.Read())
+			using (SqlConnection connection = dbm.GetSqlConnection())
 			{
-				id = (int)reader[0];
-				System.Diagnostics.Debug.WriteLine(reader[i]);
-				i += 1;
+                //creating the command to execute the procedure
+
+                SqlCommand addMobile = new SqlCommand("addMobile", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                
+				Label successeful = new Label();
+				try
+				{
+					//passing paramters from inputs to the procedure
+					addMobile.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
+					addMobile.Parameters.Add(new SqlParameter("@mobile_number", SqlDbType.VarChar)).Value = mobileNumber.Text;
+
+					int noOfRecords = addMobile.ExecuteNonQuery(); // this is where I run my stored procedure
+
+					if (noOfRecords == -1)
+					{
+						successeful.Text = "Phone Number not added!";
+					}
+					else
+					{
+						successeful.Text = "Phone Number added Sucessfully!";
+					}
+				}
+				catch (Exception ex)
+				{
+					successeful.Text = "Failed to evaluate, Phone Number already exists";
+					System.Diagnostics.Debug.WriteLine(ex);
+				}
+				MobileSuccess.Controls.Add(successeful);
 			}
-			reader.Close();
-			System.Diagnostics.Debug.WriteLine(Session["user"]);
-
-			SqlCommand addMobileProc = new SqlCommand("addMobile", Connection);
-			addMobileProc.CommandType = CommandType.StoredProcedure;
-
-			addMobileProc.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar)).Value = id;
-			addMobileProc.Parameters.Add(new SqlParameter("@mobile_number", SqlDbType.VarChar)).Value = mobileNumber.Text;
-			addMobileProc.ExecuteNonQuery();
-			Connection.Close();
 		}
 
 		protected void publication_Click(object sender, EventArgs e)

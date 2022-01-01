@@ -33,7 +33,7 @@
 		<asp:Panel ID="ExtendThesisPanel" runat="server">
 			<asp:Button ID="ExtendThesisBtn" runat="server" Text="Extend a Thesis" OnClick="ExtendThesisBtn_Click" />
 			<br/>
-			<asp:TextBox ID="ExtendThesisTxt" runat="server" placeholder="Enter Thesis Serial Number"></asp:TextBox>
+			<asp:TextBox ID="ExtendThesisTxt" runat="server" placeholder="Enter Thesis Serial Number" TextMode="Number"></asp:TextBox>
 			<asp:Label ID="ExtendThesislabel" runat="server" Text=""></asp:Label>
 		</asp:Panel>
 		
@@ -42,10 +42,10 @@
 		<asp:Panel ID="IssueThesisPaymentPanel" runat="server">
 			<asp:Button ID="IssueThesisPaymentBtn" runat="server" Text="Issue a thesis payment." OnClick="IssueThesisPaymentBtn_Click"  />
 			<br/>
-			<asp:TextBox ID="IssueThesisPaymentThesisSerialNo" runat="server" placeholder="Enter Thesis Serial Number"></asp:TextBox>
-			<asp:TextBox ID="IssueThesisPaymentamount" runat="server" placeholder="Enter payment amount"></asp:TextBox>
-			<asp:TextBox ID="IssueThesisPaymentnoOfInstallments" runat="server" placeholder="Enter number of installments"></asp:TextBox>
-			<asp:TextBox ID="IssueThesisPaymentfundPercentage" runat="server" placeholder="Enter fund percentage"></asp:TextBox>
+			<asp:TextBox ID="IssueThesisPaymentThesisSerialNo" runat="server" placeholder="Enter Thesis Serial Number" TextMode="Number"></asp:TextBox>
+			<asp:TextBox ID="IssueThesisPaymentamount" runat="server" placeholder="Enter payment amount" TextMode="Number"></asp:TextBox>
+			<asp:TextBox ID="IssueThesisPaymentnoOfInstallments" runat="server" placeholder="Enter number of installments" TextMode="Number"></asp:TextBox>
+			<asp:TextBox ID="IssueThesisPaymentfundPercentage" runat="server" placeholder="Enter fund percentage" TextMode="Number"></asp:TextBox>
 			<asp:Label ID="IssueThesisPaymentLabel" runat="server" Text=""></asp:Label>
 			<br />
 		</asp:Panel>
@@ -56,11 +56,11 @@
 			<br />
 			<asp:Button ID="IssueInstallPayment" runat="server" Text=" Issue installments for a payment." OnClick="IssueInstallPayment_Click"  />
 			<br/>
-			<asp:TextBox ID="IssueInstallPaymentpaymentID" runat="server" placeholder="Enter payment ID"></asp:TextBox>
+			<asp:TextBox ID="IssueInstallPaymentpaymentID" runat="server" placeholder="Enter payment ID" TextMode="Number"></asp:TextBox>
+			<asp:Label ID="IssueInstallPaymentMessage" runat="server"></asp:Label>
 			<br/>
 			<asp:Label ID="IssueInstallPaymentInstallDateLabel" runat="server" Text="Choose Installment Start date"></asp:Label>
 			<asp:Calendar ID="IssueInstallPaymentInstallStartDate" runat="server" ></asp:Calendar>
-			<%--<asp:TextBox ID="IssueInstallPaymentInstallStartDateTxt" runat="server" placeholder="Enter Installment Start date"></asp:TextBox>--%>
 		</asp:Panel>
 		
 	</form>

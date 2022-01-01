@@ -36,17 +36,17 @@ on update cascade,
 	GPA decimal(3,2),
 )
 CREATE TABLE GUCStudentPhoneNumber
-(
-	phone int,
-	id int,
+(	id int,
+	phone varchar(20),
+	
 	primary key(id, phone),
 	foreign key(id) references GucianStudent on delete cascade
 on update cascade
 )
 CREATE TABLE NonGUCStudentPhoneNumber
-(
-	phone int,
-	id int,
+(	id int,
+	phone varchar(20),
+	
 	primary key(id, phone),
 	foreign key(id) references NonGucianStudent on delete
 cascade on update cascade
@@ -322,7 +322,7 @@ set @success=0
 end
 go
 create proc addMobile
-	@ID varchar(20),
+	@ID int,
 	@mobile_number varchar(20)
 as
 begin
@@ -461,35 +461,47 @@ from Payment
 where id=@paymentID))
 begin
 	declare @numOfInst int
+
 	select @numOfInst=noOfInstallments
 	from Payment
 	where id=@paymentID
+
 	declare @payAmount int
+
 	select @payAmount=amount
 	from Payment
 	where id=@paymentID
+
 	DECLARE @Counter INT
+
 	SET @Counter=1
+
+	declare @instdate date
+
+	set @instdate=@InstallStartDate
+
+	declare @instAmount int
+
+	set @instAmount=@payAmount/@numOfInst
+
 	WHILE (@counter<=@numOfInst)
-BEGIN
-		declare @instdate date
-		set @instdate=@InstallStartDate
-		declare @instAmount int
-		set @instAmount=@payAmount/@numOfInst
+	BEGIN
+		
+
 		if(@counter=1)
-insert into
-Installment
-			(date,paymentId,amount,done)
-		values(@InstallStartDate, @paymentID
-, @instAmount, 0)
-else
-begin
-			set @instdate=DATEADD(MM, 6, @instdate);
 			insert into
-Installment
+			Installment
 				(date,paymentId,amount,done)
-			values(@instdate, @paymentID, @instAmount, 0)
-		end
+			values(@InstallStartDate, @paymentID
+			, @instAmount, 0)
+		else
+			begin
+				set @instdate=DATEADD(MM, 6, @instdate);
+				insert into
+				Installment
+				(date,paymentId,amount,done)
+				values(@instdate, @paymentID, @instAmount, 0)
+			end
 		SET @counter=@counter+1
 	END
 end
@@ -651,17 +663,13 @@ union all
 	where NON.sid = @StudentID
 go
 create proc AddDefenseGucian
-	@ThesisSerialNo int ,
-	@DefenseDate Datetime ,
-	@DefenseLocation varchar(15)
+@ThesisSerialNo int , @DefenseDate Datetime , @DefenseLocation varchar(15)
 as
 insert into Defense
-values(@ThesisSerialNo, @DefenseDate, @DefenseLocation, null)
+values(@ThesisSerialNo,@DefenseDate,@DefenseLocation,null)
 go
 create proc AddDefenseNonGucian
-	@ThesisSerialNo int ,
-	@DefenseDate Datetime ,
-	@DefenseLocation varchar(15)
+@ThesisSerialNo int , @DefenseDate Datetime , @DefenseLocation varchar(15)
 as
 declare @idOfStudent int
 select @idOfStudent = sid
@@ -671,8 +679,8 @@ if(not exists(select grade
 from NonGucianStudentTakeCourse
 where sid = @idOfStudent and grade < 50))
 begin
-	insert into Defense
-	values(@ThesisSerialNo, @DefenseDate, @DefenseLocation, null)
+insert into Defense
+values(@ThesisSerialNo,@DefenseDate,@DefenseLocation,null)
 end
 go
 create proc AddExaminer
@@ -1201,6 +1209,46 @@ begin
 	from Thesis T
 	where T.title like '%' + @word + '%';
 end
+go
+
+GO
+CREATE PROC AdminIssueInstallPaymentMine
+@paymentID INT, @InstallStartDate DATE
+AS
+if(exists(select * from Installment where paymentId = @paymentID))
+begin
+RAISERROR('Installments for this payment were already issued',11,1);
+end
+else if(not exists(select *
+from Payment
+where id=@paymentID))
+begin
+RAISERROR('This Payment does not exist',11,1);
+end
+else
+begin
+	DECLARE @i INT = 0;
+
+	DECLARE @InstallmentDate DATE = @InstallStartDate;
+
+	DECLARE @no_installments INT = 
+		(SELECT Payment.noOfInstallments
+		FROM Payment
+		WHERE Payment.id = @paymentID);
+
+	DECLARE @Installment_Amount DECIMAL(8,2) = (SELECT Payment.amount
+		FROM Payment
+		WHERE Payment.id = @paymentID) / @no_installments;
+
+	WHILE @i < @no_installments
+	BEGIN
+		INSERT INTO Installment(date, paymentId, amount, done)
+		VALUES (@InstallmentDate, @paymentID, @Installment_Amount, 0);
+		SET @InstallmentDate = DATEADD(month, 6, @InstallmentDate);
+		SET @i = @i + 1;
+	END
+	end
+RETURN
 go
 
 CREATE PROC ExaminerViewProfile
