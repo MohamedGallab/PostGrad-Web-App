@@ -11,3 +11,8 @@ span, input
 body, html {
     height: 100%;
 }
+
+.RegisterButtons
+{
+    margin: 0 0.5rem!important;
+}
