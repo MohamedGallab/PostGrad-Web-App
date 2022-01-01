@@ -1,0 +1,52 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: #6c757d!important;
+}
+
+.components {
+    margin: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: self-start;
+}
+
+input
+{
+    margin: 0.5rem 0 !important;
+}
+
+span
+{
+    color: blue;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    text-align: center;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+}
+
+
+
+#isNationalSpan {
+    color: rgb(118, 118, 118)!important;
+}
+
+#National
+{
+    margin-left: 0.5rem!important;
+    margin-bottom: 0!important;
+}
