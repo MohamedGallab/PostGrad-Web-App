@@ -53,33 +53,43 @@ namespace PostGrad_Web_App
 
                     if (Convert.ToBoolean(success.Value))
                     {
+                        
                         Decimal grade = Convert.ToDecimal(GradeDefenseB.Text);
-                        SqlCommand examinerAddGrade = new SqlCommand("AddDefenseGrade", Connection);
-
-                        examinerAddGrade.CommandType = CommandType.StoredProcedure;
-                        examinerAddGrade.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = defenseNumber;
-                        examinerAddGrade.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
-                        examinerAddGrade.Parameters.Add(new SqlParameter("@grade", SqlDbType.Decimal)).Value = grade;
-
-                        Connection.Open();
-                        try
+                        if (Decimal.Compare(100, grade) <= 0 || Decimal.Compare(0, grade) > 0)
                         {
+                            responseL.Text = "Enter a valid grade.";
+                        }
+                        
+                        else
+                        {
+                            SqlCommand examinerAddGrade = new SqlCommand("AddDefenseGrade", Connection);
 
-                            if (examinerAddGrade.ExecuteNonQuery() == -1)
+                            examinerAddGrade.CommandType = CommandType.StoredProcedure;
+                            examinerAddGrade.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = defenseNumber;
+                            examinerAddGrade.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
+                            examinerAddGrade.Parameters.Add(new SqlParameter("@grade", SqlDbType.Decimal)).Value = grade;
+
+                            Connection.Open();
+                            try
                             {
-                                throw new Exception("You entered an invalid grade.");
+
+                                if (examinerAddGrade.ExecuteNonQuery() == -1)
+                                {
+                                    throw new Exception("You entered an invalid grade.");
+                                }
+                                responseL.Text = "Grade added succesfully.";
                             }
-                            responseL.Text = "Grade added succesfully.";
+                            catch (FormatException)
+                            {
+                                responseL.Text = "Please enter valid inputs.";
+                            }
+                            catch (Exception ex)
+                            {
+                                responseL.Text = ex.Message;
+                            }
+                            Connection.Close();
                         }
-                        catch (FormatException)
-                        {
-                            responseL.Text = "Please enter valid inputs.";
-                        }
-                        catch (Exception ex)
-                        {
-                            responseL.Text = ex.Message;
-                        }
-                        Connection.Close();
+                        
                     }
                     else
                     {
@@ -112,13 +122,14 @@ namespace PostGrad_Web_App
 
             if (Convert.ToBoolean(success.Value))
             {
-                Decimal grade = Convert.ToDecimal(GradeDefenseB.Text);
-                SqlCommand examinerAddGrade = new SqlCommand("AddDefenseGrade", Connection);
+                String comment = CommentDefenseB.Text;
+                SqlCommand examinerAddGrade = new SqlCommand("ExaminerAddCommentsGrade", Connection);
 
                 examinerAddGrade.CommandType = CommandType.StoredProcedure;
                 examinerAddGrade.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = defenseNumber;
                 examinerAddGrade.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
-                examinerAddGrade.Parameters.Add(new SqlParameter("@grade", SqlDbType.Decimal)).Value = grade;
+                examinerAddGrade.Parameters.Add(new SqlParameter("@examinerId", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]); ;
+                examinerAddGrade.Parameters.Add(new SqlParameter("@comments", SqlDbType.VarChar)).Value = comment;
 
                 Connection.Open();
                 try
