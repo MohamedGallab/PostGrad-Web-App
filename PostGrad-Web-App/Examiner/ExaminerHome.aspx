@@ -1,13 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExaminerHome.aspx.cs" Inherits="PostGrad_Web_App.ExaminerHome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExaminerHome.aspx.cs" Inherits="PostGrad_Web_App.ExaminerHome" MasterPageFile="~/MainMaster.Master"%>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
     <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+</asp:Content>
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
         <div>
             Welcome,<br />
             <br />
@@ -41,6 +37,4 @@
         <p>
             <asp:Button ID="ExaminerLogOut" runat="server" Text="Log Out" OnClick="ExaminerLogOut_Click" Width="333px" />
         </p>
-    </form>
-</body>
-</html>
+</asp:Content>

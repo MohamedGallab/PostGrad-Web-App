@@ -1,14 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExaminerEditInfo.aspx.cs" Inherits="PostGrad_Web_App.ExaminerEditInfo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExaminerEditInfo.aspx.cs" Inherits="PostGrad_Web_App.ExaminerEditInfo" MasterPageFile="~/MainMaster.Master"%>
 
-<!DOCTYPE html>
-
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
     <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+</asp:Content>
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
         <div>
             Edit your Info:<br />
             <br />
@@ -45,6 +40,4 @@
         <p>
             <asp:Button ID="BackFromEditInfoB" runat="server" Height="32px" style="margin-top: 0px" Text="Back" Width="113px" OnClick="BackFromEditInfoB_Click" />
         </p>
-    </form>
-</body>
-</html>
+</asp:Content>
