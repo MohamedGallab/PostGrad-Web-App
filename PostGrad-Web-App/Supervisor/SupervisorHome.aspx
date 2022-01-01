@@ -42,11 +42,8 @@
             <div class = "components">
                 <asp:Label runat="server" Text="Add a defense for a thesis"></asp:Label>
                 
-
                 <asp:TextBox ID="DefenseThesisSerialNumber" runat="server" placeholder = "Thesis Serial Number"></asp:TextBox>
                 
-
- 
                 <asp:Calendar ID="DefenseDateCalendar" runat="server"></asp:Calendar>
 
                 <asp:TextBox ID="DefenseLocation" runat="server" placeholder = "Defense Location"></asp:TextBox>

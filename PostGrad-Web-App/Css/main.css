@@ -1,7 +1,11 @@
 
 body
 {
-    background-color: #ededed !important;
+    background-color: #ededed!important;
+}
+span 
+{
+    color: #2a2a8f;
 }
 
 span, input
@@ -15,4 +19,42 @@ body, html {
 .RegisterButtons
 {
     margin: 0 0.5rem!important;
+}
+
+.components {
+    margin: 0.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    text-align: center;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+}
+
+.success {
+    color: grey;
+}
+
+.errors {
+    color: red;
+}
+
+
+.checkboxSpan
+{
+    margin-left: 0.4rem!important;
+    margin-bottom: 0!important;
 }
