@@ -27,19 +27,19 @@
         <p>
             &nbsp;</p>
         <p>
-        <asp:Button ID="EditInfo" runat="server" Text="Edit Your Personal Info" Width="313px" OnClick="EditInfo_Click" />
+        <asp:Button ID="EditInfo" runat="server" Text="Edit Your Personal Info" Width="335px" OnClick="EditInfo_Click" />
         </p>
         <p>
-            <asp:Button ID="ViewInfo" runat="server" Text="View Related Information" Width="315px" OnClick="ViewInfo_Click" />
+            <asp:Button ID="ViewInfo" runat="server" Text="View Related Information" Width="335px" OnClick="ViewInfo_Click" />
         </p>
         <p>
-            <asp:Button ID="evaluate" runat="server" Text="Add Evaluation" Width="315px" OnClick="evaluate_Click" />
+            <asp:Button ID="evaluate" runat="server" Text="Add Evaluation" Width="333px" OnClick="evaluate_Click" />
         </p>
         <p>
-            <asp:Button ID="lookUpThesis" runat="server" Text="Search for a Specific Thesis" OnClick="lookUpThesis_Click" />
+            <asp:Button ID="lookUpThesis" runat="server" Text="Search for a Specific Thesis" OnClick="lookUpThesis_Click" Height="31px" Width="333px" />
         </p>
         <p>
-            <asp:Button ID="ExaminerLogOut" runat="server" Text="Log Out" OnClick="ExaminerLogOut_Click" Width="314px" />
+            <asp:Button ID="ExaminerLogOut" runat="server" Text="Log Out" OnClick="ExaminerLogOut_Click" Width="333px" />
         </p>
     </form>
 </body>

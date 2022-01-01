@@ -22,55 +22,70 @@ namespace PostGrad_Web_App
             String ConnectionString = WebConfigurationManager.ConnectionStrings["PostGradConnectionString"].ToString();
             SqlConnection Connection = new SqlConnection(ConnectionString);
 
-            DateTime defenseDate = DateTime.Parse(DefenseDateB.Text);
-            int defenseNumber = int.Parse(DefenseNoB.Text);
-
-            SqlCommand checkDefense = new SqlCommand("ExaminerSearchDefense", Connection);
-            checkDefense.CommandType = CommandType.StoredProcedure;
-
-            checkDefense.Parameters.Add(new SqlParameter("@serialNo", SqlDbType.Int)).Value = defenseNumber;
-            checkDefense.Parameters.Add(new SqlParameter("@date", SqlDbType.DateTime)).Value = defenseDate;
-
-            SqlParameter success = checkDefense.Parameters.Add("@success", SqlDbType.Bit);
-            success.Direction = System.Data.ParameterDirection.Output;
-
-            Connection.Open();
-            checkDefense.ExecuteNonQuery();
-            Connection.Close();
-
-            if (Convert.ToBoolean(success.Value))
+            if (DefenseDateB.Text == "")
             {
-                Decimal grade = Convert.ToDecimal(GradeDefenseB.Text);
-                SqlCommand examinerAddGrade = new SqlCommand("AddDefenseGrade", Connection);
-
-                examinerAddGrade.CommandType = CommandType.StoredProcedure;
-                examinerAddGrade.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = defenseNumber;
-                examinerAddGrade.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
-                examinerAddGrade.Parameters.Add(new SqlParameter("@grade", SqlDbType.Decimal)).Value = grade;
-
-                Connection.Open();
-                try
-                {
-
-                    if (examinerAddGrade.ExecuteNonQuery() == -1)
-                    {
-                        throw new Exception("You entered an invalid grade.");
-                    }
-                    responseL.Text = "Grade added succesfully.";
-                }
-                catch (FormatException)
-                {
-                    responseL.Text = "Please enter valid inputs.";
-                }
-                catch (Exception ex)
-                {
-                    responseL.Text = ex.Message;
-                }
-                Connection.Close();
+                responseL.Text = "Enter a Date.";
             }
             else
             {
-                Response.Write("You entered a wrong date or thesis number.");
+                if (DefenseNoB.Text == "")
+                {
+                    responseL.Text = "Enter a Defense Number.";
+
+                }
+                else
+                {
+                    DateTime defenseDate = DateTime.Parse(DefenseDateB.Text);
+                    int defenseNumber = int.Parse(DefenseNoB.Text);
+
+                    SqlCommand checkDefense = new SqlCommand("ExaminerSearchDefense", Connection);
+                    checkDefense.CommandType = CommandType.StoredProcedure;
+
+                    checkDefense.Parameters.Add(new SqlParameter("@serialNo", SqlDbType.Int)).Value = defenseNumber;
+                    checkDefense.Parameters.Add(new SqlParameter("@date", SqlDbType.DateTime)).Value = defenseDate;
+
+                    SqlParameter success = checkDefense.Parameters.Add("@success", SqlDbType.Bit);
+                    success.Direction = System.Data.ParameterDirection.Output;
+
+                    Connection.Open();
+                    checkDefense.ExecuteNonQuery();
+                    Connection.Close();
+
+                    if (Convert.ToBoolean(success.Value))
+                    {
+                        Decimal grade = Convert.ToDecimal(GradeDefenseB.Text);
+                        SqlCommand examinerAddGrade = new SqlCommand("AddDefenseGrade", Connection);
+
+                        examinerAddGrade.CommandType = CommandType.StoredProcedure;
+                        examinerAddGrade.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = defenseNumber;
+                        examinerAddGrade.Parameters.Add(new SqlParameter("@DefenseDate", SqlDbType.DateTime)).Value = defenseDate;
+                        examinerAddGrade.Parameters.Add(new SqlParameter("@grade", SqlDbType.Decimal)).Value = grade;
+
+                        Connection.Open();
+                        try
+                        {
+
+                            if (examinerAddGrade.ExecuteNonQuery() == -1)
+                            {
+                                throw new Exception("You entered an invalid grade.");
+                            }
+                            responseL.Text = "Grade added succesfully.";
+                        }
+                        catch (FormatException)
+                        {
+                            responseL.Text = "Please enter valid inputs.";
+                        }
+                        catch (Exception ex)
+                        {
+                            responseL.Text = ex.Message;
+                        }
+                        Connection.Close();
+                    }
+                    else
+                    {
+                        responseL.Text = "You entered a wrong date or number.";
+                    }
+                }
             }
         }
 
@@ -79,7 +94,7 @@ namespace PostGrad_Web_App
             String ConnectionString = WebConfigurationManager.ConnectionStrings["PostGradConnectionString"].ToString();
             SqlConnection Connection = new SqlConnection(ConnectionString);
 
-            DateTime defenseDate = DateTime.Parse(DefenseDateB.Text);
+            DateTime defenseDate = Convert.ToDateTime(DefenseDateB.Text);
             int defenseNumber = int.Parse(DefenseNoB.Text);
 
             SqlCommand checkDefense = new SqlCommand("ExaminerSearchDefense", Connection);

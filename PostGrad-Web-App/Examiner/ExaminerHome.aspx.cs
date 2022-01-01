@@ -32,6 +32,8 @@ namespace PostGrad_Web_App
                 temp += "Name: " + reader["name"].ToString() + "<br>";
                 temp += "Field of Work: " + reader["fieldOfWork"].ToString() + "<br>";
                 temp += "National: : " + (bool)reader["isNational"] + "<br>";
+                temp += "Email: : " + reader["email"] + "<br>";
+                temp += "Password: : " + reader["password"] + "<br>";
             }
             Connection.Close();
             ExaminerProfile.Text = temp;
