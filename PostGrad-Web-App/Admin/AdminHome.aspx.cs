@@ -151,12 +151,5 @@ namespace PostGrad_Web_App
 			}
 		}
 
-		protected void SignOut_Click(object sender, EventArgs e)
-		{
-			Session.Clear();
-			Session.Abandon();
-			FormsAuthentication.SignOut();
-			Response.Redirect("~/Login.aspx");
-		}
 	}
 }
