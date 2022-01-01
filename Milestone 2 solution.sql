@@ -1264,8 +1264,8 @@ CREATE PROC ExaminerViewProfile
 	@id int
 as 
 begin 
-select * from Examiner
-where Examiner.id = @id
+select E.*,P.email,P.password from Examiner E inner join PostGradUser P on E.id = P.id
+where E.id = @id
 end
 go
 
