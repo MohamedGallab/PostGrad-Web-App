@@ -14,11 +14,11 @@ namespace PostGrad_Web_App
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		protected void AddMobileClicked(object sender, EventArgs e)
-        {
+		{
 			String ConnectionString = WebConfigurationManager.ConnectionStrings["PostGradConnectionString"].ToString();
 			SqlConnection Connection = new SqlConnection(ConnectionString);
 
@@ -51,30 +51,30 @@ namespace PostGrad_Web_App
 
 		protected void publication_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("Student/StudentPublication");
+			Response.Redirect("StudentPublication.aspx");
 		}
 
 		protected void progressReport_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("Student/StudentProgressReport");
+			Response.Redirect("StudentProgressReport.aspx");
 
 		}
 
 		protected void courses_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("Student/StudentCourses");
+			Response.Redirect("StudentCourses.aspx");
 
 		}
 
 		protected void theses_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("Student/StudentTheses");
+			Response.Redirect("StudentTheses.aspx");
 
 		}
 
 		protected void profile_Click(object sender, EventArgs e)
 		{
-			Response.Redirect("Student/StudentProfile");
+			Response.Redirect("StudentProfile.aspx");
 
 		}
 	}
