@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="PostGrad_Web_App.MainMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+	<title></title>
+	<asp:ContentPlaceHolder ID="head" runat="server">
+	</asp:ContentPlaceHolder>
+</head>
+<body>
+	<form id="form1" runat="server">
+		<asp:Button ID="SignOut" runat="server" Text="Sign Out" OnClick="SignOut_Click" />
+		<br />
+		<br />
+		<asp:ContentPlaceHolder ID="BodyPlaceHolder" runat="server">
+		</asp:ContentPlaceHolder>
+	</form>
+</body>
+</html>
