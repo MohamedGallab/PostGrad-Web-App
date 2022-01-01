@@ -1,15 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SupervisorHome.aspx.cs" Inherits="PostGrad_Web_App.SupervisorHome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SupervisorHome.aspx.cs" Inherits="PostGrad_Web_App.SupervisorHome" MasterPageFile="~/MainMaster.Master"%>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
     <title>Supervisor Home</title> 
     <link href="SupervisorHome.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-</head>
-<body class = "conatiner">
-    <form id="form2" runat="server">
+</asp:Content>
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
         <div class = "d-flex justify-content-start align-items-start mb-3">
             <div class = "components">
                 <asp:Label runat="server" Text="List my students"></asp:Label>
@@ -111,7 +107,4 @@
 
         
 
-        
-    </form>
-</body>
-</html>
+</asp:Content>
