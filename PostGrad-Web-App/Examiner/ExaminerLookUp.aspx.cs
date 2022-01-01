@@ -34,8 +34,7 @@ namespace PostGrad_Web_App
 
 
 					dbm.DisplayTable(thesisLookupProc, ThesisView);
-
-					responseL.Text = "Successfully issued Installments";
+					responseL.Text = "Success";
 				}
 				catch (Exception ex)
 				{
