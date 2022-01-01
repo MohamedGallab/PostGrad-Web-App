@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -148,6 +149,14 @@ namespace PostGrad_Web_App
 					IssueInstallPaymentMessage.Text = ex.Message;
 				}
 			}
+		}
+
+		protected void SignOut_Click(object sender, EventArgs e)
+		{
+			Session.Clear();
+			Session.Abandon();
+			FormsAuthentication.SignOut();
+			Response.Redirect("~/Login.aspx");
 		}
 	}
 }

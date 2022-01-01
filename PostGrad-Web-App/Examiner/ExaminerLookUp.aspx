@@ -11,7 +11,6 @@
         <div>
         </div>
         <asp:Label ID="headerL" runat="server" Text="Look up a specific thesis:"></asp:Label>
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <p>
             <asp:Label ID="responseL" runat="server"></asp:Label>
         </p>
