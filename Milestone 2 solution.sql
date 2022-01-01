@@ -651,17 +651,13 @@ union all
 	where NON.sid = @StudentID
 go
 create proc AddDefenseGucian
-	@ThesisSerialNo int ,
-	@DefenseDate Datetime ,
-	@DefenseLocation varchar(15)
+@ThesisSerialNo int , @DefenseDate Datetime , @DefenseLocation varchar(15)
 as
 insert into Defense
-values(@ThesisSerialNo, @DefenseDate, @DefenseLocation, null)
+values(@ThesisSerialNo,@DefenseDate,@DefenseLocation,null)
 go
 create proc AddDefenseNonGucian
-	@ThesisSerialNo int ,
-	@DefenseDate Datetime ,
-	@DefenseLocation varchar(15)
+@ThesisSerialNo int , @DefenseDate Datetime , @DefenseLocation varchar(15)
 as
 declare @idOfStudent int
 select @idOfStudent = sid
@@ -671,8 +667,8 @@ if(not exists(select grade
 from NonGucianStudentTakeCourse
 where sid = @idOfStudent and grade < 50))
 begin
-	insert into Defense
-	values(@ThesisSerialNo, @DefenseDate, @DefenseLocation, null)
+insert into Defense
+values(@ThesisSerialNo,@DefenseDate,@DefenseLocation,null)
 end
 go
 create proc AddExaminer

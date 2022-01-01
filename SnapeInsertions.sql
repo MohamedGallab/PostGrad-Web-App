@@ -75,11 +75,11 @@ GO
 
 	-- defenses and publications
 	-- 2 defenses
-	--EXEC AddDefenseGucian @ThesisSerialNo = @ThesisID, @DefenseDate = '2012-05-09', @DefenseLocation = 'Gryffindor Tower, Hogwarts';
-	--EXEC AddExaminer @ThesisSerialNo = @ThesisID, @DefenseDate = '2012-05-09', @ExaminerName = 'Rolanda Hooch', @National = 1, @fieldOfWork = 'Flying';
-	--set @examiner_id1 = IDENT_CURRENT ('PostGradUser');
-	--EXEC AddDefenseGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2012-05-09', @grade = 95.00;
-	--EXEC ExaminerAddCommentsGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2012-05-09', @examinerId = @examiner_id1, @comments = 'More info is needed';
+	EXEC AddDefenseGucian @ThesisSerialNo = @ThesisID, @DefenseDate = '2012-05-09', @DefenseLocation = 'Gryffindor Tower, Hogwarts';
+	EXEC AddExaminer @ThesisSerialNo = @ThesisID, @DefenseDate = '2012-05-09', @ExaminerName = 'Rolanda Hooch', @Password = 'RolandaHoochPass', @National = 1, @fieldOfWork = 'Flying';
+	set @examiner_id1 = IDENT_CURRENT ('PostGradUser');
+	EXEC AddDefenseGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2012-05-09', @grade = 95.00;
+	EXEC ExaminerAddCommentsGrade @ThesisSerialNo = @ThesisID, @DefenseDate = '2012-05-09', @examinerId = @examiner_id1, @comments = 'More info is needed';
 
 	--EXEC AddDefenseGucian @ThesisSerialNo = @ThesisID, @DefenseDate = '2013-08-09', @DefenseLocation = 'Dumbledore Office Tower';
 	--EXEC AddExaminer @ThesisSerialNo = @ThesisID, @DefenseDate = '2013-08-09', @ExaminerName = 'Dolores Umbridge', @National = 0, @fieldOfWork = 'fieldOfWork';
@@ -228,3 +228,29 @@ GO
 	SET @Pub_ID = IDENT_CURRENT ('Publication');
 	EXEC linkPubThesis @PubID = @Pub_ID, @thesisSerialNo = @ThesisID;
 GO
+
+GO
+CREATE PROC CheckGucianForThesis
+	@thesisSerialNo INT,
+	@defenseDate DateTime,
+	@defenseLocation VarChar(15)
+AS
+DECLARE @gucian INT
+IF (EXISTS(SELECT serial_no
+		   FROM GUCianStudentRegisterThesis
+		   WHERE serial_no = @thesisSerialNo))
+BEGIN
+	SET @gucian = '1'
+END
+ELSE
+BEGIN
+	SET @gucian = '0'
+END
+IF (@gucian = '1')
+BEGIN
+	EXEC AddDefenseGucian @thesisSerialNo, @defenseDate, @defenseLocation;
+END
+ELSE
+BEGIN
+	EXEC AddDefenseNonGucian @thesisSerialNo, @defenseDate, @defenseLocation;
+END
