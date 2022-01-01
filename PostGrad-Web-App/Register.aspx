@@ -14,7 +14,7 @@
 		<div class="row justify-content-center align-items-center h-100">
 			<div class="col col-sm-6 col-md-6 col-lg-4 col-xl-4">
 				<form id="form1" runat="server">
-				   <div id = "mainDiv" class = "">
+				   <div id = "mainDiv" class = "d-flex justify-content-evenly">
 						<asp:Button class= "btn btn-dark RegisterButtons" ID="Button1" runat="server" Text="Student" OnClick="StudentRegister_Click" />
 						<asp:Button class= "btn btn-dark RegisterButtons" ID="Button2" runat="server" Text="Supervisor" OnClick="SupervisorRegister_Click"/>
 						<asp:Button class= "btn btn-dark RegisterButtons" ID="Button3" runat="server" Text="Examiner" OnClick="ExaminerRegister_Click"/>

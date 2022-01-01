@@ -41,9 +41,11 @@ namespace PostGrad_Web_App
 
 			int newUserID;
 			SqlCommand getRegisteredID = new SqlCommand("SELECT IDENT_CURRENT('PostGradUser')", Connection);
+
 			if(firstName.Length == 0 || lastName.Length == 0 || pass.Length == 0 || fclty.Length == 0|| mail.Length == 0)
 			{
 				RegisterMessage.Text = "Fill in all the fields";
+				RegisterMessage.CssClass = "errors align-self-center";
 			}
 			else
 			{

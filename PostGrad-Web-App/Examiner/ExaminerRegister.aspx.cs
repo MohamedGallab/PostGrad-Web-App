@@ -44,6 +44,7 @@ namespace PostGrad_Web_App
 			if (firstName.Length == 0 || pass.Length == 0 || mail.Length == 0 || fldOfWork.Length == 0)
 			{
 				RegisterMessage.Text = "Fill in all the fields";
+				RegisterMessage.CssClass = "errors align-self-center";
 			}
 			else
 			{

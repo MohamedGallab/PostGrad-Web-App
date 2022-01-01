@@ -1,42 +1,29 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExaminerRegister.aspx.cs" Inherits="PostGrad_Web_App.ExaminerRegister" MasterPageFile="~/RegisterMaster.Master"%>
 
 <asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
-    <title></title>
-    <style>
-        body {
-            background-color : black;
-            color : white;
-            margin : 5px;
-        }
-    </style>
+    <title>Examiner Register</title>
 </asp:Content>
 <asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-        <asp:Label ID="RegisterMessage" runat="server" Text=""></asp:Label>
-        <br/>
-        <asp:Label runat="server" Text="name"></asp:Label>
-        <br/>
-        <asp:TextBox ID="name" runat="server"></asp:TextBox>
-        <br/>
+         
+        <asp:Label runat="server" Text="Name"></asp:Label>
+        <asp:TextBox ID="name" class = "form-control" placeholder = "Name" runat="server"></asp:TextBox>
+        
+        <asp:Label runat="server" Text="Password"></asp:Label>
+        <asp:TextBox ID="password" class = "form-control" placeholder = "Password" runat="server"></asp:TextBox>
 
-        <asp:Label runat="server" Text="password"></asp:Label>
-        <br/>
-        <asp:TextBox ID="password" runat="server"></asp:TextBox>
-        <br/>
+        <div>
+            <asp:Label runat="server" Text="Is National?"></asp:Label>
+            <asp:CheckBox ID="isNational" class = "checkboxSpan" runat="server" />
+        </div>
 
-        <asp:Label runat="server" Text="isNational"></asp:Label>
-        <br/>
-        <asp:CheckBox ID="isNational" runat="server" />
-        <br/>
+        <asp:Label runat="server" Text="Email"></asp:Label>  
+        <asp:TextBox ID="email" class = "form-control" placeholder = "Email" runat="server"></asp:TextBox>
+        
 
-        <asp:Label runat="server" Text="email"></asp:Label>
-        <br/>
-        <asp:TextBox ID="email" runat="server"></asp:TextBox>
-        <br/>
+        <asp:Label runat="server" Text="Field Of Work"></asp:Label>
+        <asp:TextBox ID="fieldOfWork" class = "form-control" placeholder = "Field Of Work" runat="server"></asp:TextBox>
+        
+         <asp:Label ID="RegisterMessage" runat="server" Text=""></asp:Label>
 
-        <asp:Label runat="server" Text="fieldOfWork"></asp:Label>
-        <br/>
-        <asp:TextBox ID="fieldOfWork" runat="server"></asp:TextBox>
-        <br/>
-
-    	<asp:Button ID="RegisterBtn" runat="server" Text="Register" OnClick="RegisterBtn_Click" />
+    	<asp:Button ID="RegisterBtn" class = "btn btn-dark align-self-center" runat="server" Text="Register" OnClick="RegisterBtn_Click" />
 </asp:Content>
