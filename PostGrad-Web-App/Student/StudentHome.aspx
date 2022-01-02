@@ -21,7 +21,7 @@
 			</div>
 			<br />
 			<div>
-				<asp:Button ID="profile" runat="server" Text="view my profile" OnClick="profile_Click" />
+				<asp:Button ID="profile" runat="server"  Text="view my profile" OnClick="profile_Click" />
 			</div>
 			<br />
 			<div>
@@ -29,7 +29,7 @@
 			</div>
 			<br />
 			<div>
-				<asp:Button ID="courses" runat="server" Visible="false" Text="view my courses and check grades" OnClick="courses_Click" />
+				<asp:Button ID="courses" runat="server"  Text="view my courses and check grades"  OnClick="courses_Click" />
 			</div>
 			<br />
 			<div>
