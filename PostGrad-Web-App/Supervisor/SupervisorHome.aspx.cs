@@ -71,8 +71,7 @@ namespace PostGrad_Web_App
 					
 					if (EvaluationInt >= 0 && EvaluationInt <= 3)
 					{
-						noOfRecords = evaluateProgressReport.ExecuteNonQuery(); 
-						System.Diagnostics.Debug.WriteLine("ENtered");
+						noOfRecords = evaluateProgressReport.ExecuteNonQuery();
 					}
 					else
 					{
@@ -125,8 +124,6 @@ namespace PostGrad_Web_App
 						successful.CssClass = "errors";
 						throw new FormatException("Please Enter Thesis Serial Number");
 					}
-					System.Diagnostics.Debug.WriteLine("HEY");
-					System.Diagnostics.Debug.WriteLine(CancelThesisSerialNo.Text);
 					//passing paramters from inputs to the procedure
 					cancelThesis.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = Convert.ToInt32(CancelThesisSerialNo.Text);
 					
@@ -261,12 +258,9 @@ namespace PostGrad_Web_App
 				catch (SqlException ex)
 				{
 					successful.Text = ex.Message;
-					System.Diagnostics.Debug.WriteLine(ex.Message);
 				}
 				catch (Exception es)
 				{
-					System.Diagnostics.Debug.WriteLine("ERROR");
-					System.Diagnostics.Debug.WriteLine(es.Message);
 					successful.Text = es.Message;
 					successful.CssClass = "errors";
 				}
@@ -285,7 +279,6 @@ namespace PostGrad_Web_App
 				String password = Password.Text;
 				Boolean national = National.Checked;
 				String fieldOfWork = FieldOfWork.Text;
-				System.Diagnostics.Debug.WriteLine(national);
 				//creating the command to execute the procedure
 				SqlCommand addExaminer = new SqlCommand("AddExaminer", connection)
 				{
@@ -349,8 +342,6 @@ namespace PostGrad_Web_App
 				}
 				catch (Exception es)
 				{
-					System.Diagnostics.Debug.WriteLine("ERROR");
-					System.Diagnostics.Debug.WriteLine(es.Message);
 					successful.Text = es.Message;
 					successful.CssClass = "errors";
 				}
@@ -406,8 +397,8 @@ namespace PostGrad_Web_App
 				}
 				catch (Exception es)
                 {
-                    System.Diagnostics.Debug.WriteLine("ERROR");
-                    System.Diagnostics.Debug.WriteLine(es.Message);
+					successful.Text = es.Message;
+					successful.CssClass = "errors";
 				}
 				ExistingExaminerSuccess.Controls.Add(successful);
 			}
