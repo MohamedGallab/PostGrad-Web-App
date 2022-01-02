@@ -58,7 +58,6 @@ namespace PostGrad_Web_App
 				Connection.Close();
 
 				Session["userID"] = newUserID;
-				FormsAuthentication.SetAuthCookie(newUserID.ToString(), false);
 				Response.Redirect("StudentHome.aspx");
 			}
 		}

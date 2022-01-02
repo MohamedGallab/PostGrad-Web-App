@@ -53,7 +53,6 @@ namespace PostGrad_Web_App
 			if (Convert.ToBoolean(success.Value))
 			{
 				Session["userID"] = Convert.ToInt32(oldUserID.Value);
-				FormsAuthentication.SetAuthCookie(oldUserID.Value.ToString(), false);
 				switch (type.Value)
 				{
 					case 0:

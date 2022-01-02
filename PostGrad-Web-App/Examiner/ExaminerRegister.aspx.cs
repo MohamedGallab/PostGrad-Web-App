@@ -51,11 +51,9 @@ namespace PostGrad_Web_App
 				Connection.Open();
 				examinerRegisterProc.ExecuteNonQuery();
 				newUserID = Convert.ToInt32(getRegisteredID.ExecuteScalar());
-				//System.Diagnostics.Debug.WriteLine(newUserID);
 				Connection.Close();
 
 				Session["userID"] = newUserID;
-				FormsAuthentication.SetAuthCookie(newUserID.ToString(), false);
 				Response.Redirect("ExaminerHome.aspx");
 			}
 		}

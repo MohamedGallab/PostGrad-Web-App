@@ -1,16 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentTheses.aspx.cs" Inherits="PostGrad_Web_App.Student.studentTheses" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentTheses.aspx.cs" Inherits="PostGrad_Web_App.Student.studentTheses" MasterPageFile="~/MainMaster.Master" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:GridView ID="StudentViewThesesGridview" runat="server"></asp:GridView>
-        </div>
-    </form>
-</body>
-</html>
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
+	<title></title>
+</asp:Content>
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+	<div>
+		<asp:GridView ID="StudentViewThesesGridview" runat="server"></asp:GridView>
+	</div>
+</asp:Content>

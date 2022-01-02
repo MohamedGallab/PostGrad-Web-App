@@ -12,13 +12,15 @@ namespace PostGrad_Web_App
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			if (Session["userID"] == null)
+			{
+				Response.Redirect("~/Login.aspx");
+			}
 		}
 		protected void SignOut_Click(object sender, EventArgs e)
 		{
 			Session.Clear();
 			Session.Abandon();
-			FormsAuthentication.SignOut();
 			Response.Redirect("~/Login.aspx");
 		}
 	}

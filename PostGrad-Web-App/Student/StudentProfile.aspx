@@ -1,12 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentProfile.aspx.cs" Inherits="PostGrad_Web_App.StudentProfile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StudentProfile.aspx.cs" Inherits="PostGrad_Web_App.StudentProfile" MasterPageFile="~/MainMaster.Master" %>
 
-<!DOCTYPE html>
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
+	<title></title>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <asp:Label ID="studentProf" runat="server" ></asp:Label>
-</body>
-</html>
+</asp:Content>
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
+	<asp:Label ID="studentProf" runat="server"></asp:Label>
+</asp:Content>

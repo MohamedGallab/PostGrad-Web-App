@@ -53,11 +53,9 @@ namespace PostGrad_Web_App
 				supervisorRegisterProc.ExecuteNonQuery();
 				newUserID = Convert.ToInt32(getRegisteredID.ExecuteScalar());
 				Connection.Close();
-				System.Diagnostics.Debug.WriteLine("registered");
-				System.Diagnostics.Debug.WriteLine(newUserID);
-				FormsAuthentication.SetAuthCookie(newUserID.ToString(), false);
+
 				Session["userID"] = newUserID;
-				Response.Redirect("../Login.aspx");
+				Response.Redirect("SupervisorHome.aspx");
 			}
 		}
 	}
