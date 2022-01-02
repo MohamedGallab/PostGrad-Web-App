@@ -62,3 +62,20 @@ body, html {
 nav {
     background-color: #212529;
 }
+
+.componentsAdmin {
+    margin: 0.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+}
+
+#SignOut
+{
+    margin-right: 1.5rem!important;
+}
+/*
+#adminMainDiv .form-control
+{
+    width: 60%;
+}*/

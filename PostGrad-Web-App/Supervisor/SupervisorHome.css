@@ -17,9 +17,9 @@ input
     margin: 0.4rem 0 !important;
 }
 
-span
+span 
 {
-    color: blue;
+    color: #2a2a8f;
 }
 
 ::-webkit-input-placeholder {
@@ -57,4 +57,8 @@ span
 .errors
 {
     color: red;
+}
+.checkboxSpan {
+    margin-left: 0.4rem !important;
+    margin-bottom: 0 !important;
 }
