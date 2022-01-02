@@ -71,7 +71,10 @@ namespace PostGrad_Web_App
 				} }
 			else
 			{
-				Response.Write("Wrong Email or Password, Please Try again");
+				Label loginSuccess = new Label();
+				loginSuccess.Text = "Wrong Email or Password, Please Try again";
+				loginSuccess.CssClass = "errors";
+				LoginSuccessPanel.Controls.Add(loginSuccess);
 			}
 		}
 	}
