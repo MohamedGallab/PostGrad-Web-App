@@ -30,7 +30,7 @@ namespace PostGrad_Web_App.Student
                 AddProgressReport.Parameters.Add("@thesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(ThesisSerialNo.Text);
                 AddProgressReport.Parameters.Add("@progressReportDate", SqlDbType.Date).Value = ProgressReportDate.SelectedDate.ToShortDateString();
                 AddProgressReport.Parameters.Add("@studentID", SqlDbType.Int).Value = Convert.ToInt32(Session["userID"]);
-                AddProgressReport.Parameters.Add("@thesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(ThesisSerialNo.Text);
+                AddProgressReport.Parameters.Add("@progressReportNo", SqlDbType.Int).Value = Convert.ToInt32(ProgressReportNoText.Text);
 
                 AddProgressReport.ExecuteNonQuery();
             }
