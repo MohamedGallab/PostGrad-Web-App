@@ -6,10 +6,10 @@
 <asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
          
         <asp:Label runat="server" Text="Name"></asp:Label>
-        <asp:TextBox ID="name" class = "form-control" placeholder = "Name" runat="server"></asp:TextBox>
+        <asp:TextBox ID="name" class = "form-control" MaxLength="20" placeholder = "Name" runat="server"></asp:TextBox>
         
         <asp:Label runat="server" Text="Password"></asp:Label>
-        <asp:TextBox ID="password" class = "form-control" placeholder = "Password" runat="server"></asp:TextBox>
+        <asp:TextBox ID="password" class = "form-control" MaxLength="30" placeholder = "Password" runat="server"></asp:TextBox>
 
         <div>
             <asp:Label runat="server" Text="Are you Egyptian?"></asp:Label>
@@ -17,11 +17,11 @@
         </div>
 
         <asp:Label runat="server" Text="Email"></asp:Label>  
-        <asp:TextBox ID="email" class = "form-control" placeholder = "Email" runat="server"></asp:TextBox>
+        <asp:TextBox ID="email" class = "form-control" MaxLength="50" placeholder = "Email" runat="server"></asp:TextBox>
         
 
         <asp:Label runat="server" Text="Field Of Work"></asp:Label>
-        <asp:TextBox ID="fieldOfWork" class = "form-control" placeholder = "Field Of Work" runat="server"></asp:TextBox>
+        <asp:TextBox ID="fieldOfWork" class = "form-control" placeholder = "Field Of Work"  MaxLength="100" runat="server"></asp:TextBox>
         
          <asp:Label ID="RegisterMessage" runat="server" Text=""></asp:Label>
 
