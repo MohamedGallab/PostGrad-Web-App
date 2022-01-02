@@ -21,7 +21,7 @@
 						<asp:Label runat="server" Text="Password"></asp:Label>
 
 						<asp:TextBox class="form-control" ID="Password" runat="server"></asp:TextBox>
-
+					   <asp:Panel ID="LoginSuccessPanel" runat="server"></asp:Panel>
 						<asp:Button ID = "LoginBtn" class = "btn btn-dark" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
 
 						<asp:HyperLink ID="RegisterLink" runat="server" NavigateUrl="~/Register.aspx">Register A New Account</asp:HyperLink>

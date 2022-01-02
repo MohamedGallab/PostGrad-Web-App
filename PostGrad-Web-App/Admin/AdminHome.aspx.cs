@@ -22,16 +22,25 @@ namespace PostGrad_Web_App
 
 		protected void ListSupBtn_Click(object sender, EventArgs e)
 		{
+			//< asp:GridView ID = "ListSupGridView" runat = "server" ></ asp:GridView >
 			SqlCommand AdminListSupProc = new SqlCommand("AdminListSup");
+			GridView gridView = new GridView();
+			gridView.ID = "ListSupGridView";
+			
+			dbm.DisplayTable(AdminListSupProc, gridView);
+			ListSupGridViewPanel.Controls.Add(gridView);
 
-			dbm.DisplayTable(AdminListSupProc, ListSupGridView);
 		}
 
 		protected void ListTheses_Click(object sender, EventArgs e)
 		{
 			SqlCommand AdminViewAllThesesProc = new SqlCommand("AdminViewAllTheses");
-			dbm.DisplayTable(AdminViewAllThesesProc, ListThesesGridView);
+			
+			GridView gridView = new GridView();
+			gridView.ID = "ListThesesGridView";
+			dbm.DisplayTable(AdminViewAllThesesProc, gridView);
 
+			Label ThesesCountLabel = new Label();
 			using (SqlConnection connection = dbm.GetSqlConnection())
 			{
 				SqlCommand AdminViewOnGoingThesesProc = new SqlCommand("AdminViewOnGoingTheses")
@@ -47,6 +56,9 @@ namespace PostGrad_Web_App
 
 				ThesesCountLabel.Text = "There are " + thesisCount.Value + " On-going theses";
 			}
+			ThesesCountPanel.Controls.Add(ThesesCountLabel);
+			ListThesesGridPanel.CssClass = "table table-borderless";
+			ListThesesGridPanel.Controls.Add(gridView);
 		}
 
 		protected void ExtendThesisBtn_Click(object sender, EventArgs e)
@@ -59,6 +71,9 @@ namespace PostGrad_Web_App
 					CommandType = CommandType.StoredProcedure
 				};
 
+				Label successful = new Label();
+				successful.CssClass = "success";
+
 				try
 				{
 					AdminUpdateExtensionProc.Parameters.Add("@ThesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(ExtendThesisTxt.Text);
@@ -66,16 +81,19 @@ namespace PostGrad_Web_App
 					{
 						throw new Exception("This Thesis Serial Number does not exist");
 					}
-					ExtendThesislabel.Text = "Successfully extended thesis";
+					successful.Text = "Successfully extended thesis";
 				}
 				catch (FormatException)
 				{
-					ExtendThesislabel.Text = "Please Enter A Number";
+					successful.Text = "Please Enter A Number";
+					successful.CssClass = "errors";
 				}
 				catch (Exception ex)
 				{
-					ExtendThesislabel.Text = ex.Message;
+					successful.Text = ex.Message;
+					successful.CssClass = "errors";
 				}
+				ExtendThesisSuccess.Controls.Add(successful);
 			}
 		}
 
@@ -88,6 +106,9 @@ namespace PostGrad_Web_App
 					Connection = connection,
 					CommandType = CommandType.StoredProcedure
 				};
+
+				Label successful = new Label();
+				successful.CssClass = "success";
 				try
 				{
 					AdminIssueThesisPaymentProc.Parameters.Add("@ThesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(IssueThesisPaymentThesisSerialNo.Text);
@@ -99,16 +120,19 @@ namespace PostGrad_Web_App
 					{
 						throw new Exception("This Thesis Serial Number does not exist");
 					}
-					IssueThesisPaymentLabel.Text = "payment successfully issued";
+					successful.Text = "payment successfully issued";
 				}
 				catch (FormatException)
 				{
-					IssueThesisPaymentLabel.Text = "Please Fill all fields with valid numbers";
+					successful.Text = "Please Fill all fields with valid numbers";
+					successful.CssClass = "errors";
 				}
 				catch (Exception ex)
 				{
-					IssueThesisPaymentLabel.Text = ex.Message;
+					successful.Text = ex.Message;
+					successful.CssClass = "errors";
 				}
+				IssueThesisPaymentSuccess.Controls.Add(successful);
 			}
 		}
 
@@ -121,6 +145,10 @@ namespace PostGrad_Web_App
 					Connection = connection,
 					CommandType = CommandType.StoredProcedure
 				};
+
+				Label successful = new Label();
+				successful.CssClass = "success";
+
 				try
 				{
 					AdminIssueInstallPaymentProc.Parameters.Add("@paymentID", SqlDbType.Int).Value = Convert.ToInt32(IssueInstallPaymentpaymentID.Text);
@@ -134,20 +162,24 @@ namespace PostGrad_Web_App
 
 					AdminIssueInstallPaymentProc.ExecuteNonQuery();
 
-					IssueInstallPaymentMessage.Text = "Successfully issued Installments";
+					successful.Text = "Successfully issued Installments";
 				}
 				catch (FormatException)
 				{
-					IssueInstallPaymentMessage.Text = "You have to enter a payment id and choose a start date";
+					successful.Text = "You have to enter a payment id and choose a start date";
+					successful.CssClass = "errors";
 				}
 				catch(SqlException ex)
 				{
-					IssueInstallPaymentMessage.Text = ex.Message;
+					successful.Text = ex.Message;
+					successful.CssClass = "errors";
 				}
 				catch (Exception ex)
 				{
-					IssueInstallPaymentMessage.Text = ex.Message;
+					successful.Text = ex.Message;
+					successful.CssClass = "errors";
 				}
+				IssueInstallPaymentSuccess.Controls.Add(successful);
 			}
 		}
 

@@ -33,13 +33,13 @@ namespace PostGrad_Web_App
         protected global::System.Web.UI.WebControls.TextBox ExtendThesisTxt;
 
         /// <summary>
-        /// ExtendThesislabel control.
+        /// ExtendThesisSuccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ExtendThesislabel;
+        protected global::System.Web.UI.WebControls.Panel ExtendThesisSuccess;
 
         /// <summary>
         /// ExtendThesisBtn control.
@@ -96,13 +96,13 @@ namespace PostGrad_Web_App
         protected global::System.Web.UI.WebControls.TextBox IssueThesisPaymentfundPercentage;
 
         /// <summary>
-        /// IssueThesisPaymentLabel control.
+        /// IssueThesisPaymentSuccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label IssueThesisPaymentLabel;
+        protected global::System.Web.UI.WebControls.Panel IssueThesisPaymentSuccess;
 
         /// <summary>
         /// IssueThesisPaymentBtn control.
@@ -150,13 +150,13 @@ namespace PostGrad_Web_App
         protected global::System.Web.UI.WebControls.Calendar IssueInstallPaymentInstallStartDate;
 
         /// <summary>
-        /// IssueInstallPaymentMessage control.
+        /// IssueInstallPaymentSuccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label IssueInstallPaymentMessage;
+        protected global::System.Web.UI.WebControls.Panel IssueInstallPaymentSuccess;
 
         /// <summary>
         /// IssueInstallPayment control.
@@ -186,13 +186,13 @@ namespace PostGrad_Web_App
         protected global::System.Web.UI.WebControls.Button ListSupBtn;
 
         /// <summary>
-        /// ListSupGridView control.
+        /// ListSupGridViewPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ListSupGridView;
+        protected global::System.Web.UI.WebControls.Panel ListSupGridViewPanel;
 
         /// <summary>
         /// ListThesesPanel control.
@@ -213,21 +213,21 @@ namespace PostGrad_Web_App
         protected global::System.Web.UI.WebControls.Button ListTheses;
 
         /// <summary>
-        /// ThesesCountLabel control.
+        /// ThesesCountPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ThesesCountLabel;
+        protected global::System.Web.UI.WebControls.Panel ThesesCountPanel;
 
         /// <summary>
-        /// ListThesesGridView control.
+        /// ListThesesGridPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ListThesesGridView;
+        protected global::System.Web.UI.WebControls.Panel ListThesesGridPanel;
     }
 }
