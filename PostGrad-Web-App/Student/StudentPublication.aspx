@@ -8,6 +8,9 @@
 		<asp:Label ID="addTitle" runat="server" Font-Underline="true" Text="add your publication"></asp:Label>
 		<br />
 		<br />
+		<asp:Label ID="ThesisSerialNumberLabel" runat="server" Text="Thesis serial number"></asp:Label><br />
+		<asp:TextBox ID="ThesisSerialNumberText" runat="server" Width="373px"></asp:TextBox>
+		<br />
 		<asp:Label ID="TitleLabel" runat="server" Text="Title"></asp:Label><br />
 		<asp:TextBox ID="TitleText" runat="server" Width="373px"></asp:TextBox>
 		<br />
@@ -28,24 +31,9 @@
 		<asp:CheckBox ID="isAccepted" runat="server" />
 		<br />
 
-		<asp:Button ID="addPublicationBtn" runat="server" Text="add publication" OnClick="addPublicationBtn_Click" />
+		<asp:Panel ID="addLinkPubSuccess" runat="server"></asp:Panel>
+		<asp:Button ID="addPublicationBtn" runat="server" Text="add and link publication" OnClick="addPublicationBtn_Click" />
 	</div>
 	<br />
 	<hr />
-	<br />
-	<div>
-		<asp:Label ID="Label1" runat="server" Font-Underline="true" Text="link your publication"></asp:Label>
-		<br />
-		<br />
-		<asp:Label ID="pubIdLabel" runat="server" Text="Publication ID"></asp:Label><br />
-		<asp:TextBox ID="pubIdText" runat="server"></asp:TextBox>
-		<br />
-
-		<asp:Label ID="ThesisSerialNumLabel" runat="server" Text="Thesis serial number"></asp:Label><br />
-		<asp:TextBox ID="ThesisSerialNumText" runat="server"></asp:TextBox>
-		<br />
-
-
-		<asp:Button ID="LinkPubBtn" runat="server" Text="Link publication" OnClick="LinkPubBtn_Click" />
-	</div>
 </asp:Content>

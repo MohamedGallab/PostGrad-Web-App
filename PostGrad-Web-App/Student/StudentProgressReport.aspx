@@ -20,6 +20,7 @@
 		<asp:TextBox ID="ProgressReportNoText" runat="server"></asp:TextBox>
 		<br />
 
+		<asp:Panel ID="addReportSuccess" runat="server"></asp:Panel>
 		<asp:Button ID="addReportBtn" runat="server" Text="add progress report" OnClick="addReportBtn_Click" />
 	</div>
 	<br />
@@ -46,6 +47,7 @@
 		<asp:TextBox ID="DescriptionText" runat="server" Height="143px" Width="224px"></asp:TextBox>
 		<br />
 
+		<asp:Panel ID="fillReportSuccess" runat="server"></asp:Panel>
 		<asp:Button ID="fillReportBtn" runat="server" Text="fill progress report" OnClick="fillReportBtn_Click" />
 	</div>
 </asp:Content>

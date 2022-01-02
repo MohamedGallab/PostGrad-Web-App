@@ -22,36 +22,49 @@ namespace PostGrad_Web_App.Student
         {
             using (SqlConnection connection = dbm.GetSqlConnection())
             {
-                SqlCommand addPublication = new SqlCommand("addPublication")
+                SqlCommand addLinkPub = new SqlCommand("addLinkPub")
                 {
                     Connection = connection,
                     CommandType = CommandType.StoredProcedure
                 };
-                addPublication.Parameters.Add("@title", SqlDbType.VarChar).Value = TitleText.Text;
-                addPublication.Parameters.Add("@pubDate", SqlDbType.Date).Value = PublicationDateValue.SelectedDate.ToShortDateString();
-                addPublication.Parameters.Add("@host", SqlDbType.VarChar).Value = HostText.Text;
-                addPublication.Parameters.Add("@place", SqlDbType.VarChar).Value = placeText.Text;
-                addPublication.Parameters.Add("@accepted", SqlDbType.Bit).Value = isAccepted.Checked;
+                
 
-                addPublication.ExecuteNonQuery();
-            }
-        }
+                
 
-        protected void LinkPubBtn_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection connection = dbm.GetSqlConnection())
-            {
-                SqlCommand linkPubThesis = new SqlCommand("linkPubThesis")
+
+                Label successful = new Label();
+                successful.CssClass = "success";
+                try
                 {
-                    Connection = connection,
-                    CommandType = CommandType.StoredProcedure
-                };
-                linkPubThesis.Parameters.Add("@PubID", SqlDbType.Int).Value = Convert.ToInt32(pubIdText.Text);
-                linkPubThesis.Parameters.Add("@thesisSerialNo", SqlDbType.Int).Value = Convert.ToInt32(ThesisSerialNumText.Text);
+                    addLinkPub.Parameters.Add("@thesisSerialNo", SqlDbType.Int).Value = ThesisSerialNumberText.Text;
+                    addLinkPub.Parameters.Add("@studentID", SqlDbType.Int).Value = Convert.ToInt32(Session["userID"]);
+                    addLinkPub.Parameters.Add("@title", SqlDbType.VarChar).Value = TitleText.Text;
+                    addLinkPub.Parameters.Add("@pubDate", SqlDbType.Date).Value = PublicationDateValue.SelectedDate.ToShortDateString();
+                    addLinkPub.Parameters.Add("@host", SqlDbType.VarChar).Value = HostText.Text;
+                    addLinkPub.Parameters.Add("@place", SqlDbType.VarChar).Value = placeText.Text;
+                    addLinkPub.Parameters.Add("@accepted", SqlDbType.Bit).Value = isAccepted.Checked;
 
-
-                linkPubThesis.ExecuteNonQuery();
+                    addLinkPub.ExecuteNonQuery();
+                    successful.Text = "publication added and linked to your thesis succesfully";
+                }
+                catch (FormatException)
+                {
+                    successful.Text = "Please Fill all fields with valid values";
+                    successful.CssClass = "errors";
+                }
+                catch (SqlException ex)
+                {
+                    successful.Text = ex.Message;
+                    successful.CssClass = "errors";
+                }
+                catch (Exception ex)
+                {
+                    successful.Text = ex.Message;
+                    successful.CssClass = "errors";
+                }
+                addLinkPubSuccess.Controls.Add(successful);
             }
         }
+
     }
 }

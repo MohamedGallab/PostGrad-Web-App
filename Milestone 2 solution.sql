@@ -1004,8 +1004,7 @@ go
 create proc AddProgressReport
 	@thesisSerialNo int,
 	@progressReportDate date,
-	@studentID
-int,
+	@studentID int,
 	@progressReportNo int
 as
 declare @gucian int
@@ -1023,21 +1022,59 @@ begin
 end
 if(@gucian = '1')
 begin
-	insert into GUCianProgressReport
-	values(@studentID, @progressReportNo, @progressReportDate, null, null, null, @thesisSerialNo, null)
+	if(exists(select * from GUCianStudentRegisterThesis where GUCianStudentRegisterThesis.sid = @studentID and GUCianStudentRegisterThesis.serial_no = @thesisSerialNo))
+	begin
+		if(exists(select * from GUCianProgressReport where GUCianProgressReport.sid = @studentID and GUCianProgressReport.no = @progressReportNo))
+		begin
+			RAISERROR('PROGRESS REPORT WITH THIS NUMBER ALREADY EXISTS!',11,1);
+		end
+		else
+		begin
+			declare @startDate date
+			declare @endDate date
+			select @startDate = Thesis.startDate from Thesis where Thesis.serialNumber = @thesisSerialNo
+			select @endDate = Thesis.endDate from Thesis where Thesis.serialNumber = @thesisSerialNo
+
+			if(@progressReportDate>@startDate and @progressReportDate<@endDate)
+			begin
+				insert into GUCianProgressReport values(@studentID, @progressReportNo, @progressReportDate, null, null, null, @thesisSerialNo, null)
+			end
+			else
+			begin
+				RAISERROR('PLEASE ENTER A VALID DATE WITHIN THE START AND END OF YOUR THESIS',11,1);
+			end
+			
+		end
+	end
+	else
+	begin
+		RAISERROR('Thesis Serial Number DOES NOT exist!',11,1);
+	end	
 end
 else
 begin
-	insert into NonGUCianProgressReport
-	values(@studentID, @progressReportNo, @progressReportDate, null, null, null, @thesisSerialNo, null)
+	if(exists(select * from NonGUCianStudentRegisterThesis where NonGUCianStudentRegisterThesis.sid = @studentID and NonGUCianStudentRegisterThesis.serial_no = @thesisSerialNo))
+	begin
+		if(exists(select * from NonGUCianProgressReport where NonGUCianProgressReport.sid = @studentID and NonGUCianProgressReport.no = @progressReportNo))
+		begin
+			RAISERROR('PROGRESS REPORT WITH THIS NUMBER ALREADY EXISTS!',11,1);
+		end
+		else
+		begin
+			insert into NonGUCianProgressReport values(@studentID, @progressReportNo, @progressReportDate, null, null, null, @thesisSerialNo, null)
+		end
+	end
+	else
+	begin
+		RAISERROR('Thesis Serial Number DOES NOT exist!',11,1);
+	end	
 end
 go
 create proc FillProgressReport
 	@thesisSerialNo int,
 	@progressReportNo int,
 	@state int,
-	@description
-varchar(200),
+	@description varchar(200),
 	@studentID int
 as
 declare @gucian bit
@@ -1055,17 +1092,43 @@ begin
 end
 if(@gucian = '1')
 begin
-	update GUCianProgressReport
-set state = @state, description = @description, date = CURRENT_TIMESTAMP
-where thesisSerialNumber = @thesisSerialNo and sid = @studentID and no =
-@progressReportNo
+	if(exists(select * from GUCianStudentRegisterThesis where GUCianStudentRegisterThesis.sid = @studentID and GUCianStudentRegisterThesis.serial_no = @thesisSerialNo))
+	begin
+		if(exists(select * from GUCianProgressReport where GUCianProgressReport.sid = @studentID and GUCianProgressReport.no = @progressReportNo))
+		begin
+			update GUCianProgressReport
+			set state = @state, description = @description, date = CURRENT_TIMESTAMP
+			where thesisSerialNumber = @thesisSerialNo and sid = @studentID and no = @progressReportNo
+		end
+		else
+		begin
+			RAISERROR('PROGRESS REPORT WITH THIS NUMBER DOES NOT EXISTS!',11,1);
+		end
+	end
+	else
+	begin
+		RAISERROR('Thesis Serial Number DOES NOT exist!',11,1);
+	end	
 end
 else
 begin
-	update NonGUCianProgressReport
-set state = @state, description = @description, date = CURRENT_TIMESTAMP
-where thesisSerialNumber = @thesisSerialNo and sid = @studentID and no =
-@progressReportNo
+	if(exists(select * from NonGUCianStudentRegisterThesis where NonGUCianStudentRegisterThesis.sid = @studentID and NonGUCianStudentRegisterThesis.serial_no = @thesisSerialNo))
+	begin
+		if(exists(select * from NonGUCianProgressReport where NonGUCianProgressReport.sid = @studentID and NonGUCianProgressReport.no = @progressReportNo))
+		begin
+			update NonGUCianProgressReport
+			set state = @state, description = @description, date = CURRENT_TIMESTAMP
+			where thesisSerialNumber = @thesisSerialNo and sid = @studentID and no = @progressReportNo
+		end
+		else
+		begin
+			RAISERROR('PROGRESS REPORT WITH THIS NUMBER DOES NOT EXISTS!',11,1);
+		end
+	end
+	else
+	begin
+		RAISERROR('Thesis Serial Number DOES NOT exist!',11,1);
+	end	
 end
 go
 create proc ViewEvalProgressReport
@@ -1087,8 +1150,7 @@ create proc addPublication
 	@title varchar(50),
 	@pubDate datetime,
 	@host varchar(50),
-	@place
-varchar(50),
+	@place varchar(50),
 	@accepted bit
 as
 insert into Publication
@@ -1098,8 +1160,7 @@ create proc linkPubThesis
 	@PubID int,
 	@thesisSerialNo int
 as
-insert into ThesisHasPublication
-values(@thesisSerialNo, @PubID)
+insert into ThesisHasPublication values(@thesisSerialNo, @PubID)
 go
 create trigger deleteSupervisor
 on Supervisor
@@ -1379,3 +1440,25 @@ from NonGUCianStudentRegisterThesis inner join Thesis on NonGUCianStudentRegiste
 where NonGUCianStudentRegisterThesis.sid = @studentID
 
 GO
+
+
+create proc addLinkPub
+	@title varchar(50),
+	@pubDate datetime,
+	@host varchar(50),
+	@place varchar(50),
+	@accepted bit,
+	@studentID int,
+	@thesisSerialNo int
+as
+if(exists(select * from NonGUCianStudentRegisterThesis where NonGUCianStudentRegisterThesis.sid = @studentID and NonGUCianStudentRegisterThesis.serial_no = @thesisSerialNo) or exists(select * from GUCianStudentRegisterThesis where GUCianStudentRegisterThesis.sid = @studentID and GUCianStudentRegisterThesis.serial_no = @thesisSerialNo))
+begin
+	exec addPublication @title , @pubdate , @host , @place , @accepted;
+	declare @id int
+	SELECT @id=ident_current('Publication')
+	exec linkPubThesis @id , @thesisSerialNo;
+end
+else
+begin
+	RAISERROR('THIS THESIS EITHER DOES NOT EXIST OR DOES NOT BELONG TO YOU!',11,1);
+end
