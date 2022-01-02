@@ -116,3 +116,18 @@ tr > td {
 {
     width: 100%;
 }
+
+#listDiv > table {
+    width: 30%;
+    margin: auto;
+}
+
+#BodyPlaceHolder_PublicationsGrid {
+    width: 75%;
+    margin: auto;
+}
+
+#ViewPubDiv, #listDiv
+{
+    margin-top: 2rem;
+}
