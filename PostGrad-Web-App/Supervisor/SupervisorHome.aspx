@@ -18,7 +18,7 @@
             <div class = "components">
                 <asp:Label runat="server" Text="View all publications of a student"></asp:Label>
                 
-                <asp:TextBox ID="PublicationsID" runat="server" placeholder = "Student ID"></asp:TextBox>
+                <asp:TextBox ID="PublicationsID" runat="server" placeholder = "Student ID"  TextMode = "Number"></asp:TextBox>
                 <asp:Panel ID="PublicationsSuccess" runat="server"></asp:Panel>
                 <asp:Button class = "btn btn-dark" ID="Button2" runat="server" Text="View list" OnClick ="OnViewPublications"/>
              </div>
@@ -42,7 +42,7 @@
             <div class = "components">
                 <asp:Label runat="server" Text="Add a defense for a thesis"></asp:Label>
                 
-                <asp:TextBox ID="DefenseThesisSerialNumber" runat="server" placeholder = "Thesis Serial Number"></asp:TextBox>
+                <asp:TextBox ID="DefenseThesisSerialNumber" runat="server" placeholder = "Thesis Serial Number" TextMode = "Number"></asp:TextBox>
                 
                 <asp:Calendar ID="DefenseDateCalendar" runat="server"></asp:Calendar>
 
@@ -77,7 +77,7 @@
 
                 <asp:Panel class = "d-flex flex-column h-auto components" ID="Panel1" runat="server">
                     <asp:Label runat="server" Text="Add an Old Examiner for the Defense"></asp:Label>
-                    <asp:TextBox ID="ExaminerID" runat="server" placeholder = "Examiner ID"></asp:TextBox>
+                    <asp:TextBox ID="ExaminerID" runat="server" placeholder = "Examiner ID"  TextMode = "Number"></asp:TextBox>
 
                     <asp:Panel ID="ExistingExaminerSuccess" runat="server"></asp:Panel>
                     <asp:Button class = "btn btn-dark" ID="Button8" runat="server" Text="Add Existing Examiner" OnClick = "OnAddExistingExaminer" />

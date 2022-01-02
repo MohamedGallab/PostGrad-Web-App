@@ -26,7 +26,7 @@
             <asp:Label ID="GradeDefenseL" runat="server" Text="Grade:"></asp:Label>
         </p>
         <p>
-        <asp:TextBox ID="GradeDefenseB" runat="server" type="number" Width="125px"></asp:TextBox>
+        <asp:TextBox ID="GradeDefenseB" runat="server" type="number" step="0.01" Width="125px"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="GradeDefense" runat="server" Text="Confirm Grade" OnClick="GradeDefense_Click" />

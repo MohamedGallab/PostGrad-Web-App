@@ -710,8 +710,6 @@ UPDATE Thesis
 	WHERE THESIS.serialNumber = @ThesisSerialNo
 end
 
-drop proc AddDefenseGucian;
-drop proc AddDefenseNonGucian;
 
 go
 create proc AddExaminer
