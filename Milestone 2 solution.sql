@@ -1283,3 +1283,40 @@ else
 set @success =0;
 end
 go
+
+--gets whether student is gucian or no
+CREATE PROC StudentUni
+	@ID INT,
+	@gucian BIT OUTPUT
+AS
+IF(EXISTS(SELECT * FROM GucianStudent WHERE id = @ID))
+SET @gucian = 1
+ELSE
+SET @gucian = 0
+RETURN
+
+GO
+
+create proc ViewCoursesAndGrades
+	@studentID int
+as
+select code as 'course code' , grade
+from NonGucianStudentTakeCourse inner join Course on NonGucianStudentTakeCourse.cid = Course.id
+where sid = @studentID
+
+GO
+
+CREATE PROC ViewAllTheses
+	@studentID int
+AS
+select Thesis.*
+from GUCianStudentRegisterThesis inner join Thesis on GUCianStudentRegisterThesis.serial_no = Thesis.serialNumber
+where GUCianStudentRegisterThesis.sid = @studentID
+
+union
+
+select Thesis.*
+from NonGUCianStudentRegisterThesis inner join Thesis on NonGUCianStudentRegisterThesis.serial_no = Thesis.serialNumber
+where NonGUCianStudentRegisterThesis.sid = @studentID
+
+GO

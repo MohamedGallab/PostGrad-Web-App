@@ -13,11 +13,25 @@ namespace PostGrad_Web_App
 {
 	public partial class StudentHome : System.Web.UI.Page
 	{
-		DBMaster dbm = new DBMaster();
+		private readonly DBMaster dbm = new DBMaster();
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			using (SqlConnection connection = dbm.GetSqlConnection())
+            {
+				SqlCommand StudentUni = new SqlCommand("StudentUni", connection)
+				{
+					CommandType = CommandType.StoredProcedure
+				};
+				StudentUni.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
+				SqlParameter gucian = StudentUni.Parameters.Add("@gucian", SqlDbType.Bit);
+				gucian.Direction = ParameterDirection.Output;
+				StudentUni.ExecuteNonQuery();
+				if(Convert.ToBoolean(gucian.Value) == true)
+                {
+					courses.Style.Add("display", "none");
+                }
+			}
 		}
 
 		protected void AddMobileClicked(object sender, EventArgs e)
