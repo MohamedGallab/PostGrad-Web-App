@@ -632,11 +632,13 @@ begin
 		from GUCianStudentRegisterThesis sr inner join GucianStudent s on
 sr.sid=s.id
 			inner join Thesis t on t.serialNumber=sr.serial_no
+			where sr.supid=@supervisorID
 	union
 		select s.firstName, s.lastName, t.years
 		from NonGUCianStudentRegisterThesis sr inner join NonGucianStudent s on
 sr.sid=s.id
 			inner join Thesis t on t.serialNumber=sr.serial_no
+			where sr.supid=@supervisorID
 end
 go
 CREATE Proc SupViewProfile
@@ -1439,6 +1441,115 @@ select Thesis.*
 from NonGUCianStudentRegisterThesis inner join Thesis on NonGUCianStudentRegisterThesis.serial_no = Thesis.serialNumber
 where NonGUCianStudentRegisterThesis.sid = @studentID
 
+GO
+
+GO
+CREATE PROC CheckGucianForThesis
+	@thesisSerialNumber INT,
+	@defenseDate DateTime,
+	@defenseLocation VarChar(15)
+AS
+DECLARE @gucian INT
+IF (EXISTS(SELECT serial_no
+		   FROM GUCianStudentRegisterThesis
+		   WHERE serial_no = @thesisSerialNumber))
+BEGIN
+	IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber))
+	BEGIN
+		RAISERROR('Defense for this Thesis with this Defense Date is Already Added!',11,1);
+	END
+	Else
+	BEGIN
+		EXEC AddDefenseGucian @thesisSerialNumber, @defenseDate, @defenseLocation;
+	END
+END
+ELSE IF (EXISTS(SELECT serial_no
+		   FROM NonGUCianStudentRegisterThesis
+		   WHERE serial_no = @thesisSerialNumber))
+BEGIN
+	IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber))
+	BEGIN
+		RAISERROR('Defense for this Thesis with this Defense Date is Already Added!',11,1);
+	END
+	ELSE
+	BEGIN
+		EXEC AddDefenseNonGucian @thesisSerialNumber, @defenseDate, @defenseLocation;
+	END
+END
+ELSE
+BEGIN
+	RAISERROR('There is no Thesis with Thesis Serial Number!',11,1);
+END
+
+
+GO
+CREATE PROC AddExistingExaminer
+	@defenseDate DATETIME,
+	@thesisSerialNumber INT,
+	@examinerId INT
+AS
+IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber))
+BEGIN
+	IF(not exists(SELECT * FROM ExaminerEvaluateDefense WHERE ExaminerEvaluateDefense.date = @defenseDate AND ExaminerEvaluateDefense.serialNo = @thesisSerialNumber AND ExaminerEvaluateDefense.examinerId =@examinerId))
+	BEGIN
+		IF (EXISTS(SELECT * FROM Examiner WHERE Examiner.id =@examinerId))
+		BEGIN
+			INSERT INTO ExaminerEvaluateDefense VALUES(@defenseDate, @thesisSerialNumber, @examinerId, null)
+		END
+		ELSE
+		BEGIN
+			RAISERROR('There is NO Examiner with this ID',11,1);
+		END
+	END
+	ELSE
+	BEGIN
+		RAISERROR('This Examiner is ALREADY added to this Defense',11,1);
+	END
+END
+ELSE
+BEGIN
+	RAISERROR('There is No Defense with this Thesis Serial Number and Defense Date. Please add the Defense Before adding the Examiner',11,1);
+END
+
+GO
+CREATE PROC CheckStudentId
+@studentId INT
+AS
+	IF (NOT EXISTS(SELECT id FROM GucianStudent WHERE GucianStudent.id = @StudentId UNION SELECT id FROM NonGucianStudent WHERE NonGucianStudent.id = @StudentId))
+	BEGIN
+		RAISERROR('There is NO Student with this ID',11,1);
+	END
+
+go
+	Create proc postGradUserType
+	@id int,
+	@type int output
+as
+begin
+		-- check user type 0-->Student,1-->Admin,2-->Supervisor ,3-->Examiner
+		if exists(			select id
+			from GucianStudent
+			where id=@id
+		union
+			select id
+			from
+				NonGucianStudent
+			where id=@id )
+set @type=0
+		if exists(select id
+		from Admin
+		where id=@id)
+set @type=1
+		if exists(select id
+		from Supervisor
+		where id=@id)
+set @type=2
+		if exists(select id
+		from Examiner
+		where id=@id)
+set @type=3
+	end
+go
 GO
 
 

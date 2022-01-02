@@ -9,7 +9,7 @@
 		<div>
 			<asp:Label runat="server" Text="add mobile number"></asp:Label>
 			<br />
-			<asp:TextBox ID="mobileNumber" runat="server"></asp:TextBox>
+			<asp:TextBox ID="mobileNumber" runat="server" MaxLength="20"></asp:TextBox>
 			<br />
 			<asp:Panel ID="MobileSuccess" runat="server"></asp:Panel>
 
