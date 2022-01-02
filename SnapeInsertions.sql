@@ -6,7 +6,7 @@ INSERT INTO PostGradUser (email, password) VALUES ('MinervaMcGonagallEmail', 'Mi
 INSERT INTO Admin VALUES (IDENT_CURRENT ('PostGradUser'));
 
 ----------------------- YOUSEF -------------------------------------
-
+select*from defense;
 GO
 	-- all declares
 	DECLARE @ThesisID INT;
