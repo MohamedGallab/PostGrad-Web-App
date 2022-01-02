@@ -70,9 +70,12 @@ nav {
     align-items: self-start;
 }
 
-#SignOut
-{
-    margin-right: 1.5rem!important;
+#HomeBtn {
+    margin-left: 1.5rem !important;
+}
+
+#SignOut {
+    margin-right: 1.5rem !important;
 }
 /*
 #adminMainDiv .form-control
