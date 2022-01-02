@@ -232,6 +232,7 @@ GO
 	EXEC linkPubThesis @PubID = @Pub_ID, @thesisSerialNo = @ThesisID;
 GO
 
+
 GO
 CREATE PROC CheckGucianForThesis
 	@thesisSerialNumber INT,
@@ -243,14 +244,6 @@ IF (EXISTS(SELECT serial_no
 		   FROM GUCianStudentRegisterThesis
 		   WHERE serial_no = @thesisSerialNumber))
 BEGIN
-	SET @gucian = '1'
-END
-ELSE
-BEGIN
-	SET @gucian = '0'
-END
-IF (@gucian = '1')
-BEGIN
 	IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber))
 	BEGIN
 		RAISERROR('Defense for this Thesis with this Defense Date is Already Added!',11,1);
@@ -260,7 +253,9 @@ BEGIN
 		EXEC AddDefenseGucian @thesisSerialNumber, @defenseDate, @defenseLocation;
 	END
 END
-ELSE
+ELSE IF (EXISTS(SELECT serial_no
+		   FROM NonGUCianStudentRegisterThesis
+		   WHERE serial_no = @thesisSerialNumber))
 BEGIN
 	IF (EXISTS(SELECT * FROM Defense WHERE Defense.date = @defenseDate AND Defense.serialNumber = @thesisSerialNumber))
 	BEGIN
@@ -271,6 +266,11 @@ BEGIN
 		EXEC AddDefenseNonGucian @thesisSerialNumber, @defenseDate, @defenseLocation;
 	END
 END
+ELSE
+BEGIN
+	RAISERROR('There is no Thesis with Thesis Serial Number!',11,1);
+END
+
 
 GO
 CREATE PROC AddExistingExaminer

@@ -68,24 +68,17 @@ namespace PostGrad_Web_App
 
 
 					int noOfRecords = -1;
+					
 					if (EvaluationInt >= 0 && EvaluationInt <= 3)
 					{
-						noOfRecords = evaluateProgressReport.ExecuteNonQuery(); // this is where I run my stored procedure
-						//if (noOfRecords == -1)
-						//{
-						//	successful.Text = "Failed to evaluate, Inputs don't exsist!";
-						//	successful.CssClass = "errors";
-						//}
-						//else
-						//{
-						//	successful.Text = "Evaluated successfully";
-						//}
-						//System.Diagnostics.Debug.WriteLine(noOfRecords);
+						noOfRecords = evaluateProgressReport.ExecuteNonQuery(); 
+						System.Diagnostics.Debug.WriteLine("ENtered");
 					}
 					else
 					{
 						successful.Text = "Evaluation must be between 0 and 3";
 						successful.CssClass = "errors";
+						throw new Exception("Evaluation must be between 0 and 3");
 					}
 					successful.Text = "Evaluated successfully";
 
@@ -268,6 +261,7 @@ namespace PostGrad_Web_App
 				catch (SqlException ex)
 				{
 					successful.Text = ex.Message;
+					System.Diagnostics.Debug.WriteLine(ex.Message);
 				}
 				catch (Exception es)
 				{
