@@ -66,7 +66,7 @@
 
                     <div id = "isNationalDiv" class = "d-flex">
                         <asp:Label id = "isNationalSpan" runat="server" Text="isNational"></asp:Label>
-                        <asp:CheckBox class ="" ID="National" runat="server" />
+                        <asp:CheckBox class = "checkboxSpan" ID="National" runat="server" />
                     </div>
 
                     <asp:TextBox ID="FieldOfWork" runat="server" placeholder = "Field Of Work"></asp:TextBox>
