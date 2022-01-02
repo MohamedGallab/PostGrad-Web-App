@@ -6,20 +6,20 @@
 <asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
         
         <asp:Label runat="server" Text="First Name"></asp:Label>
-        <asp:TextBox class = "form-control" ID="first_name" placeholder = "First Name" runat="server"></asp:TextBox>
+        <asp:TextBox class = "form-control" ID="first_name" placeholder = "First Name" MaxLength="20" runat="server"></asp:TextBox>
         
         <asp:Label runat="server" Text="Last Name"></asp:Label>
-        <asp:TextBox class = "form-control" ID="last_name" placeholder = "Name" runat="server"></asp:TextBox>
+        <asp:TextBox class = "form-control" ID="last_name" placeholder = "Name" MaxLength="20" runat="server"></asp:TextBox>
         
 
         <asp:Label runat="server" Text="Password"></asp:Label>
-        <asp:TextBox class = "form-control" ID="password" placeholder = "Password" runat="server"></asp:TextBox>
+        <asp:TextBox class = "form-control" ID="password" placeholder = "Password" MaxLength="20" runat="server"></asp:TextBox>
         
         <asp:Label runat="server" Text="Faculty"></asp:Label>
-        <asp:TextBox class = "form-control" ID="faculty" placeholder = "Faculty" runat="server"></asp:TextBox>
+        <asp:TextBox class = "form-control" ID="faculty" placeholder = "Faculty" MaxLength="20" runat="server"></asp:TextBox>
 
         <asp:Label runat="server" Text="Email"></asp:Label>
-        <asp:TextBox class = "form-control" ID="email" placeholder = "Email" runat="server"></asp:TextBox>
+        <asp:TextBox class = "form-control" ID="email" placeholder = "Email" MaxLength="50" runat="server"></asp:TextBox>
         
         <asp:Label ID="RegisterMessage" class = "align-self-center" runat="server" Text=""></asp:Label>
 

@@ -16,11 +16,11 @@
 				   <div id = "mainDiv" class = "d-flex flex-column align-items-start m-auto">
 						<asp:Label runat="server" Text="Email"></asp:Label>
 
-						<asp:TextBox class="form-control" ID="Email" runat="server" placeholder="name@example.com"></asp:TextBox>
+						<asp:TextBox class="form-control" ID="Email" runat="server" MaxLength="50" placeholder="name@example.com"></asp:TextBox>
 
 						<asp:Label runat="server" Text="Password"></asp:Label>
 
-						<asp:TextBox class="form-control" ID="Password" runat="server"></asp:TextBox>
+						<asp:TextBox class="form-control" ID="Password" placeholder = "Password" MaxLength="20" runat="server"></asp:TextBox>
 					   <asp:Panel ID="LoginSuccessPanel" runat="server"></asp:Panel>
 						<asp:Button ID = "LoginBtn" class = "btn btn-dark" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
 
