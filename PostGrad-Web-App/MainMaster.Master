@@ -13,9 +13,8 @@
 <body>
 	<form id="form1" runat="server">
 		<nav>
-			
 			<div class = "d-flex justify-content-between">
-				<asp:Button ID="HomeBtn" class = "btn btn-danger" runat="server" Text="Home" OnClick="HomeBtn_Click" />
+				<asp:Button ID="HomeBtn" class = "btn btn-danger" style="margin-left: 1.5rem !important;" runat="server" Text="Home" OnClick="HomeBtn_Click" />
 				<asp:Button ID="SignOut" class = "btn btn-danger" runat="server" Text="Sign Out" OnClick="SignOut_Click" />
 			</div>
 		</nav>
