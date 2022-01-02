@@ -1458,3 +1458,34 @@ AS
 	BEGIN
 		RAISERROR('There is NO Student with this ID',11,1);
 	END
+
+go
+	Create proc postGradUserType
+	@id int,
+	@type int output
+as
+begin
+		-- check user type 0-->Student,1-->Admin,2-->Supervisor ,3-->Examiner
+		if exists(			select id
+			from GucianStudent
+			where id=@id
+		union
+			select id
+			from
+				NonGucianStudent
+			where id=@id )
+set @type=0
+		if exists(select id
+		from Admin
+		where id=@id)
+set @type=1
+		if exists(select id
+		from Supervisor
+		where id=@id)
+set @type=2
+		if exists(select id
+		from Examiner
+		where id=@id)
+set @type=3
+	end
+go

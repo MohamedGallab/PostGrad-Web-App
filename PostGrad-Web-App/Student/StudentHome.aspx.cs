@@ -66,7 +66,7 @@ namespace PostGrad_Web_App
 				}
 				catch (Exception ex)
 				{
-					successeful.Text = "Failed to evaluate, Phone Number already exists";
+					successeful.Text = "Phone Number already exists";
 					System.Diagnostics.Debug.WriteLine(ex);
 				}
 				MobileSuccess.Controls.Add(successeful);
