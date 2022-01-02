@@ -11,25 +11,16 @@ namespace PostGrad_Web_App.Supervisor
 {
 
 
-	public partial class ListMyStudents
-	{
+    public partial class ListMyStudents
+    {
 
-		/// <summary>
-		/// StudentsList control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Table StudentsList;
-
-		/// <summary>
-		/// DataGrid1 control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.DataGrid DataGrid1;
-	}
+        /// <summary>
+        /// DataGrid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid DataGrid1;
+    }
 }

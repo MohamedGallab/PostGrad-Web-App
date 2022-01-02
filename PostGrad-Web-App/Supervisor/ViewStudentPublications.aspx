@@ -4,7 +4,7 @@
     <title></title>
 </asp:Content>
 <asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-        <div>
+        <div id = "ViewPubDiv">
             <asp:GridView ID="PublicationsGrid" runat="server"></asp:GridView>
         </div>
 </asp:Content>

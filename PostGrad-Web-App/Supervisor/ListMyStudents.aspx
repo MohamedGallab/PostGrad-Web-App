@@ -4,10 +4,7 @@
     <title></title>
 </asp:Content>
 <asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
-        <div>
-            <asp:Table ID="StudentsList" runat="server">
-
-            </asp:Table>
+        <div id ="listDiv">
              <asp:DataGrid ID="DataGrid1" runat="server"></asp:DataGrid> 
         </div>
 </asp:Content>
