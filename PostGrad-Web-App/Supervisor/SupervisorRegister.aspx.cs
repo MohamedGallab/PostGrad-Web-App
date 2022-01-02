@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -41,14 +42,23 @@ namespace PostGrad_Web_App
 			int newUserID;
 			SqlCommand getRegisteredID = new SqlCommand("SELECT IDENT_CURRENT('PostGradUser')", Connection);
 
-			Connection.Open();
-			supervisorRegisterProc.ExecuteNonQuery();
-			newUserID = Convert.ToInt32(getRegisteredID.ExecuteScalar());
-			Connection.Close();
-			System.Diagnostics.Debug.WriteLine("registered");
-			System.Diagnostics.Debug.WriteLine(newUserID);
-			Session["userID"] = newUserID;
-			Response.Redirect("SupervisorHome.aspx");
+			if(firstName.Length == 0 || lastName.Length == 0 || pass.Length == 0 || fclty.Length == 0|| mail.Length == 0)
+			{
+				RegisterMessage.Text = "Fill in all the fields";
+				RegisterMessage.CssClass = "errors align-self-center";
+			}
+			else
+			{
+				Connection.Open();
+				supervisorRegisterProc.ExecuteNonQuery();
+				newUserID = Convert.ToInt32(getRegisteredID.ExecuteScalar());
+				Connection.Close();
+				System.Diagnostics.Debug.WriteLine("registered");
+				System.Diagnostics.Debug.WriteLine(newUserID);
+				FormsAuthentication.SetAuthCookie(newUserID.ToString(), false);
+				Session["userID"] = newUserID;
+				Response.Redirect("../Login.aspx");
+			}
 		}
 	}
 }

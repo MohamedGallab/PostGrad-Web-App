@@ -7,29 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostGrad_Web_App.Supervisor
+namespace PostGrad_Web_App
 {
 
 
-	public partial class ListMyStudents
+	public partial class RegisterMaster
 	{
 
 		/// <summary>
-		/// StudentsList control.
+		/// head control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Table StudentsList;
+		protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
 		/// <summary>
-		/// DataGrid1 control.
+		/// form1 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DataGrid DataGrid1;
+		protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+		/// <summary>
+		/// BodyPlaceHolder control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyPlaceHolder;
 	}
 }

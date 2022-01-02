@@ -1,6 +1,9 @@
 USE PostGradOffice;
 
-
+INSERT INTO PostGradUser (email, password) VALUES ('AlbusDumbledoreEmail', 'DumbledorePass');
+INSERT INTO Admin VALUES (IDENT_CURRENT ('PostGradUser'));
+INSERT INTO PostGradUser (email, password) VALUES ('MinervaMcGonagallEmail', 'MinervaPass');
+INSERT INTO Admin VALUES (IDENT_CURRENT ('PostGradUser'));
 
 ----------------------- YOUSEF -------------------------------------
 
@@ -297,3 +300,12 @@ ELSE
 BEGIN
 	RAISERROR('There is No Defense with this Thesis Serial Number and Defense Date. Please add the Defense Before adding the Examiner',11,1);
 END
+
+GO
+CREATE PROC CheckStudentId
+@studentId INT
+AS
+	IF (NOT EXISTS(SELECT id FROM GucianStudent WHERE GucianStudent.id = @StudentId UNION SELECT id FROM NonGucianStudent WHERE NonGucianStudent.id = @StudentId))
+	BEGIN
+		RAISERROR('There is NO Student with this ID',11,1);
+	END

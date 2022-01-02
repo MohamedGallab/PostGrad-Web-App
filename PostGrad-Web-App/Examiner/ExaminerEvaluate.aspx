@@ -1,13 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExaminerEvaluate.aspx.cs" Inherits="PostGrad_Web_App.ExaminerEvaluate" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExaminerEvaluate.aspx.cs" Inherits="PostGrad_Web_App.ExaminerEvaluate" MasterPageFile="~/MainMaster.Master"%>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
     <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+</asp:Content>
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
         <div>
         <asp:Label ID="PickDefenseL" runat="server" Text="Pick a Defense to Evaluate:"></asp:Label>
         </div>
@@ -45,6 +41,4 @@
         <p>
             <asp:Button ID="Back" runat="server" Text="Back" OnClick="Back_Click" />
         </p>
-    </form>
-</body>
-</html>
+</asp:Content>

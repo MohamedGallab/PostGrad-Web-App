@@ -30,49 +30,80 @@ namespace PostGrad_Web_App
 				String PRN = ProgressReportNo.Text;
 				String Evaluation = Eval.Text;
 
-				int EvaluationInt = Convert.ToInt32(Evaluation);
+				
 				//creating the command to execute the procedure
 				SqlCommand evaluateProgressReport = new SqlCommand("EvaluateProgressReport", connection);
 				evaluateProgressReport.CommandType = CommandType.StoredProcedure;
 
 				Label successful = new Label();
+				successful.CssClass = "success";
 				try
 				{
-					//passing paramters from inputs to the procedure
+					//Checking for Empty inputs
+					if (TSN == "")
+					{
+						successful.Text = "Please Enter Thesis Serial Number";
+						successful.CssClass = "errors";
+						throw new Exception("Please Enter Thesis Serial Number");
+					}
+					else if (PRN == "")
+					{
+						successful.Text = "Please Enter Progress Report Number";
+						successful.CssClass = "errors";
+						throw new Exception("Please Enter Progress Report Number");
+					}
+					else if (Evaluation == "")
+					{
+						successful.Text = "Please Enter Evaluation Value";
+						successful.CssClass = "errors";
+						throw new Exception("Please Enter Evaluation Value");
+					}
 
+					//Passing paramters from inputs to the procedure
+					int EvaluationInt = Convert.ToInt32(Evaluation);
 					evaluateProgressReport.Parameters.Add(new SqlParameter("@thesisSerialNo", SqlDbType.Int)).Value = Convert.ToInt32(TSN);
 					evaluateProgressReport.Parameters.Add(new SqlParameter("@progressReportNo", SqlDbType.Int)).Value = Convert.ToInt32(PRN);
 					evaluateProgressReport.Parameters.Add(new SqlParameter("@supervisorID", SqlDbType.Int)).Value = Convert.ToInt32(Session["userID"]);
 					evaluateProgressReport.Parameters.Add(new SqlParameter("@evaluation", SqlDbType.Int)).Value = EvaluationInt;
 
+
 					int noOfRecords = -1;
 					if (EvaluationInt >= 0 && EvaluationInt <= 3)
 					{
 						noOfRecords = evaluateProgressReport.ExecuteNonQuery(); // this is where I run my stored procedure
-						if (noOfRecords == -1)
-						{
-							successful.Text = "Failed to evaluate, Inputs don't exsist!";
-						}
-						else
-						{
-							successful.Text = "Evaluated successfully";
-						}
-						System.Diagnostics.Debug.WriteLine(noOfRecords);
+						//if (noOfRecords == -1)
+						//{
+						//	successful.Text = "Failed to evaluate, Inputs don't exsist!";
+						//	successful.CssClass = "errors";
+						//}
+						//else
+						//{
+						//	successful.Text = "Evaluated successfully";
+						//}
+						//System.Diagnostics.Debug.WriteLine(noOfRecords);
 					}
 					else
 					{
 						successful.Text = "Evaluation must be between 0 and 3";
+						successful.CssClass = "errors";
 					}
+					successful.Text = "Evaluated successfully";
 
+				}
+				catch (SqlException SE)
+				{
+					successful.Text = SE.Message;
+					successful.CssClass = "errors";
 				}
 				catch (FormatException FE)
 				{
 					successful.Text = "Failed to evaluate, Invalid input";
-					System.Diagnostics.Debug.WriteLine(FE);
+					successful.CssClass = "errors";
 				}
 				catch (Exception es)
 				{
-					successful.Text = "Failed to evaluate!";
+					successful.Text = es.Message;
+					successful.CssClass = "errors";
 				}
 
 				evaluateSuccess.Controls.Add(successful);
@@ -91,27 +122,50 @@ namespace PostGrad_Web_App
 				cancelThesis.CommandType = CommandType.StoredProcedure;
 
 				Label successful = new Label();
+				successful.CssClass = "success";
+				
 				try
 				{
+					if (CancelThesisSerialNo.Text == "")
+					{
+						successful.Text = "Please Enter Thesis Serial Number";
+						successful.CssClass = "errors";
+						throw new FormatException("Please Enter Thesis Serial Number");
+					}
+					System.Diagnostics.Debug.WriteLine("HEY");
+					System.Diagnostics.Debug.WriteLine(CancelThesisSerialNo.Text);
 					//passing paramters from inputs to the procedure
-					cancelThesis.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = Convert.ToInt32(TSN);
-
+					cancelThesis.Parameters.Add(new SqlParameter("@ThesisSerialNo", SqlDbType.Int)).Value = Convert.ToInt32(CancelThesisSerialNo.Text);
+					
 					int noOfRecords = cancelThesis.ExecuteNonQuery(); // this is where I run my stored procedure
 
 					if (noOfRecords == -1)
 					{
 						successful.Text = "Last report evaluation is not 0. Thesis not canceled";
+						successful.CssClass = "errors";
 					}
 					else
 					{
 						successful.Text = "Canceled successfully";
 					}
-					System.Diagnostics.Debug.WriteLine(noOfRecords);
+					
 				}
-				catch (FormatException FE)
+				catch (FormatException fe)
 				{
-					successful.Text = "Failed to evaluate, Invalid input";
-					System.Diagnostics.Debug.WriteLine(FE);
+					successful.Text = fe.Message;
+					successful.CssClass = "errors";
+					
+				}
+				catch (SqlException se)
+				{
+					successful.Text = se.Message;
+					successful.CssClass = "errors";
+
+				}catch (Exception ex)
+				{
+					successful.Text = ex.Message;
+					successful.CssClass = "errors";
+
 				}
 				CancelSuccess.Controls.Add(successful);
 
@@ -125,14 +179,47 @@ namespace PostGrad_Web_App
 
 		protected void OnViewPublications(object sender, EventArgs e)
 		{
-			Session["StudentIDPublications"] = PublicationsID.Text;
-			Response.Redirect("ViewStudentPublications.aspx");
-		}
+			using (SqlConnection connection = dbm.GetSqlConnection())
+			{
+				Label successful = new Label();
+				successful.CssClass = "success";
+				SqlCommand checkStudent = new SqlCommand("CheckStudentId", connection)
+				{
+					CommandType = CommandType.StoredProcedure
+				};
+				try
+				{
+					if (PublicationsID.Text == "")
+					{
+						successful.Text = "Please Enter Student ID";
+						successful.CssClass = "errors";
+						throw new Exception("Please Enter Student ID");
+					}
+					else
+					{ 
+						checkStudent.Parameters.Add(new SqlParameter("@StudentId", SqlDbType.Int)).Value = Convert.ToInt32(PublicationsID.Text);
+					
+						checkStudent.ExecuteNonQuery();
 
-		protected void DateChange(object sender, EventArgs e)
-		{
-			DefenseDate.Text = DefenseDateCalendar.SelectedDate.ToShortDateString();
+						Session["StudentIDPublications"] = PublicationsID.Text;
+						Response.Redirect("ViewStudentPublications.aspx");
+					}
+				}
+				catch (SqlException ex)
+				{
+					successful.Text = ex.Message;
+					successful.CssClass = "errors";
+				}
+				catch (Exception ex)
+				{
+					successful.Text = ex.Message;
+					successful.CssClass = "errors";
+				}
+				PublicationsSuccess.Controls.Add(successful);
+			}
+			
 		}
+		
 		protected void OnAddDefense(object sender, EventArgs e)
 		{
 			using (SqlConnection connection = dbm.GetSqlConnection())
@@ -148,22 +235,26 @@ namespace PostGrad_Web_App
                     CommandType = CommandType.StoredProcedure
                 };
 				Label successful = new Label();
+				successful.CssClass = "success";
                 try
 				{
 					//passing paramters from inputs to the procedure
 					if (DTSN == "")
                     {
 						successful.Text = "Please Enter Thesis Serial Number";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Thesis Serial Number");
 					}
 					else if (defenseDate.Equals(DateTime.Parse("1/1/0001 12:00:00 AM")))
 					{
 						successful.Text = "Please Enter Defense Date";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Defense Date");
 					}
 					else if (defenseLocation == "")
 					{
 						successful.Text = "Please Enter Defense Location";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Defense Location");
 					}
 
@@ -183,6 +274,7 @@ namespace PostGrad_Web_App
 					System.Diagnostics.Debug.WriteLine("ERROR");
 					System.Diagnostics.Debug.WriteLine(es.Message);
 					successful.Text = es.Message;
+					successful.CssClass = "errors";
 				}
 				AddDefenseSuccess.Controls.Add(successful);
 			}
@@ -206,36 +298,43 @@ namespace PostGrad_Web_App
 					CommandType = CommandType.StoredProcedure
 				};
 				Label successful = new Label();
+				successful.CssClass = "success";
 				try
 				{
 					//passing paramters from inputs to the procedure
 					if (DTSN == "")
 					{
 						successful.Text = "Please Enter Thesis Serial Number";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Thesis Serial Number");
 					}
 					else if (defenseDate.Equals(DateTime.Parse("1/1/0001 12:00:00 AM")))
 					{
 						successful.Text = "Please Enter Defense Date";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Defense Date");
 					}
 					else if (examinerName == "")
 					{
 						successful.Text = "Please Enter Examiner Name";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Examiner Name");
 					}else if (password == "")
 					{
 						successful.Text = "Please Enter Password";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Password");
 					}
 					else if (national.Equals(""))
 					{
 						successful.Text = "Please Enter National";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter National");
 					}
 					else if (fieldOfWork == "")
 					{
 						successful.Text = "Please Enter Field of Work";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Field of Work");
 					}
 
@@ -252,12 +351,14 @@ namespace PostGrad_Web_App
 				catch (SqlException ex)
 				{
 					successful.Text = ex.Message;
+					successful.CssClass = "errors";
 				}
 				catch (Exception es)
 				{
 					System.Diagnostics.Debug.WriteLine("ERROR");
 					System.Diagnostics.Debug.WriteLine(es.Message);
 					successful.Text = es.Message;
+					successful.CssClass = "errors";
 				}
 				AddNewExaminerSuccess.Controls.Add(successful);
 			}
@@ -278,20 +379,24 @@ namespace PostGrad_Web_App
 				};
 
 				Label successful = new Label();
+				successful.CssClass = "success";
 
 				try
                 {
 					if (DTSN == "")
 					{
 						successful.Text = "Please Enter Thesis Serial Number";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Thesis Serial Number");
 					} else if (defenseDate.Equals(DateTime.Parse("1/1/0001 12:00:00 AM")))
                     {
 						successful.Text = "Please Enter Defense Date";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Defense Date");
 					} else if (examinerId == "")
 					{
 						successful.Text = "Please Enter Examiner Id";
+						successful.CssClass = "errors";
 						throw new Exception("Please Enter Examiner Id");
 					}
 					addExistingExaminer.Parameters.Add(new SqlParameter("@defenseDate", SqlDbType.DateTime)).Value = defenseDate;
@@ -303,6 +408,7 @@ namespace PostGrad_Web_App
 				catch (SqlException ex)
 				{
 					successful.Text = ex.Message;
+					successful.CssClass = "errors";
 				}
 				catch (Exception es)
                 {

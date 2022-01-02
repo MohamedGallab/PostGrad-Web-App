@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,7 +15,6 @@ namespace PostGrad_Web_App
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
 		}
 
 		protected void LoginBtn_Click(object sender, EventArgs e)
@@ -53,6 +53,7 @@ namespace PostGrad_Web_App
 			if (Convert.ToBoolean(success.Value))
 			{
 				Session["userID"] = Convert.ToInt32(oldUserID.Value);
+				FormsAuthentication.SetAuthCookie(oldUserID.Value.ToString(), false);
 				switch (type.Value)
 				{
 					case 0:

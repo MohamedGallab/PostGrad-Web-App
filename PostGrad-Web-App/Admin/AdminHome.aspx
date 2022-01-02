@@ -1,19 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminHome.aspx.cs" Inherits="PostGrad_Web_App.AdminHome" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminHome.aspx.cs" Inherits="PostGrad_Web_App.AdminHome" MasterPageFile="~/MainMaster.Master"%>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="childHead" ContentPlaceHolderID="head" runat="server">
 	<title>Admin Homepage</title>
 	<style>
-		#ThesesCountLabel {
+		span {
 			color : crimson;
 		}
-	</style>
-</head>
-<body>
-	<form id="form1" runat="server">
 
+		#BodyPlaceHolder_IssueInstallPaymentInstallDateLabel {
+			color : dimgray;
+		}
+	</style>
+</asp:Content>
+<asp:Content ID="childBody" ContentPlaceHolderID="BodyPlaceHolder" runat="server">
 		<asp:Panel ID="ListSupPanel" runat="server">
 			<asp:Button ID="ListSupBtn" runat="server" Text="List All Supervisors" OnClick="ListSupBtn_Click" />
 			<asp:GridView ID="ListSupGridView" runat="server"></asp:GridView>
@@ -62,8 +61,5 @@
 			<asp:Label ID="IssueInstallPaymentInstallDateLabel" runat="server" Text="Choose Installment Start date"></asp:Label>
 			<asp:Calendar ID="IssueInstallPaymentInstallStartDate" runat="server" ></asp:Calendar>
 		</asp:Panel>
-		
-	</form>
-</body>
-</html>
+</asp:Content>
 

@@ -571,34 +571,55 @@ begin
 	if(exists(select *
 	from GUCianStudentRegisterThesis
 	where
-serial_no=@thesisSerialNo and
-		supid=@supervisorID))
+	serial_no=@thesisSerialNo))
 begin
-		declare @gucSid int
-		select @gucSid=sid
-		from GUCianStudentRegisterThesis
-		where serial_no=@thesisSerialNo
-		update GUCianProgressReport
-set eval=@evaluation
-where sid=@gucSid and thesisSerialNumber=@thesisSerialNo and
-			no=@progressReportNo
+		if(exists(select *
+		from GUCianProgressReport
+		where
+		thesisSerialNumber=@thesisSerialNo and no=@progressReportNo))
+		BEGIN
+			declare @gucSid int
+			select @gucSid=sid
+			from GUCianStudentRegisterThesis
+			where serial_no=@thesisSerialNo
+			update GUCianProgressReport
+	set eval=@evaluation
+	where sid=@gucSid and thesisSerialNumber=@thesisSerialNo and
+				no=@progressReportNo
+		END
+		ELSE
+		BEGIN
+			RAISERROR('NO Progress Reports with this Progress Report Number!',11,1);
+		END
 	end
 else if(exists(select *
 	from NonGUCianStudentRegisterThesis
 	where
-serial_no=@thesisSerialNo and
-		supid=@supervisorID))
-begin
-		declare @nonGucSid int
-		select @nonGucSid=sid
-		from NonGUCianStudentRegisterThesis
-		where serial_no=@thesisSerialNo
-		update NonGUCianProgressReport
-set eval=@evaluation
-where sid=@nonGucSid and thesisSerialNumber=@thesisSerialNo and
-			no=@progressReportNo
+serial_no=@thesisSerialNo))
+	begin
+		if(exists(select *
+		from NonGUCianProgressReport
+		where
+		thesisSerialNumber=@thesisSerialNo and no=@progressReportNo))
+		BEGIN
+			declare @nonGucSid int
+			select @nonGucSid=sid
+			from NonGUCianStudentRegisterThesis
+			where serial_no=@thesisSerialNo
+			update NonGUCianProgressReport
+			set eval=@evaluation
+			where sid=@nonGucSid and thesisSerialNumber=@thesisSerialNo and no=@progressReportNo
+		END
+		ELSE
+		BEGIN
+			RAISERROR('NO Progress Reports with this Progress Report Number!',11,1);
+		END
 	end
 end
+ELSE
+BEGIN
+RAISERROR('There are NO Thesis with this Thesis Serial Number!',11,1);
+END
 go
 CREATE Proc ViewSupStudentsYears
 	@supervisorID int
@@ -715,38 +736,68 @@ create proc CancelThesis
 as
 if(exists(
 select *
-from GUCianProgressReport
-where thesisSerialNumber = @ThesisSerialNo
+from GUCianStudentRegisterThesis
+where serial_no = @ThesisSerialNo
 ))
 begin
-	declare @gucianEval int
-	set @gucianEval = (
-select top 1
-		eval
+	if(exists(
+	select *
 	from GUCianProgressReport
 	where thesisSerialNumber = @ThesisSerialNo
-	order by no desc
-)
-	if(@gucianEval = 0)
-begin
-		delete from Thesis where serialNumber = @ThesisSerialNo
-	end
+	))
+	BEGIN
+		declare @gucianEval int
+		set @gucianEval = (
+	select top 1
+			eval
+		from GUCianProgressReport
+		where thesisSerialNumber = @ThesisSerialNo
+		order by no desc
+	)
+		if(@gucianEval = 0)
+		begin
+			delete from Thesis where serialNumber = @ThesisSerialNo
+		end
+	END
+	ELSE
+	BEGIN
+			RAISERROR('There are NO Progress Reports for Thesis. Thesis NOT Canceled!',11,1);
+	END
 end
-else
+else if(exists(
+select *
+from NonGUCianStudentRegisterThesis
+where serial_no = @ThesisSerialNo
+))
 begin
-	declare @nonGucianEval int
-	set @nonGucianEval = (
-select top 1
-		eval
+	if(exists(
+	select *
 	from NonGUCianProgressReport
 	where thesisSerialNumber = @ThesisSerialNo
-	order by no desc
-)
-	if(@nonGucianEval = 0)
-begin
-		delete from Thesis where serialNumber = @ThesisSerialNo
-	end
+	))
+	BEGIN
+		declare @nonGucianEval int
+		set @nonGucianEval = (
+	select top 1
+			eval
+		from NonGUCianProgressReport
+		where thesisSerialNumber = @ThesisSerialNo
+		order by no desc
+	)
+		if(@nonGucianEval = 0)
+		begin
+			delete from Thesis where serialNumber = @ThesisSerialNo
+		end
+	END
+	ELSE
+	BEGIN
+		RAISERROR('There are NO Progress Reports for Thesis. Thesis NOT Canceled!',11,1);
+	END
 end
+ELSE 
+BEGIN 
+	RAISERROR('Thesis Serial Number DOES NOT exist',11,1);
+END
 go
 create proc AddGrade
 	@ThesisSerialNo int

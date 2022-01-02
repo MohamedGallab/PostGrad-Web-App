@@ -11,25 +11,16 @@ namespace PostGrad_Web_App.Supervisor
 {
 
 
-    public partial class ViewStudentPublications
-    {
+	public partial class ViewStudentPublications
+	{
 
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// PublicationsGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView PublicationsGrid;
-    }
+		/// <summary>
+		/// PublicationsGrid control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.GridView PublicationsGrid;
+	}
 }
