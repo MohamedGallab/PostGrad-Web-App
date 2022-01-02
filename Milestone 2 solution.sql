@@ -688,6 +688,9 @@ create proc AddDefenseGucian
 as
 insert into Defense
 values(@ThesisSerialNo,@DefenseDate,@DefenseLocation,null)
+UPDATE Thesis
+	SET defenseDate = @DefenseDate
+	WHERE THESIS.serialNumber = @ThesisSerialNo
 go
 create proc AddDefenseNonGucian
 @ThesisSerialNo int , @DefenseDate Datetime , @DefenseLocation varchar(15)
@@ -702,7 +705,14 @@ where sid = @idOfStudent and grade < 50))
 begin
 insert into Defense
 values(@ThesisSerialNo,@DefenseDate,@DefenseLocation,null)
+UPDATE Thesis
+	SET defenseDate = @DefenseDate
+	WHERE THESIS.serialNumber = @ThesisSerialNo
 end
+
+drop proc AddDefenseGucian;
+drop proc AddDefenseNonGucian;
+
 go
 create proc AddExaminer
 	@ThesisSerialNo int ,

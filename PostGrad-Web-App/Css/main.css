@@ -91,7 +91,6 @@ table {
 tr {
     border: 0;
     border-bottom: 1px solid grey !important;
-
 }
 
 tr > td {
@@ -100,13 +99,17 @@ tr > td {
 }
 
 
-
 #BodyPlaceHolder_ListThesesPanel {
     margin-bottom: 1rem !important;
-    width: 100%;
+
 }
 
 #ListSupGridView {
     width: 60% !important;
     margin-bottom: 0.5rem;
+}
+
+#ListThesesGridView
+{
+    width: 100%;
 }
