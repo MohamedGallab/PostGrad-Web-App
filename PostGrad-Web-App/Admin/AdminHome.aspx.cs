@@ -128,7 +128,7 @@ namespace PostGrad_Web_App
 					successful.CssClass = "errors";
 				}
 				catch (Exception ex)
-				{
+				{	
 					successful.Text = ex.Message;
 					successful.CssClass = "errors";
 				}
