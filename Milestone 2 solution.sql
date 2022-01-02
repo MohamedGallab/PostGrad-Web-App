@@ -4,7 +4,7 @@ use PostGradOffice;
 CREATE TABLE PostGradUser
 (
 	id int primary key identity(1,1),
-	email varchar(50) not null,
+	email varchar(50) not null unique,
 	password varchar(30) not null
 )
 CREATE TABLE Admin
@@ -414,9 +414,9 @@ end
 go
 CREATE Proc AdminIssueThesisPayment
 	@ThesisSerialNo int,
-	@amount decimal,
+	@amount decimal(7,2),
 	@noOfInstallments int,
-	@fundPercentage decimal
+	@fundPercentage decimal(4,2)
 As
 if(exists(select *
 from Thesis

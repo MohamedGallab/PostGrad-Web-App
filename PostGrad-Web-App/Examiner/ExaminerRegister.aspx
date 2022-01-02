@@ -12,7 +12,7 @@
         <asp:TextBox ID="password" class = "form-control" MaxLength="30" placeholder = "Password" runat="server"></asp:TextBox>
 
         <div>
-            <asp:Label runat="server" Text="Is National?"></asp:Label>
+            <asp:Label runat="server" Text="Are you Egyptian?"></asp:Label>
             <asp:CheckBox ID="isNational" class = "checkboxSpan" runat="server" />
         </div>
 
