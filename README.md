@@ -21,11 +21,9 @@ A web app that serves post-grads and their supervisors during their post-gradute
 
 ## Screenshots
 ![Example screenshot](./Screenshots/Login.png)
-
-![Example](./Screenshots/'Student Register.png')
-
-![Example screenshot](./Screenshots/Admin Page.png)
-![Example screenshot](./Screenshots/Supervisor Page.png)
+![Example](./Screenshots/Student%20Register.png)
+![Example screenshot](./Screenshots/Admin%20Page.png)
+![Example screenshot](./Screenshots/Supervisor%20Page.png)
 
 ## Project Status
 Project is: _complete_
