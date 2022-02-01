@@ -8,14 +8,9 @@ A web app that serves post-grads and their supervisors during their post-gradute
 * [Project Status](#project-status)
 * [Authors](#authors)
 
-
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
-
+- We Used ASP.NET as our framework and more specifically web forms
+- used master pages to eliminate redundancy
 
 ## Technologies Used
 - ASP.NET (Web Forms)
@@ -25,8 +20,12 @@ A web app that serves post-grads and their supervisors during their post-gradute
 - Visual Studio
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+![Example screenshot](./Screenshots/Login.png)
+
+![Example](./Screenshots/'Student Register.png')
+
+![Example screenshot](./Screenshots/Admin Page.png)
+![Example screenshot](./Screenshots/Supervisor Page.png)
 
 ## Project Status
 Project is: _complete_
